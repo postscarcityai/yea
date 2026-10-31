@@ -1,0 +1,1578 @@
+{
+  "title": "YEA SaaS explorer data: what you can drop, what you keep",
+  "checked": "2026-10-31",
+  "card": "PSAI-19 t_f763c6b3",
+  "risk_scale": {
+    "none": "Nothing at stake. Swap it this week.",
+    "low": "Data moves cleanly. Small rebuild, no money or compliance attached.",
+    "mid": "Live revenue, contracts, consent records or history the business runs on. Needs a migration plan and a parallel run.",
+    "high": "Money, compliance, deliverability, or data you cannot lose. Move last with a full parallel run, or keep it."
+  },
+  "modules_note": "YEA module names are provisional until PSAI-21 (module map) lands.",
+  "products": [
+    {
+      "name": "Mailchimp",
+      "category": "Email marketing",
+      "does": "Sends newsletters and email campaigns",
+      "plan": "Essentials",
+      "price": {
+        "starting_usd_month": 13,
+        "basis": "monthly, 500 contacts, rises with list",
+        "fee": null,
+        "source_url": "https://mailchimp.com/landers/pricing/essentials/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Lists, templates and sends move in an afternoon. Bring the unsubscribe list so suppression carries over.",
+      "yea_module": "Campaigns"
+    },
+    {
+      "name": "Klaviyo",
+      "category": "Email marketing",
+      "does": "Ecommerce email and SMS flows",
+      "plan": "Email",
+      "price": {
+        "starting_usd_month": 20,
+        "basis": "monthly, 251 to 500 profiles",
+        "fee": null,
+        "source_url": "https://www.klaviyo.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor page did not render the number; figure from third-party trackers, recheck before publishing"
+      },
+      "verdict": "drop",
+      "risk": "mid",
+      "risk_why": "Revenue-driving abandoned cart and post-purchase flows must be rebuilt and proven before cutover.",
+      "yea_module": "Campaigns"
+    },
+    {
+      "name": "Constant Contact",
+      "category": "Email marketing",
+      "does": "Small business email newsletters",
+      "plan": "Lite",
+      "price": {
+        "starting_usd_month": 12,
+        "basis": "monthly, 500 contacts",
+        "fee": null,
+        "source_url": "https://www.constantcontact.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor page snippet, page blocked direct fetch"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Simple newsletter sends. Nothing a list export and the Campaigns module cannot carry.",
+      "yea_module": "Campaigns"
+    },
+    {
+      "name": "Kit (ConvertKit)",
+      "category": "Email marketing",
+      "does": "Creator newsletters and sequences",
+      "plan": "Creator",
+      "price": {
+        "starting_usd_month": 33,
+        "basis": "monthly, 1,000 subscribers",
+        "fee": null,
+        "source_url": "https://kit.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Sequences and tags need a careful map, but no money or regulated data rides on them.",
+      "yea_module": "Campaigns"
+    },
+    {
+      "name": "ActiveCampaign",
+      "category": "Email marketing",
+      "does": "Email automation with light CRM",
+      "plan": "Starter",
+      "price": {
+        "starting_usd_month": 15,
+        "basis": "billed annually, 1,000 contacts",
+        "fee": null,
+        "source_url": "https://www.activecampaign.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor page did not render the number; figure from third-party trackers, recheck before publishing"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Automations are rebuilt as agent workflows. Contact history exports cleanly.",
+      "yea_module": "Campaigns + CRM"
+    },
+    {
+      "name": "beehiiv",
+      "category": "Email marketing",
+      "does": "Newsletter publishing and growth",
+      "plan": "Lite",
+      "price": {
+        "starting_usd_month": 49,
+        "basis": "billed annually ($59 monthly), 1,000 subscribers",
+        "fee": null,
+        "source_url": "https://www.beehiiv.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Paid newsletter subscriptions need their Stripe link moved. The rest is content.",
+      "yea_module": "Campaigns"
+    },
+    {
+      "name": "SimpleTexting",
+      "category": "SMS marketing",
+      "does": "Bulk text message campaigns",
+      "plan": "500 credits + local number",
+      "price": {
+        "starting_usd_month": 39,
+        "basis": "monthly ($29 credits + $10 number)",
+        "fee": null,
+        "source_url": "https://simpletexting.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "mid",
+      "risk_why": "Opt-in records and 10DLC registration carry TCPA exposure. Port the number and consent log together.",
+      "yea_module": "Campaigns (SMS over Twilio)"
+    },
+    {
+      "name": "HubSpot Sales Hub Starter",
+      "category": "CRM",
+      "does": "Contacts, deals and pipeline",
+      "plan": "Sales Hub Starter",
+      "price": {
+        "starting_usd_month": 7,
+        "basis": "per seat, promo price ($20 list)",
+        "fee": null,
+        "source_url": "https://www.hubspot.com/pricing/sales",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "mid",
+      "risk_why": "Years of deal history, emails and attribution. Lose the history and sales loses its memory.",
+      "yea_module": "CRM"
+    },
+    {
+      "name": "Salesforce Starter Suite",
+      "category": "CRM",
+      "does": "Sales, service and marketing CRM",
+      "plan": "Starter Suite",
+      "price": {
+        "starting_usd_month": 25,
+        "basis": "per user, monthly or annual",
+        "fee": null,
+        "source_url": "https://www.salesforce.com/small-business/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "mid",
+      "risk_why": "Custom objects and reports take real mapping. Fine at small business scale, plan the export.",
+      "yea_module": "CRM"
+    },
+    {
+      "name": "Pipedrive",
+      "category": "CRM",
+      "does": "Visual sales pipeline tracking",
+      "plan": "Lite",
+      "price": {
+        "starting_usd_month": 14,
+        "basis": "per seat, billed annually",
+        "fee": null,
+        "source_url": "https://www.pipedrive.com/en/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor page snippet, page blocked direct fetch"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Deals and stages map one to one. Clean CSV export.",
+      "yea_module": "CRM"
+    },
+    {
+      "name": "Zoho CRM",
+      "category": "CRM",
+      "does": "Contact and deal management",
+      "plan": "Standard",
+      "price": {
+        "starting_usd_month": 14,
+        "basis": "per user, billed annually ($20 monthly)",
+        "fee": null,
+        "source_url": "https://www.zoho.com/crm/zohocrm-pricing.html",
+        "checked": "2026-10-31",
+        "source_quality": "vendor page snippet, page blocked direct fetch"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Standard objects export cleanly. Watch custom fields.",
+      "yea_module": "CRM"
+    },
+    {
+      "name": "Close",
+      "category": "CRM",
+      "does": "Calling and email sales CRM",
+      "plan": "Solo",
+      "price": {
+        "starting_usd_month": 9,
+        "basis": "per seat, billed annually ($19 monthly)",
+        "fee": null,
+        "source_url": "https://www.close.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Leads and activity export cleanly. Calling rides on Twilio either way.",
+      "yea_module": "CRM"
+    },
+    {
+      "name": "Shopify",
+      "category": "Ecommerce",
+      "does": "Online store and checkout",
+      "plan": "Basic",
+      "price": {
+        "starting_usd_month": 29,
+        "basis": "billed annually ($39 monthly)",
+        "fee": "2.9% + 30c online card rate",
+        "source_url": "https://www.shopify.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "mid",
+      "risk_why": "Live revenue, product catalog, SEO URLs and order history. Money keeps flowing through Stripe, but the move needs redirects and a parallel run.",
+      "yea_module": "Storefront"
+    },
+    {
+      "name": "BigCommerce",
+      "category": "Ecommerce",
+      "does": "Online store and catalog",
+      "plan": "Core",
+      "price": {
+        "starting_usd_month": 29,
+        "basis": "billed annually ($39 monthly)",
+        "fee": "card processing from 2.89% + 29c",
+        "source_url": "https://www.bigcommerce.com/essentials/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "mid",
+      "risk_why": "Same as Shopify: live checkout, catalog and SEO URLs move together.",
+      "yea_module": "Storefront"
+    },
+    {
+      "name": "Gumroad",
+      "category": "Ecommerce",
+      "does": "Sell digital products simply",
+      "plan": "No monthly fee",
+      "price": {
+        "starting_usd_month": null,
+        "basis": "fee only",
+        "fee": "10% + 50c per sale",
+        "source_url": "https://gumroad.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "A product page and a Stripe checkout. Cheaper on every sale once moved.",
+      "yea_module": "Storefront"
+    },
+    {
+      "name": "Kajabi",
+      "category": "Courses and memberships",
+      "does": "Courses, memberships and community",
+      "plan": "Basic",
+      "price": {
+        "starting_usd_month": 143,
+        "basis": "billed annually ($179 monthly)",
+        "fee": "2.9% + 30c with Kajabi Payments",
+        "source_url": "https://kajabi.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "mid",
+      "risk_why": "Active subscriptions must migrate without double charging or dropping members.",
+      "yea_module": "Courses + Storefront"
+    },
+    {
+      "name": "Teachable",
+      "category": "Courses and memberships",
+      "does": "Host and sell online courses",
+      "plan": "Starter",
+      "price": {
+        "starting_usd_month": 29,
+        "basis": "billed annually ($39 monthly)",
+        "fee": "7.5% transaction fee on Starter",
+        "source_url": "https://www.teachable.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "mid",
+      "risk_why": "Student progress and recurring payments need a clean handoff.",
+      "yea_module": "Courses + Storefront"
+    },
+    {
+      "name": "Calendly",
+      "category": "Scheduling",
+      "does": "Book meetings from links",
+      "plan": "Standard",
+      "price": {
+        "starting_usd_month": 10,
+        "basis": "per seat, billed annually",
+        "fee": null,
+        "source_url": "https://calendly.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Booking links and calendar sync. Rebuilt in a day.",
+      "yea_module": "Bookings"
+    },
+    {
+      "name": "Acuity Scheduling",
+      "category": "Scheduling",
+      "does": "Client appointment booking",
+      "plan": "Starter",
+      "price": {
+        "starting_usd_month": 16,
+        "basis": "billed annually ($20 monthly)",
+        "fee": null,
+        "source_url": "https://acuityscheduling.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Intake forms and paid deposits need a careful map. Future appointments move first.",
+      "yea_module": "Bookings"
+    },
+    {
+      "name": "Cal.com",
+      "category": "Scheduling",
+      "does": "Open scheduling infrastructure",
+      "plan": "Teams",
+      "price": {
+        "starting_usd_month": 12,
+        "basis": "per user, billed annually",
+        "fee": null,
+        "source_url": "https://cal.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Booking links and availability rules. Nothing at stake.",
+      "yea_module": "Bookings"
+    },
+    {
+      "name": "Typeform",
+      "category": "Forms and surveys",
+      "does": "Conversational forms and surveys",
+      "plan": "Basic",
+      "price": {
+        "starting_usd_month": 28,
+        "basis": "billed annually ($39 monthly)",
+        "fee": null,
+        "source_url": "https://www.typeform.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Forms are the first thing YEA builds. Old responses export to CSV.",
+      "yea_module": "Forms"
+    },
+    {
+      "name": "Jotform",
+      "category": "Forms and surveys",
+      "does": "Online forms and data collection",
+      "plan": "Bronze",
+      "price": {
+        "starting_usd_month": 34,
+        "basis": "billed annually ($39 monthly)",
+        "fee": null,
+        "source_url": "https://www.jotform.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Check for forms that collect payments or health data before moving.",
+      "yea_module": "Forms"
+    },
+    {
+      "name": "Tally",
+      "category": "Forms and surveys",
+      "does": "Simple no-code forms",
+      "plan": "Pro",
+      "price": {
+        "starting_usd_month": 24,
+        "basis": "monthly",
+        "fee": null,
+        "source_url": "https://tally.so/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Plain forms. Nothing to lose.",
+      "yea_module": "Forms"
+    },
+    {
+      "name": "SurveyMonkey",
+      "category": "Forms and surveys",
+      "does": "Surveys and response analysis",
+      "plan": "Advantage Annual",
+      "price": {
+        "starting_usd_month": 39,
+        "basis": "billed annually ($468 per year)",
+        "fee": null,
+        "source_url": "https://www.surveymonkey.com/pricing/individual/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Surveys and results export. The agent writes the analysis.",
+      "yea_module": "Forms"
+    },
+    {
+      "name": "Zendesk",
+      "category": "Helpdesk",
+      "does": "Customer support ticketing",
+      "plan": "Support Team",
+      "price": {
+        "starting_usd_month": 19,
+        "basis": "per agent, billed annually ($25 monthly)",
+        "fee": null,
+        "source_url": "https://www.zendesk.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Ticket history exports. Macros become agent playbooks.",
+      "yea_module": "Inbox"
+    },
+    {
+      "name": "Freshdesk",
+      "category": "Helpdesk",
+      "does": "Support tickets and knowledge base",
+      "plan": "Growth",
+      "price": {
+        "starting_usd_month": 19,
+        "basis": "per agent, billed annually",
+        "fee": null,
+        "source_url": "https://www.freshworks.com/freshdesk/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Tickets and help articles export cleanly.",
+      "yea_module": "Inbox"
+    },
+    {
+      "name": "Help Scout",
+      "category": "Helpdesk",
+      "does": "Shared inbox for support",
+      "plan": "Standard",
+      "price": {
+        "starting_usd_month": 25,
+        "basis": "per user, billing cycle not labeled",
+        "fee": null,
+        "source_url": "https://www.helpscout.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "A shared inbox on top of email. Keep the support address pointed at YEA.",
+      "yea_module": "Inbox"
+    },
+    {
+      "name": "Gorgias",
+      "category": "Helpdesk",
+      "does": "Ecommerce support helpdesk",
+      "plan": "Starter",
+      "price": {
+        "starting_usd_month": 10,
+        "basis": "monthly, 50 tickets then 40c each",
+        "fee": null,
+        "source_url": "https://www.gorgias.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Tied to the store, so it moves when the store moves.",
+      "yea_module": "Inbox"
+    },
+    {
+      "name": "Intercom",
+      "category": "Chat widget",
+      "does": "Website chat and support",
+      "plan": "Essential",
+      "price": {
+        "starting_usd_month": 19,
+        "basis": "per seat, billed annually ($29 monthly)",
+        "fee": "AI resolutions billed extra",
+        "source_url": "https://www.intercom.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "The site chat becomes the YEA agent. Conversation history exports.",
+      "yea_module": "Chat"
+    },
+    {
+      "name": "Tidio",
+      "category": "Chat widget",
+      "does": "Live chat and chatbot",
+      "plan": "Starter",
+      "price": {
+        "starting_usd_month": 24.17,
+        "basis": "billing cycle not labeled, likely annual",
+        "fee": null,
+        "source_url": "https://www.tidio.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "A widget and a few canned replies. Nothing to lose.",
+      "yea_module": "Chat"
+    },
+    {
+      "name": "LiveChat",
+      "category": "Chat widget",
+      "does": "Live chat for websites",
+      "plan": "Essential",
+      "price": {
+        "starting_usd_month": 19,
+        "basis": "per seat, billed annually ($25 monthly)",
+        "fee": null,
+        "source_url": "https://www.livechat.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Swap the embed. Done.",
+      "yea_module": "Chat"
+    },
+    {
+      "name": "Crisp",
+      "category": "Chat widget",
+      "does": "Shared inbox and site chat",
+      "plan": "Mini",
+      "price": {
+        "starting_usd_month": 45,
+        "basis": "monthly, per workspace, 4 seats",
+        "fee": null,
+        "source_url": "https://crisp.chat/en/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Swap the embed and forward the inbox.",
+      "yea_module": "Chat + Inbox"
+    },
+    {
+      "name": "Asana",
+      "category": "Project management",
+      "does": "Tasks, projects and timelines",
+      "plan": "Starter",
+      "price": {
+        "starting_usd_month": 10.99,
+        "basis": "per seat, billed annually ($13.49 monthly)",
+        "fee": null,
+        "source_url": "https://asana.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Tasks and projects export. Internal only, no customer data at stake.",
+      "yea_module": "Projects"
+    },
+    {
+      "name": "monday.com",
+      "category": "Project management",
+      "does": "Work boards and workflows",
+      "plan": "Basic",
+      "price": {
+        "starting_usd_month": 9,
+        "basis": "per seat, billed annually, 3 seat minimum",
+        "fee": null,
+        "source_url": "https://monday.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Boards export. Real floor is $27 a month.",
+      "yea_module": "Projects"
+    },
+    {
+      "name": "ClickUp",
+      "category": "Project management",
+      "does": "Tasks, docs and goals",
+      "plan": "Core",
+      "price": {
+        "starting_usd_month": 9,
+        "basis": "per user, billed annually",
+        "fee": null,
+        "source_url": "https://clickup.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Tasks and docs export. Internal only.",
+      "yea_module": "Projects + Docs"
+    },
+    {
+      "name": "Trello",
+      "category": "Project management",
+      "does": "Kanban boards for tasks",
+      "plan": "Standard",
+      "price": {
+        "starting_usd_month": 5,
+        "basis": "per user, billed annually ($6 monthly)",
+        "fee": null,
+        "source_url": "https://trello.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Cards and lists. YEA ships a board.",
+      "yea_module": "Projects"
+    },
+    {
+      "name": "Basecamp",
+      "category": "Project management",
+      "does": "Projects, messages and files",
+      "plan": "Freelancer",
+      "price": {
+        "starting_usd_month": 29,
+        "basis": "flat, monthly, up to 5 users",
+        "fee": null,
+        "source_url": "https://basecamp.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Messages and files export. Internal only.",
+      "yea_module": "Projects"
+    },
+    {
+      "name": "Notion",
+      "category": "Docs and wiki",
+      "does": "Docs, wikis and databases",
+      "plan": "Plus",
+      "price": {
+        "starting_usd_month": 10,
+        "basis": "per seat, billing cycle not labeled",
+        "fee": null,
+        "source_url": "https://www.notion.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Exports to markdown. Linked databases need a little rebuild.",
+      "yea_module": "Docs"
+    },
+    {
+      "name": "Confluence",
+      "category": "Docs and wiki",
+      "does": "Team wiki and documentation",
+      "plan": "Standard",
+      "price": {
+        "starting_usd_month": 5.78,
+        "basis": "per user, monthly",
+        "fee": null,
+        "source_url": "https://www.atlassian.com/software/confluence/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor page did not render the number; figure from third-party trackers, recheck before publishing"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Pages export. Teams on Jira may want to keep both together.",
+      "yea_module": "Docs"
+    },
+    {
+      "name": "Coda",
+      "category": "Docs and wiki",
+      "does": "Docs that act like apps",
+      "plan": "Pro",
+      "price": {
+        "starting_usd_month": 12,
+        "basis": "per doc maker, billed annually ($15 monthly)",
+        "fee": null,
+        "source_url": "https://coda.io/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor page snippet, page blocked direct fetch"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Doc formulas become YEA views and agent actions.",
+      "yea_module": "Docs"
+    },
+    {
+      "name": "Airtable",
+      "category": "Docs and wiki",
+      "does": "Spreadsheet database for teams",
+      "plan": "Team",
+      "price": {
+        "starting_usd_month": 20,
+        "basis": "per seat, billed annually",
+        "fee": null,
+        "source_url": "https://www.airtable.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Bases are tables. They become real tables in the YEA database.",
+      "yea_module": "Data views"
+    },
+    {
+      "name": "Canva",
+      "category": "Design",
+      "does": "Drag and drop graphic design",
+      "plan": "Canva Pro",
+      "price": {
+        "starting_usd_month": 12,
+        "basis": "billed annually ($15 monthly), 1 person",
+        "fee": null,
+        "source_url": "https://www.canva.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor page snippet, page blocked direct fetch"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Brand kit and templates move into YEA. The agent renders on-brand assets.",
+      "yea_module": "Studio"
+    },
+    {
+      "name": "Figma",
+      "category": "Design",
+      "does": "Interface design and prototyping",
+      "plan": "Professional, Full seat",
+      "price": {
+        "starting_usd_month": 16,
+        "basis": "per seat",
+        "fee": null,
+        "source_url": "https://www.figma.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "mid",
+      "risk_why": "Product teams with years of design files and a component library should move last, or keep it.",
+      "yea_module": "Studio"
+    },
+    {
+      "name": "Loom",
+      "category": "Video messaging",
+      "does": "Record and share screen videos",
+      "plan": "Business",
+      "price": {
+        "starting_usd_month": 18,
+        "basis": "per user, billing cycle not labeled",
+        "fee": null,
+        "source_url": "https://www.loom.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Old videos download. New ones record inside YEA.",
+      "yea_module": "Studio"
+    },
+    {
+      "name": "Hootsuite",
+      "category": "Social scheduling",
+      "does": "Schedule and monitor social posts",
+      "plan": "Standard",
+      "price": {
+        "starting_usd_month": 99,
+        "basis": "per user, billed annually",
+        "fee": null,
+        "source_url": "https://www.hootsuite.com/plans",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "A calendar and a publish button. YEA posts through each network's API.",
+      "yea_module": "Social"
+    },
+    {
+      "name": "Buffer",
+      "category": "Social scheduling",
+      "does": "Queue and publish social posts",
+      "plan": "Essentials",
+      "price": {
+        "starting_usd_month": 5,
+        "basis": "per channel, billed annually",
+        "fee": null,
+        "source_url": "https://buffer.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Queue and publish. Nothing to lose.",
+      "yea_module": "Social"
+    },
+    {
+      "name": "Later",
+      "category": "Social scheduling",
+      "does": "Visual social media planner",
+      "plan": "Starter",
+      "price": {
+        "starting_usd_month": 18.75,
+        "basis": "billed annually, 1 user",
+        "fee": null,
+        "source_url": "https://later.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Media library downloads. Posts reschedule in YEA.",
+      "yea_module": "Social"
+    },
+    {
+      "name": "Sprout Social",
+      "category": "Social scheduling",
+      "does": "Social publishing and listening",
+      "plan": "Essentials",
+      "price": {
+        "starting_usd_month": 79,
+        "basis": "per seat, billed annually ($99 monthly)",
+        "fee": null,
+        "source_url": "https://sproutsocial.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Reporting history is the only thing worth exporting.",
+      "yea_module": "Social + Analytics"
+    },
+    {
+      "name": "Linktree",
+      "category": "Link in bio",
+      "does": "Link in bio landing page",
+      "plan": "Starter",
+      "price": {
+        "starting_usd_month": 6,
+        "basis": "billed annually ($8 monthly)",
+        "fee": "9% on digital product sales",
+        "source_url": "https://linktr.ee/s/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor page snippet, page blocked direct fetch"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "One page of links. Change the URL in your bio.",
+      "yea_module": "Site (links page)"
+    },
+    {
+      "name": "Beacons",
+      "category": "Link in bio",
+      "does": "Creator link page and store",
+      "plan": "Creator",
+      "price": {
+        "starting_usd_month": 8.33,
+        "basis": "billed annually ($10 monthly)",
+        "fee": "9% transaction fee",
+        "source_url": "https://beacons.ai/i/plans",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "One page of links and a few products.",
+      "yea_module": "Site (links page)"
+    },
+    {
+      "name": "Hotjar (Contentsquare)",
+      "category": "Analytics",
+      "does": "Heatmaps and session recordings",
+      "plan": "Experience Analytics Growth",
+      "price": {
+        "starting_usd_month": 39,
+        "basis": "likely billed annually ($49 monthly)",
+        "fee": null,
+        "source_url": "https://contentsquare.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Recordings are disposable. YEA tracks its own sessions.",
+      "yea_module": "Analytics"
+    },
+    {
+      "name": "Mixpanel",
+      "category": "Analytics",
+      "does": "Product event analytics",
+      "plan": "Growth",
+      "price": {
+        "starting_usd_month": 0,
+        "basis": "usage based, first 1M events free, about $100 at 1.5M",
+        "fee": null,
+        "source_url": "https://mixpanel.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Historical events take a backfill if you want the trend lines.",
+      "yea_module": "Analytics"
+    },
+    {
+      "name": "Plausible Analytics",
+      "category": "Analytics",
+      "does": "Privacy friendly website analytics",
+      "plan": "Starter",
+      "price": {
+        "starting_usd_month": 9,
+        "basis": "billing cycle not labeled",
+        "fee": null,
+        "source_url": "https://plausible.io/#pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "none",
+      "risk_why": "Pageview counts. YEA logs its own traffic.",
+      "yea_module": "Analytics"
+    },
+    {
+      "name": "Zapier",
+      "category": "Automation",
+      "does": "Connect apps with workflows",
+      "plan": "Professional",
+      "price": {
+        "starting_usd_month": 19.99,
+        "basis": "billed annually ($29.99 monthly), 750 tasks",
+        "fee": null,
+        "source_url": "https://zapier.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Once the apps live in one place there is little left to glue. Audit each zap before you turn it off.",
+      "yea_module": "Agents"
+    },
+    {
+      "name": "Make",
+      "category": "Automation",
+      "does": "Visual workflow automation builder",
+      "plan": "Core",
+      "price": {
+        "starting_usd_month": 9,
+        "basis": "billed annually, 10k credits",
+        "fee": null,
+        "source_url": "https://www.make.com/en/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor page snippet, page blocked direct fetch"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Same as Zapier. The agent runs the workflow.",
+      "yea_module": "Agents"
+    },
+    {
+      "name": "Slack",
+      "category": "Team chat",
+      "does": "Team messaging and channels",
+      "plan": "Pro",
+      "price": {
+        "starting_usd_month": 7.25,
+        "basis": "per user, billed annually ($8.75 monthly)",
+        "fee": null,
+        "source_url": "https://slack.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "mid",
+      "risk_why": "Habit is the risk, not data. Message history may matter for legal hold. Export before you cancel.",
+      "yea_module": "Team chat"
+    },
+    {
+      "name": "Dropbox",
+      "category": "File storage",
+      "does": "Cloud file storage and sharing",
+      "plan": "Plus",
+      "price": {
+        "starting_usd_month": 9.99,
+        "basis": "flat, 1 user, 2 TB",
+        "fee": null,
+        "source_url": "https://www.dropbox.com/plans",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Files copy over. Shared links break, so update anything public.",
+      "yea_module": "Files"
+    },
+    {
+      "name": "DocuSign eSignature",
+      "category": "E-signature",
+      "does": "Send documents for signature",
+      "plan": "Personal",
+      "price": {
+        "starting_usd_month": 11,
+        "basis": "annual commitment, billed monthly",
+        "fee": null,
+        "source_url": "https://ecom.docusign.com/plans-and-pricing/esignature",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "mid",
+      "risk_why": "Signed agreements need an audit trail that holds up. Keep the completed archive and certificates.",
+      "yea_module": "Sign"
+    },
+    {
+      "name": "Dropbox Sign",
+      "category": "E-signature",
+      "does": "Simple e-signature workflows",
+      "plan": "Essentials",
+      "price": {
+        "starting_usd_month": 10.05,
+        "basis": "billed annually ($15 monthly)",
+        "fee": null,
+        "source_url": "https://sign.dropbox.com/products/dropbox-sign/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "mid",
+      "risk_why": "Same as DocuSign: export the signed archive and audit trails first.",
+      "yea_module": "Sign"
+    },
+    {
+      "name": "PandaDoc",
+      "category": "E-signature",
+      "does": "Proposals, quotes and e-signature",
+      "plan": "Starter",
+      "price": {
+        "starting_usd_month": 19,
+        "basis": "per seat, billed annually",
+        "fee": null,
+        "source_url": "https://www.pandadoc.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "mid",
+      "risk_why": "Proposal templates rebuild easily. Signed contracts and audit trails must be archived.",
+      "yea_module": "Sign + Docs"
+    },
+    {
+      "name": "Squarespace",
+      "category": "Website builder",
+      "does": "Website templates and hosting",
+      "plan": "Basic",
+      "price": {
+        "starting_usd_month": 19,
+        "basis": "billed annually ($25 monthly)",
+        "fee": "2% store fee on Basic",
+        "source_url": "https://www.squarespace.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Pages and blog move, but redirect every old URL or you lose search rank.",
+      "yea_module": "Site"
+    },
+    {
+      "name": "Wix",
+      "category": "Website builder",
+      "does": "Drag and drop website builder",
+      "plan": "Light",
+      "price": {
+        "starting_usd_month": 17.77,
+        "basis": "billed annually, location-adjusted price",
+        "fee": null,
+        "source_url": "https://www.wix.com/plans",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Same as Squarespace. The redirect map is the work.",
+      "yea_module": "Site"
+    },
+    {
+      "name": "Webflow",
+      "category": "Website builder",
+      "does": "Visual site builder and CMS",
+      "plan": "Basic site plan",
+      "price": {
+        "starting_usd_month": 15,
+        "basis": "billed annually ($25 monthly)",
+        "fee": null,
+        "source_url": "https://webflow.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor page snippet, page blocked direct fetch"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "CMS collections export to CSV. Redirect old URLs.",
+      "yea_module": "Site"
+    },
+    {
+      "name": "WordPress.com",
+      "category": "Website builder",
+      "does": "Hosted blogs and websites",
+      "plan": "Personal",
+      "price": {
+        "starting_usd_month": 4,
+        "basis": "billed annually ($9 monthly)",
+        "fee": "8% on payments on Personal",
+        "source_url": "https://wordpress.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Posts export to XML. Plugins with data need a check.",
+      "yea_module": "Site"
+    },
+    {
+      "name": "Framer",
+      "category": "Website builder",
+      "does": "Design-led website builder",
+      "plan": "Basic",
+      "price": {
+        "starting_usd_month": 10,
+        "basis": "billing cycle not labeled",
+        "fee": null,
+        "source_url": "https://www.framer.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "low",
+      "risk_why": "Marketing pages rebuild fast. Redirect old URLs.",
+      "yea_module": "Site"
+    },
+    {
+      "name": "QuickBooks Online",
+      "category": "Accounting",
+      "does": "Books, invoicing and tax prep",
+      "plan": "Simple Start",
+      "price": {
+        "starting_usd_month": 38,
+        "basis": "monthly list price ($19 promo for 3 months)",
+        "fee": null,
+        "source_url": "https://quickbooks.intuit.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "high",
+      "risk_why": "The books are the record your CPA, lender and the IRS rely on. Bank feeds, reconciliations and tax categories cannot break. Move last, run both in parallel through a full close.",
+      "yea_module": "Ledger"
+    },
+    {
+      "name": "Xero",
+      "category": "Accounting",
+      "does": "Cloud accounting for small business",
+      "plan": "Early",
+      "price": {
+        "starting_usd_month": 27,
+        "basis": "monthly list price",
+        "fee": null,
+        "source_url": "https://www.xero.com/us/pricing-plans/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "high",
+      "risk_why": "Same as QuickBooks. Money and tax records, parallel run through a close.",
+      "yea_module": "Ledger"
+    },
+    {
+      "name": "FreshBooks",
+      "category": "Accounting",
+      "does": "Invoicing and small business accounting",
+      "plan": "Lite",
+      "price": {
+        "starting_usd_month": 23,
+        "basis": "monthly list price",
+        "fee": null,
+        "source_url": "https://www.freshbooks.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "high",
+      "risk_why": "Open invoices, client payment history and tax records. A missed invoice is missed cash.",
+      "yea_module": "Ledger + Invoices"
+    },
+    {
+      "name": "Wave",
+      "category": "Accounting",
+      "does": "Free accounting and invoicing",
+      "plan": "Pro",
+      "price": {
+        "starting_usd_month": 19,
+        "basis": "monthly ($190 billed annually)",
+        "fee": "Starter is free, cards 2.9% + 60c",
+        "source_url": "https://www.waveapps.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "high",
+      "risk_why": "Still the books. Same rules as QuickBooks.",
+      "yea_module": "Ledger + Invoices"
+    },
+    {
+      "name": "Google Workspace (Gmail)",
+      "category": "Email and workspace",
+      "does": "Business email, calendar and docs",
+      "plan": "Business Starter",
+      "price": {
+        "starting_usd_month": 7,
+        "basis": "per user, annual ($3.50 promo for new customers)",
+        "fee": null,
+        "source_url": "https://workspace.google.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "drop",
+      "risk": "high",
+      "risk_why": "Your domain email is your identity, your login recovery and your sender reputation. MX records, years of mail, calendar invites and every vendor password reset ride on it. Move last, or keep it.",
+      "yea_module": "Inbox + Calendar"
+    },
+    {
+      "name": "Vercel",
+      "category": "Hosting",
+      "does": "Hosts and deploys web apps",
+      "plan": "Pro",
+      "price": {
+        "starting_usd_month": 20,
+        "basis": "per developer seat, monthly",
+        "fee": null,
+        "source_url": "https://vercel.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. YEA itself runs here. Global edge, preview deploys and scaling that would cost a team to rebuild.",
+      "yea_module": null,
+      "why_it_stays": "YEA itself runs here. Global edge, preview deploys and scaling that would cost a team to rebuild."
+    },
+    {
+      "name": "Netlify",
+      "category": "Hosting",
+      "does": "Hosts and deploys web sites",
+      "plan": "Personal",
+      "price": {
+        "starting_usd_month": 9,
+        "basis": "monthly, 1,000 credits",
+        "fee": null,
+        "source_url": "https://www.netlify.com/pricing/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. Same role as Vercel. If a business is already here, YEA can run here too.",
+      "yea_module": null,
+      "why_it_stays": "Same role as Vercel. If a business is already here, YEA can run here too."
+    },
+    {
+      "name": "Neon",
+      "category": "Database",
+      "does": "Serverless Postgres database",
+      "plan": "Launch",
+      "price": {
+        "starting_usd_month": null,
+        "basis": "usage based, no monthly minimum",
+        "fee": "$0.106 per compute hour, $0.35 per GB-month storage",
+        "source_url": "https://neon.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. The data you cannot lose. Backups, branching and point in time restore are a vendor job, not ours.",
+      "yea_module": null,
+      "why_it_stays": "The data you cannot lose. Backups, branching and point in time restore are a vendor job, not ours."
+    },
+    {
+      "name": "Cloudflare",
+      "category": "DNS and security",
+      "does": "DNS, CDN and DDoS protection",
+      "plan": "Pro",
+      "price": {
+        "starting_usd_month": 20,
+        "basis": "per domain, billed annually ($25 monthly)",
+        "fee": null,
+        "source_url": "https://www.cloudflare.com/plans/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor page snippet, page blocked direct fetch"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. DNS and attack protection. One bad record takes email and the site down together.",
+      "yea_module": null,
+      "why_it_stays": "DNS and attack protection. One bad record takes email and the site down together."
+    },
+    {
+      "name": "Twilio SendGrid",
+      "category": "Email delivery",
+      "does": "Sends transactional and bulk email",
+      "plan": "Email API Essentials",
+      "price": {
+        "starting_usd_month": 19.95,
+        "basis": "monthly starting price, scales with volume",
+        "fee": null,
+        "source_url": "https://www.twilio.com/en-us/products/email-api/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. Deliverability is IP reputation, authentication and inbox provider relationships built over years. YEA writes the email, SendGrid lands it in the inbox.",
+      "yea_module": null,
+      "why_it_stays": "Deliverability is IP reputation, authentication and inbox provider relationships built over years. YEA writes the email, SendGrid lands it in the inbox."
+    },
+    {
+      "name": "Postmark",
+      "category": "Email delivery",
+      "does": "Fast transactional email delivery",
+      "plan": "Basic",
+      "price": {
+        "starting_usd_month": 15,
+        "basis": "monthly, 10,000 emails",
+        "fee": null,
+        "source_url": "https://postmarkapp.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. Same as SendGrid. Receipts and password resets have to arrive.",
+      "yea_module": null,
+      "why_it_stays": "Same as SendGrid. Receipts and password resets have to arrive."
+    },
+    {
+      "name": "Resend",
+      "category": "Email delivery",
+      "does": "Developer email sending API",
+      "plan": "Pro",
+      "price": {
+        "starting_usd_month": 20,
+        "basis": "monthly, 50,000 emails",
+        "fee": null,
+        "source_url": "https://resend.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. Same as SendGrid, for teams that prefer it.",
+      "yea_module": null,
+      "why_it_stays": "Same as SendGrid, for teams that prefer it."
+    },
+    {
+      "name": "Twilio",
+      "category": "SMS and voice",
+      "does": "Carrier SMS and voice rail",
+      "plan": "US SMS pay as you go",
+      "price": {
+        "starting_usd_month": null,
+        "basis": "per message segment",
+        "fee": "$0.0083 per SMS segment plus carrier fees",
+        "source_url": "https://www.twilio.com/en-us/sms/pricing/us",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. Carrier access, 10DLC registration and phone numbers. Regulated rail, nobody rebuilds it.",
+      "yea_module": null,
+      "why_it_stays": "Carrier access, 10DLC registration and phone numbers. Regulated rail, nobody rebuilds it."
+    },
+    {
+      "name": "Stripe",
+      "category": "Payments",
+      "does": "Card payments and subscriptions",
+      "plan": "Standard",
+      "price": {
+        "starting_usd_month": null,
+        "basis": "per transaction",
+        "fee": "2.9% + 30c per domestic card charge",
+        "source_url": "https://stripe.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. Moving money means PCI compliance, fraud control and bank licenses. YEA calls Stripe, it never touches a card number.",
+      "yea_module": null,
+      "why_it_stays": "Moving money means PCI compliance, fraud control and bank licenses. YEA calls Stripe, it never touches a card number."
+    },
+    {
+      "name": "Square",
+      "category": "Payments",
+      "does": "In person and online payments",
+      "plan": "Free plan",
+      "price": {
+        "starting_usd_month": null,
+        "basis": "per transaction",
+        "fee": "3.3% + 30c per online card payment",
+        "source_url": "https://squareup.com/us/en/payments/our-fees",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. Card readers and point of sale. Same reasons as Stripe.",
+      "yea_module": null,
+      "why_it_stays": "Card readers and point of sale. Same reasons as Stripe."
+    },
+    {
+      "name": "PayPal",
+      "category": "Payments",
+      "does": "PayPal and card checkout",
+      "plan": "PayPal Checkout",
+      "price": {
+        "starting_usd_month": null,
+        "basis": "per transaction",
+        "fee": "3.49% + 49c per transaction",
+        "source_url": "https://www.paypal.com/us/business/paypal-business-fees",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. Buyers expect the button. Licensed money transmitter.",
+      "yea_module": null,
+      "why_it_stays": "Buyers expect the button. Licensed money transmitter."
+    },
+    {
+      "name": "Namecheap",
+      "category": "Domains",
+      "does": "Domain registration and renewal",
+      "plan": ".com domain",
+      "price": {
+        "starting_usd_month": null,
+        "basis": "per year",
+        "fee": "$18.48 per year renewal, $19.98 from 2026-11-01, plus 20c ICANN fee",
+        "source_url": "https://www.namecheap.com/domains/registration/gtld/com/",
+        "checked": "2026-10-31",
+        "source_quality": "vendor page snippet, page blocked direct fetch"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. An ICANN accredited registrar owns the legal record of your domain. Lose the domain, lose everything on it.",
+      "yea_module": null,
+      "why_it_stays": "An ICANN accredited registrar owns the legal record of your domain. Lose the domain, lose everything on it."
+    },
+    {
+      "name": "Mercury",
+      "category": "Banking",
+      "does": "Business bank accounts and cards",
+      "plan": "Free base plan (Plus $29.90)",
+      "price": {
+        "starting_usd_month": 0,
+        "basis": "monthly",
+        "fee": null,
+        "source_url": "https://mercury.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. Banks hold deposits under a charter and FDIC insurance through partner banks. YEA reads balances, it never holds money.",
+      "yea_module": null,
+      "why_it_stays": "Banks hold deposits under a charter and FDIC insurance through partner banks. YEA reads balances, it never holds money."
+    },
+    {
+      "name": "Gusto",
+      "category": "Payroll",
+      "does": "Payroll, tax filing and benefits",
+      "plan": "Simple",
+      "price": {
+        "starting_usd_month": 49,
+        "basis": "monthly base",
+        "fee": "plus $6 per person per month",
+        "source_url": "https://gusto.com/product/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor page snippet, page blocked direct fetch"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. Payroll tax filing in every state and IRS liability. A filing error costs penalties. Keep the rail, YEA shows the data.",
+      "yea_module": null,
+      "why_it_stays": "Payroll tax filing in every state and IRS liability. A filing error costs penalties. Keep the rail, YEA shows the data."
+    },
+    {
+      "name": "Rippling",
+      "category": "Payroll",
+      "does": "Payroll, HR and IT platform",
+      "plan": "Platform",
+      "price": {
+        "starting_usd_month": 8,
+        "basis": "per employee, plus an unpublished base fee",
+        "fee": null,
+        "source_url": "https://www.rippling.com/pricing",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. Same as Gusto: payroll tax and benefits are regulated work.",
+      "yea_module": null,
+      "why_it_stays": "Same as Gusto: payroll tax and benefits are regulated work."
+    },
+    {
+      "name": "1Password",
+      "category": "Security",
+      "does": "Team password and secrets vault",
+      "plan": "Teams Starter Pack",
+      "price": {
+        "starting_usd_month": 24.95,
+        "basis": "billed annually, up to 10 members",
+        "fee": null,
+        "source_url": "https://1password.com/pricing/business",
+        "checked": "2026-10-31",
+        "source_quality": "vendor pricing page read"
+      },
+      "verdict": "keep",
+      "risk": "high",
+      "risk_why": "Keep. Credentials and secrets for every system, including YEA. Security tooling stays with a specialist.",
+      "yea_module": null,
+      "why_it_stays": "Credentials and secrets for every system, including YEA. Security tooling stays with a specialist."
+    }
+  ]
+}
