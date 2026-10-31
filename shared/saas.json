@@ -535,7 +535,7 @@
     {
       "name": "Tidio",
       "category": "Chat widget",
-      "does": "Live chat and chatbot",
+      "does": "Live chat and auto-replies",
       "plan": "Starter",
       "price": {
         "starting_usd_month": 24.17,

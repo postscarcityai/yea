@@ -57,7 +57,7 @@ High does not always mean keep. QuickBooks Online and Gmail are high risk to rep
 | Plausible Analytics | Analytics | Privacy friendly website analytics | $9/mo | Pageview counts. YEA logs its own traffic. | Analytics | [pricing](https://plausible.io/#pricing) |
 | Crisp | Chat widget | Shared inbox and site chat | $45/mo | Swap the embed and forward the inbox. | Chat + Inbox | [pricing](https://crisp.chat/en/pricing/) |
 | LiveChat | Chat widget | Live chat for websites | $19/mo | Swap the embed. Done. | Chat | [pricing](https://www.livechat.com/pricing/) |
-| Tidio | Chat widget | Live chat and chatbot | $24.17/mo | A widget and a few canned replies. Nothing to lose. | Chat | [pricing](https://www.tidio.com/pricing/) |
+| Tidio | Chat widget | Live chat and auto-replies | $24.17/mo | A widget and a few canned replies. Nothing to lose. | Chat | [pricing](https://www.tidio.com/pricing/) |
 | Constant Contact | Email marketing | Small business email newsletters | $12/mo | Simple newsletter sends. Nothing a list export and the Campaigns module cannot carry. | Campaigns | [pricing](https://www.constantcontact.com/pricing) (snippet) |
 | Mailchimp | Email marketing | Sends newsletters and email campaigns | $13/mo | Lists, templates and sends move in an afternoon. Bring the unsubscribe list so suppression carries over. | Campaigns | [pricing](https://mailchimp.com/landers/pricing/essentials/) |
 | SurveyMonkey | Forms and surveys | Surveys and response analysis | $39/mo | Surveys and results export. The agent writes the analysis. | Forms | [pricing](https://www.surveymonkey.com/pricing/individual/) |
