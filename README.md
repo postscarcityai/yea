@@ -2,7 +2,7 @@
 
 **YEA.** One app that runs a business: a customer side, an admin side, one left nav, six user types, and an agent in a chat panel on every screen that can see what you see and act on it.
 
-This README is the instructions. If you are an agent and someone pointed you here, follow it top to bottom. If you are a person, hand it to your agent: "Read this repo and follow the README to get my business on YEA."
+This README is the instructions. If you are an agent and someone pointed you here, follow it top to bottom. If you are a person, open `examples/yea.config.json` to see what one business's app looks like, then hand this to your agent: "Read this repo and follow the README to get my business on YEA."
 
 ---
 
@@ -10,12 +10,12 @@ This README is the instructions. If you are an agent and someone pointed you her
 
 - **Not a product you buy.** There is no license, no seat price, no vendor. The ™ is struck through on purpose. YEA is what you get when you let the models do what they were trained to do: write the code, from a clear spec, for one business at a time.
 - **A spec, not a codebase.** This repo holds the PRDs. You build the app for the business from them, in the stack you choose. Every business gets its own copy and owns it outright.
-- **Proven, not invented.** Every core and common module is a pattern already running in production at real businesses. Three modules are marked "not yet proven" in their PRD; build those from the spec and test harder.
+- **Proven, not invented.** Every core and common module is a pattern already running in production at real businesses. Three modules are "not yet proven": Bookings, Documents and Money. Their admin PRDs and the matching customer portal pages (Bookings, Documents, Invoices) say so at the top. Build those from the spec and test harder.
 - **Configured, not forked.** Every business gets the same shell and the same components. What changes is one config object: which modules are on, what they are called, the stages and fields inside them, the roles, the brand colors. See `shared/modules.md` section 5.
 
 ### How this repo is laid out
 
-Folders mirror the left nav. If a page is in the nav, it has a folder with a `PRD.md`.
+Folders mirror the left nav. If a page is in the nav, it has a folder with a `PRD.md`. Each group folder (`grow/`, `sell/`...) holds one folder per page, so Leads lives at `admin/grow/leads/PRD.md`.
 
 ```
 README.md                  you are here
@@ -28,16 +28,21 @@ shared/
   design-system.md         shell, left nav, lists, record views, chips, buttons
   saas.md                  what YEA replaces, what it keeps, by risk level
   saas.json                the same data, machine readable
+examples/
+  yea.config.json          a filled-in config for a fictional business: start here
 admin/
-  home/  inbox/
-  grow/  leads/ pipeline/ people/ prospects/ outreach/ campaigns/ reviews/ programs/ reps/
-  sell/  orders/ catalog/ bookings/ jobs/ marketplace/ documents/ money/
-  make/  content/ social/ library/ studio/
-  know/  insights/ search/ views/ goals/ costs/ playbook/
-  run/   team/ agents/ board/ log/ settings/
+  home/
+  inbox/
+  grow/    leads/  pipeline/  people/  prospects/  outreach/  campaigns/  reviews/  programs/  reps/
+  sell/    orders/  catalog/  bookings/  jobs/  marketplace/  documents/  money/
+  make/    content/  social/  library/  studio/
+  know/    insights/  search/  views/  goals/  costs/  playbook/
+  run/     team/  agents/  board/  log/  settings/
 customer/
-  site/  shop/  intake/
-  portal/  home/ orders/ reorder/ bookings/ documents/ invoices/ rewards/ leads/ listing/ posts/ kit/ account/
+  site/
+  shop/
+  intake/
+  portal/  home/  orders/  reorder/  bookings/  documents/  invoices/  rewards/  leads/  listing/  posts/  kit/  account/
 ```
 
 Read `shared/` before any module PRD. The module PRDs assume you know the shell, the roles and the chat.
@@ -57,7 +62,7 @@ Interview the owner. Do not pick a single module until you have these six answer
 
 Then ask one follow-up: **"What is the job nobody has time for?"** That is the first thing the agent should do once the app is live.
 
-Write the result as the config object from `shared/modules.md` section 5 (`AppConfig`): company name, industry, URL, brand colors, groups, modules, customer kinds, role labels. Save it as `yea.config.json` at the root of the business's app. Show it to the owner as a list of nav items, not as JSON.
+Write the result as the config object from `shared/modules.md` section 5 (`AppConfig`): company name, industry, URL, brand colors, groups, modules, customer kinds, role labels. Save it as `yea.config.json` at the root of the business's app. For a filled-in example, see `examples/yea.config.json`: a fictional commercial refrigeration company with Sell first, Jobs relabeled "Work orders" and Staff relabeled "Techs". Show it to the owner as a list of nav items, not as JSON.
 
 ---
 

@@ -1,0 +1,47 @@
+{
+  "_note": "Fictional sample business. Shape: AppConfig in shared/modules.md section 5. Not a real company; the .example URL never resolves.",
+  "company": {
+    "name": "Northwind Cold Rooms",
+    "industry": "Commercial refrigeration",
+    "url": "https://northwind-cold-rooms.example",
+    "colors": { "brand": "#1F4E79", "accent": "#F2A33A" }
+  },
+  "groups": [
+    { "key": "sell", "label": "Sell" },
+    { "key": "grow", "label": "Grow" },
+    { "key": "know", "label": "Know" },
+    { "key": "run", "label": "Run" }
+  ],
+  "modules": [
+    { "key": "home", "enabled": true, "label": "Home", "fields": { "tiles": ["open_work_orders", "quotes_out", "ar_over_30", "new_leads"], "summary_hour": 7 }, "sample": "chart_tiles" },
+    { "key": "inbox", "enabled": true, "label": "Inbox", "fields": { "channels": ["email", "sms"], "auto_send": false }, "sample": "messages" },
+    { "key": "leads", "enabled": true, "label": "Service requests", "fields": { "kinds": ["inquiry", "consult"], "stages": ["New", "Called back", "Site visit", "Won", "Lost"] }, "sample": "inbound_leads" },
+    { "key": "people", "enabled": true, "label": "Customers", "fields": {}, "sample": "contacts" },
+    { "key": "pipeline", "enabled": true, "label": "Accounts", "fields": { "stages": ["Prospect", "Quoted", "Maintenance plan", "Lapsed"] }, "sample": "deals" },
+    { "key": "reviews", "enabled": true, "label": "Reviews", "fields": {}, "sample": "reviews" },
+    { "key": "jobs", "enabled": true, "label": "Work orders", "fields": { "kinds": ["install", "repair", "maintenance"], "stages": ["Scheduled", "On site", "Parts on order", "Done", "Invoiced"] }, "sample": "jobs" },
+    { "key": "bookings", "enabled": true, "label": "Service calls", "fields": {}, "sample": "appointments" },
+    { "key": "documents", "enabled": true, "label": "Quotes", "fields": { "kinds": ["quote", "service_agreement"] }, "sample": "documents" },
+    { "key": "money", "enabled": true, "label": "Invoices", "fields": {}, "sample": "invoices" },
+    { "key": "views", "enabled": true, "label": "Views", "fields": {}, "sample": "chart_tiles" },
+    { "key": "goals", "enabled": true, "label": "Goals", "fields": {}, "sample": "goals" },
+    { "key": "costs", "enabled": true, "label": "Costs", "fields": {}, "sample": "costs" },
+    { "key": "team", "enabled": true, "label": "Crew", "fields": {}, "sample": "team" },
+    { "key": "agents", "enabled": true, "label": "Agents", "fields": {}, "sample": "agents" },
+    { "key": "board", "enabled": true, "label": "Board", "fields": {}, "sample": "cards" },
+    { "key": "log", "enabled": true, "label": "Log", "fields": {}, "sample": "changes" },
+    { "key": "settings", "enabled": true, "label": "Settings", "fields": {}, "sample": "settings" },
+    { "key": "site", "enabled": true, "label": "Site", "fields": {}, "sample": "site_pages" },
+    { "key": "intake", "enabled": true, "label": "Request service", "fields": { "kind": ["form", "photo_report"] }, "sample": "intake_runs" },
+    { "key": "portal", "enabled": true, "label": "Customer portal", "fields": {}, "sample": "settings" }
+  ],
+  "customer": { "kinds": ["client"], "intake": ["form", "photo_report"], "shop": false },
+  "roles": [
+    { "key": "owner", "label": "Owner" },
+    { "key": "admin", "label": "Office" },
+    { "key": "staff", "label": "Techs" },
+    { "key": "contractor", "label": "Subcontractors" },
+    { "key": "customer", "label": "Customers" },
+    { "key": "agent", "label": "Agent" }
+  ]
+}
