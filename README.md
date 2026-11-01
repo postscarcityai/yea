@@ -30,6 +30,8 @@ shared/
   saas.json                the same data, machine readable
 examples/
   yea.config.json          a filled-in config for a fictional business: start here
+playbooks/
+  README.md                six business archetypes and every play we built, each citing the file that does it
 admin/
   home/
   inbox/
@@ -44,6 +46,8 @@ customer/
   intake/
   portal/  home/  orders/  reorder/  bookings/  documents/  invoices/  rewards/  leads/  listing/  posts/  kit/  account/
 ```
+
+**Playbooks.** Before you pick modules, read [`playbooks/README.md`](playbooks/README.md). It maps six business archetypes (lead marketplace, product brand, field service, professional practice, creator, nonprofit) to the modules, stages, agent jobs and plays we have already built for real businesses like them. Start from the closest archetype, then adjust.
 
 Read `shared/` before any module PRD. The module PRDs assume you know the shell, the roles and the chat.
 
