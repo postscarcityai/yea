@@ -606,12 +606,12 @@ Format per module: key and tier, job, admin tabs in nav order, record route, cus
 
 ### Board `board` · core
 - **Job:** everything someone asked for, from chat, voice, email or the team, tracked to done.
-- **Admin tabs:** Board, Requests, Mine.
-- **Record route:** URL modal `?card=<id>`.
-- **Customer:** feature requests and service requests from Portal land here.
+- **Admin tabs:** Board, Requests, Mine, Feedback.
+- **Record route:** URL modal `?card=<id>`; Feedback records `?f=<id>`.
+- **Customer:** feature requests and service requests from Portal land here. Staff comments left on the live site in feedback mode land on the Feedback tab (`shared/feedback-mode.md`).
 - **Sees:** O A S C(own) Ag.
-- **Data:** `cards`, `card_comments`, `card_votes`.
-- **Anchors:** `card:<id>`.
+- **Data:** `cards`, `card_comments`, `card_votes`, `feedback`.
+- **Anchors:** `card:<id>`, `feedback:<id>`.
 - **Agent:** files a card from any request in chat or on a voice call with urgency, moves cards, posts what it did, closes with proof.
 - **Rails:** none.
 - **Replaces:** Asana, monday.com, Trello, Basecamp (Project management); ClickUp.
@@ -647,7 +647,7 @@ Format per module: key and tier, job, admin tabs in nav order, record route, cus
 - **Job:** the public website: pages, blog, directory, locations, results.
 - **Pages:** Home, industry pages from `fields.pages`, Blog (from Content), Directory and Stores (from Prospects and Pipeline when public), Policies, Unsubscribe and opt-out.
 - **Admin side:** edited through Content, Catalog and Settings; no separate admin module.
-- **Sees:** public. Ag (publishes).
+- **Sees:** public. Ag (publishes). Signed-in staff also get the feedback button on every page (`shared/feedback-mode.md`).
 - **Data:** `site_pages`, plus reads from Content, Catalog, Reviews, Prospects.
 - **Anchors:** none for the public; admin previews use `page:<path>`.
 - **Agent:** ships copy and page changes on request and verifies the URL is live.
