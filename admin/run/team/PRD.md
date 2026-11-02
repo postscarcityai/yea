@@ -18,8 +18,8 @@ Start from `shared/roles.md` section 4f.
 | User type | Scope | Differs from the matrix how |
 |---|---|---|
 | Owner | all | The only type that invites, changes roles, edits grants on Roles (trim only), deactivates, and transfers ownership. |
-| Admin | all, read | V only: sees members, roles, invites and sessions. Cannot invite or change anything. Can sign themselves out of other devices from the You menu. |
-| Staff, Contractor | none | Hidden. Their own profile and devices are on the You menu, not here. |
+| Admin | all, read | V only: sees members, roles, invites and sessions. Cannot invite or change anything. Can sign themselves out of other devices from the profile menu. |
+| Staff, Contractor | none | Hidden. Their own profile and devices are on the profile menu, not here. |
 | Customer | none | Hidden. Customer logins are People records with Portal access; they are invited from People, not Team. |
 | Agent | none to write | C! only: drafts an invite for the Owner to send. It never edits a member, a role or a grant. |
 
@@ -37,6 +37,10 @@ Start from `shared/roles.md` section 4f.
 | Sessions | `/admin/team?tab=sessions` | Active sessions per user: device, location, last active, Sign out. "Sign out everywhere" per user. |
 
 - **Record view:** URL modal `?member=<id>`, read-only with Edit: name, email, phone, type, named role, status, joined, last seen, sessions, recent changes (from Log). Actions: Change role, Deactivate, Send sign-in link. Role record: `?role=<key>` URL modal with the grant grid.
+- **Sign-in flow (magic link with a same-browser check):** the sign-in page asks for an email and shows "Check your email". At that moment the server sets a short-lived, HttpOnly, SameSite=Lax **sign-in cookie** in that browser holding a random nonce, and stores its hash on the `login_links` row. The emailed link lands on `/auth/[token]`, and a GET never signs anyone in by itself:
+  - **Same browser** (the cookie is present and its hash matches the row): sign in at once and go straight to the page they asked for. One click, from the email.
+  - **Different browser or device, or no cookie:** show one button, "Continue to sign in", and only spend the token on that POST. This second click exists only to get past email security software (link scanners, Safe Links) that opens every link in a message and would otherwise burn the token or sign a bot in.
+  - Either way the token is single use, 15 minutes, and the sign-in cookie is cleared once used. The same flow serves the portal (`customer/portal/PRD.md`).
 - **Invite flow:** Owner enters email, name, role. The invite email holds a one-time link (7 days). The invitee lands on a two-step welcome (confirm name, phone, title), then straight into `/admin`.
 - **Empty states:** People with only the Owner: "Just you so far. Invite the first person." Invites: "No pending invites." Sessions: "No other active sessions."
 - **Loading:** table skeletons. Sending an invite shows a spinner on the button; the row appears as "Sending…" then "Invited".
@@ -51,7 +55,7 @@ Shared tables (`shared/data-model.md`): `users`, `roles`, `user_roles`, `role_gr
 
 **`invites`**: `id`, `org_id`, `email`, `name`, `role_key`, `invited_by`, `drafted_by_agent bool`, `approval_id` null, `token_hash`, `expires_at`, `accepted_at` null, `status` (draft, sent, accepted, expired, cancelled, bounced).
 
-**`login_links`**: `id`, `user_id`, `token_hash`, `purpose` (sign_in, invite, transfer), `expires_at` (15 minutes for sign-in, 7 days for invite), `used_at` null, `ip`.
+**`login_links`**: `id`, `user_id`, `token_hash`, `browser_nonce_hash` null (the same-browser sign-in cookie), `purpose` (sign_in, invite, transfer), `expires_at` (15 minutes for sign-in, 7 days for invite), `used_at` null, `ip`, `same_browser bool` null (set on use, for Log).
 
 **`sessions`** (shared): `id` (hash of the cookie token), `user_id`, `created_at`, `last_seen_at`, `expires_at` (30 days), `ip`, `user_agent`, `revoked_at` null.
 
@@ -96,12 +100,13 @@ None priced in `shared/saas.md`. Seat management usually sits inside each tool a
 4. Every submit button (Send invite, Save role, Deactivate, Sign out, Transfer) shows a spinner and disables while it runs.
 5. An invitee clicks the invite link within 7 days, confirms name and phone, and lands on `/admin` with only the modules their role can view.
 6. An invite link used twice, or after 7 days, shows "This link has expired. Ask for a new one." and signs nobody in.
-7. The Owner deactivates a member; within one minute every session of theirs is revoked and their next request lands on the sign-in page.
-8. Removing `leads.export` from the Staff role hides the Export action on Leads for every Staff user on next page load.
-9. The Roles grid never renders a checkbox above the type's ceiling (a Contractor-type role has no `all` scope option).
-10. The Owner cannot deactivate or demote themselves while they are the only Owner; the action is not rendered and Transfer is offered instead.
-11. An Admin sees People, Roles, Invites and Sessions with no Invite, Edit or checkbox controls.
-12. Relabeling Staff to "Associates" in `fields.roles` changes every chip and the Roles tab, and no grant changes.
+7. A Staff user asks for a sign-in link and opens it in the same browser: they are signed in with no extra click. Opening that link in a different browser shows "Continue to sign in" and signs in only after the click. A link scanner that fetches the link with GET signs nobody in and leaves the link usable.
+8. The Owner deactivates a member; within one minute every session of theirs is revoked and their next request lands on the sign-in page.
+9. Removing `leads.export` from the Staff role hides the Export action on Leads for every Staff user on next page load.
+10. The Roles grid never renders a checkbox above the type's ceiling (a Contractor-type role has no `all` scope option).
+11. The Owner cannot deactivate or demote themselves while they are the only Owner; the action is not rendered and Transfer is offered instead.
+12. An Admin sees People, Roles, Invites and Sessions with no Invite, Edit or checkbox controls.
+13. Relabeling Staff to "Associates" in `fields.roles` changes every chip and the Roles tab, and no grant changes.
 
 ## Open questions
 

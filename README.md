@@ -25,7 +25,8 @@ Same shell, same components, configured for each business. These are eight of th
 
 ## What YEA is
 
-- **Not a product you buy.** There is no license, no seat price, no vendor. The ™ is struck through on purpose. YEA is what you get when you let the models do what they were trained to do: write the code, from a clear spec, for one business at a time.
+- **A theory, not a product.** There is no license, no seat price, no vendor, and no trademark. The ™ is struck through on purpose: that is the joke. YEA is what you get when you let the models do what they were trained to do: write the code, from a clear spec, for one business at a time.
+- **Own your stack, soup to nuts.** The old fear of owning your software was technical debt and the cost of the engineers to carry it. That fear is going away. The systems are self-managed by AI, and consistent, high-quality software engineering keeps getting cheaper as the models improve, with the cost heading toward zero. In an ecosystem that changes this fast, owning your own stack is the only hedge. Rent it and you move when your vendor moves. Own it and you rewrite it the day something better exists.
 - **A spec, not a codebase.** This repo holds the PRDs. You build the app for the business from them, in the stack you choose. Every business gets its own copy and owns it outright.
 - **Proven, not invented.** Every core and common module is a pattern already running in production at real businesses. Three modules are "not yet proven": Bookings, Documents and Money. Their admin PRDs and the matching customer portal pages (Bookings, Documents, Invoices) say so at the top. Build those from the spec and test harder. Calls is "partly proven": joining, live checks and the report run in production; asking the back-office agent mid-meeting and speaking on the call do not yet.
 - **Configured, not forked.** Every business gets the same shell and the same components. What changes is one config object: which modules are on, what they are called, the stages and fields inside them, the roles, the brand colors. See `shared/modules.md` section 5.
@@ -137,7 +138,8 @@ Map each person from interview question 5 to a type, then to a preset or a named
 | Email delivery | SendGrid (send and inbound parse) |
 | Payments | Stripe |
 | SMS and voice | Twilio, only if a module needs it |
-| Auth | Magic links, no passwords. Sessions in the database |
+| Auth | Magic links, no passwords. Sessions in the database. Same-browser check skips the second click (`admin/run/team/` Sign-in) |
+| Analytics | First party only: own cookie, own middleware, own tables. No Google Analytics |
 | Model | Any capable model with tool use and streaming. Open-weight models work. Pick per task and log the cost of every call (Costs module) |
 
 **Any stack works.** The PRDs describe jobs, pages, data, permissions and acceptance criteria, not frameworks. Rails, Django, Laravel, Phoenix, Go: build it in what the business or its team already runs. Three things are not optional in any stack:
@@ -146,7 +148,13 @@ Map each person from interview question 5 to a type, then to a preset or a named
 2. Server-side permission checks on every write.
 3. Streaming from the agent to the chat panel, with tool calls the page can react to (see `shared/chat.md`).
 
-Keep the app in one repo the business owns, with its own hosting account and its own database. If you are a vendor building it for them, put everything in their name from day one.
+Keep the app in **one repo** the business owns, with its own hosting account and its own database. The public marketing site and the admin back office live in that same repo and ship together. If you are a vendor building it for them, put everything in their name from day one.
+
+**No Google Analytics.** Tracking is first party: a cookie set by the business's own domain, page views written by the app's own middleware into its own database (`admin/know/insights/`). No third-party tag by default.
+
+### The smallest YEA
+
+The most basic deployment is a **marketing site plus a back office where you manage the leads it captures**: Site, Intake, Leads, with the shell, Log, Team (sign-in) and the chat underneath. Everything else is a module you turn on later. Ship this first for any new business, then grow it.
 
 ---
 
@@ -154,7 +162,7 @@ Keep the app in one repo the business owns, with its own hosting account and its
 
 Build in this order. Do not start a module until the one before it passes its acceptance criteria.
 
-1. **Shell.** Auth (magic links), tenant, `yea.config.json` loader, left nav rendered from config and `can()`, top bar, URL modals, the list kit (search, filters, sort, quick views), pending buttons. `shared/design-system.md`.
+1. **Shell.** Auth (magic links), tenant, `yea.config.json` loader, left nav rendered from config and `can()`, the profile menu, light and dark themes, top bar, URL modals, the list kit (search, filters, sort, quick views, all in the URL), pending buttons. `shared/design-system.md`.
 2. **Log and roles.** `change_log` with before, after and Undo; `role_grants`; `can()`; the hidden, read-only and disabled rules. Every later write goes through these. `admin/run/log/`, `shared/roles.md`.
 3. **Chat panel.** The right-hand panel, anchors on every list row and record, `page_context`, the three UI events, the Changes tab. Build it now, empty of tools, so every module after this adds its anchors and tools as it goes. `shared/chat.md`.
 4. **Run.** Settings, Team, Agents, Board.

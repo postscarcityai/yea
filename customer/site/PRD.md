@@ -25,6 +25,8 @@ Starts from `shared/roles.md` section 4g. What differs or needs saying:
 
 ## Pages and states
 
+Public pages live in the **same repo** as the back office and deploy with it. They default to the **light theme**, with a Light, Dark, System switch in the footer saved in a cookie (`shared/design-system.md` section 7). Every page is tracked first party only: no Google Analytics.
+
 Public pages use a **top nav** (`fields.nav`), not the left-nav shell. Default order: Home, the industry pages the business picked, Blog, Shop (if Shop is on), one CTA button (Get started, Book or Call, from `fields.cta`), Sign in, Cart (if Shop is on).
 
 | Page | Route | Built from |
@@ -138,5 +140,5 @@ Background jobs:
 2. **Does publishing need a code deploy or a data change?** Default: data change. Pages render from `site_pages` and revalidate on publish, so copy ships in seconds without a build. Template changes are code and go through the normal deploy.
 3. **Web chat on public pages?** Default: off. Turn it on only when Inbox has a person or a relaxed agent covering replies during business hours.
 4. **Who can relax agent publishing?** Default: Owner only, with `afterHumanApproval` as the only relax offered in the first month.
-5. **Analytics on public pages?** Default: first-party `page_views` only, with the opt-out page live. Add a third-party tag only if the business runs paid ads that need conversion events.
+5. **Analytics on public pages?** Default: first-party `page_views` only (own cookie, own middleware, no Google Analytics), with the opt-out page live. Add a third-party tag only if the business runs paid ads that need conversion events.
 6. **Directory on by default?** Default: off. Turn on for businesses that list partners, stores or members; only claimed listings are indexed, unclaimed ones show greyed and noindex.

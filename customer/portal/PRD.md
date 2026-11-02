@@ -22,14 +22,14 @@ Give every signed-in customer their own app: the same shell and chat the team us
 
 ## Pages and states
 
-- **Sign-in** `/portal/login`: one email field, button "Email me a sign-in link". The link lands on `/portal/auth/[token]`, which shows one button, "Sign in", and signs in on POST so a mail scanner opening the link cannot spend it. Same browser that asked goes straight in. Error states: expired link ("This link expired. Send a new one." with the email prefilled), used link, unknown email (same success message as a known email, so the page never reveals who is a customer).
+- **Sign-in** `/portal/login`: one email field, button "Email me a sign-in link". The link lands on `/portal/auth/[token]` and follows the same-browser check in `admin/run/team/PRD.md` (Sign-in flow): the browser that asked for the link goes straight in; any other browser gets one "Continue to sign in" button that signs in on POST, so a mail scanner opening the link cannot spend it. Error states: expired link ("This link expired. Send a new one." with the email prefilled), used link, unknown email (same success message as a known email, so the page never reveals who is a customer).
 - **Claim and invite** `/portal/claim/[token]` and `/portal/join/[token]`: one screen naming the business or store being claimed or joined, one button. First visit asks for name and phone only if missing.
 - **Shell:** the admin shell from `shared/design-system.md`, unchanged. Left nav in this order, each hidden unless granted: Home, Orders, Reorder, Bookings, Documents, Invoices (badge), Rewards, Leads (badge), Listing, Posts, Kit, Account. No groups on the portal side; the nav is one flat list. Labels follow each feeding module's `label` knob (Bookings shows as "Appointments" if Bookings is relabeled).
-- **Top bar:** page title, the store switcher (only when the login holds more than one company), the points pill when Rewards is on ("1,240 points"), the chat button.
+- **Top bar:** page title, the store switcher (only when the login holds more than one company), the points pill when Rewards is on ("1,240 points"). The chat opens from the FAB bottom right or Cmd/Ctrl+J.
 - **Store switcher:** a select in the top bar. The chosen company is in the URL (`?store=<id>`) so every view is a link. Lists show the chosen store; Home can show "All stores".
 - **States:** loading uses skeleton rows; error shows one sentence and Retry; empty states say what goes there and offer one next step. A deep link to a page the customer cannot see returns the normal not-found page; nothing about the record leaks.
 - **Mobile:** nav is a drawer, chat is a full-screen sheet, same as admin.
-- **You menu:** name, kinds held, Sign out.
+- **Profile block:** bottom of the left nav, initials avatar, name, kinds held as the role line, caret. Menu: My profile (Account), Theme, Back to the site, Sign out. Sign out lives nowhere else. See `shared/design-system.md` section 2a.
 
 ## Data model
 
@@ -84,7 +84,7 @@ Background jobs owned by the shell:
 2. Every agent write made from the portal chat appears in admin Log with before, after and a working Undo, and in the customer's chat Changes tab.
 3. A gated agent action in the portal (any payment, cancel or delete) waits for the customer's yes and shows exactly what will happen ("Pay invoice 2041, $480.00, card ending 4242") with one Approve button.
 4. Every submit button in the portal shows a spinner and disables while it runs.
-5. A customer requests a sign-in link, opens it in the same browser, presses Sign in and lands on Home; opening the same link again shows "This link was already used".
+5. A customer requests a sign-in link and opens it in the same browser: they land on Home with no extra click. Opened in a different browser, the link shows "Continue to sign in" first. Opening a used link again shows "This link was already used".
 6. Requesting a link for an email that is not a customer shows the same confirmation as a real one and sends nothing.
 7. A buyer whose login belongs to two stores sees the store switcher; switching to the second store changes every list and the URL carries `?store=`.
 8. A shopper never sees Invoices, Leads, Listing, Posts or Kit in the nav, even when those admin modules are on.

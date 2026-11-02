@@ -45,7 +45,7 @@ Codes used in every module below. `shared/roles.md` owns the full matrix.
 
 ### 3a. Admin (signed in as O, A, S, C)
 
-Label first, then route, then the folder that holds its PRD. Badges show live counts (the queue that needs a person). A group with no enabled modules disappears. A collapsed group shows the sum of its badges.
+Label first, then route, then the folder that holds its PRD. Badges show live counts (the queue that needs a person). A group with no enabled modules disappears. Only one group is open at a time; a collapsed group shows the sum of its badges.
 
 ```
 Home                     /admin                    admin/home/
@@ -88,8 +88,8 @@ Run
   Log                    /admin/log                admin/run/log/
   Settings               /admin/settings           admin/run/settings/
 ---
-[You]  menu: My profile /admin/me, Switch view (company + user type, demo only), View site /, Sign out
-[Chat] right panel on every page, Cmd/Ctrl+J, not a nav item       shared/chat.md
+[Profile] pinned bottom: initials avatar, name, role, caret. Menu: My profile /admin/me, Theme, View site /, Switch view (demo only), Sign out. Sign out lives nowhere else
+[Chat] right panel on every page, FAB bottom right or Cmd/Ctrl+J, not a nav item       shared/chat.md
 ```
 
 Records open as a URL modal on the module route (`/admin/leads?lead=12`) or a full record route (`/admin/pipeline/[id]`) when the record has tabs. Each module block lists which.

@@ -33,7 +33,7 @@ Start from `shared/roles.md` section 4f.
 | Tab | Route | Holds |
 |---|---|---|
 | Board | `/admin/board` | Kanban by stage. Columns from `fields.stages`; default New, Triaged, In progress, Waiting, Done. Drag to move. Each card: title, kind chip, urgency, assignee avatar, source icon, age, comment count, votes. |
-| Requests | `/admin/board?tab=requests` | List of cards filed by customers, contractors and the agent that are still New or Triaged, sortable by votes and urgency. The triage queue. |
+| Requests | `/admin/board?tab=requests` | List of cards filed by customers, contractors and the agent that are still New or Triaged, sortable by votes and urgency. The triage queue. Quick view **Feature requests** (`?tab=requests&kind=feature`) shows every "the app should do this" the chat has heard, so the Owner sees what to build next. |
 | Mine | `/admin/board?tab=mine` | Cards assigned to the viewer, any stage but Done. Default for Staff and Contractor. |
 
 - **Record view:** URL modal `?card=<id>` over the current tab. Opens read-only: title, body, kind, stage, urgency, assignee, due date, source (with a link back to the chat message, thread, call or record that started it), linked records as chips, comments (internal and public), activity with agent bylines and Undo, proof (links, files, change ids). Edit button for users with E. Esc closes.
@@ -58,7 +58,7 @@ Shared table `cards` is defined in `shared/data-model.md`; Board owns it and add
 | `org_id` | uuid | |
 | `title` | text | |
 | `body` | text | Markdown |
-| `kind` | text | Key from `fields.kinds`; default request, task, bug, idea |
+| `kind` | text | Key from `fields.kinds`; default request, task, bug, idea, feature |
 | `status` | text | Key from `fields.stages` |
 | `urgency` | text | now, soon, whenever |
 | `assignee_id` | uuid null | |
@@ -87,6 +87,7 @@ Shared table `cards` is defined in `shared/data-model.md`; Board owns it and add
 |---|---|---|---|---|---|
 | File a card from a chat request | `file_request` | C | No | `cards` insert, `source = chat`, `source_ref` = the message | Soft-deletes the card |
 | File a card from a voice call | `file_request` | C | No | `cards` insert, `source = call` | Soft-deletes the card |
+| File a feature request when asked for something the app cannot do | `file_request` | C | No | `cards` insert, `kind = feature`, `source = chat`, page path and chips in `linked` | Soft-deletes the card |
 | Set urgency, assignee, due date | `update_record` | E | No | before, after | Restores |
 | Move a card | `move_card` | E | No | `status` before, after | Moves it back |
 | Post what it did | `comment_card` | C | No | `card_comments` insert, internal | Deletes the comment |

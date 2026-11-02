@@ -28,7 +28,7 @@ One or two sentences. What this module does for the business, in the owner's wor
 - Tabs in nav order, each with its route (tabs are sub-routes, so every view is a link).
 - Record view: URL modal (`?<kind>=<id>`) or full route (`/[id]`), and its tabs.
 - For each page: empty, loading, error, and permission states (hidden, read-only, disabled with reason). See `shared/design-system.md`.
-- Quick views and filters that ship by default.
+- Quick views and filters that ship by default, and the query param each one writes (`?status=open&sort=-created`).
 - Badge count: what it counts.
 
 ## Data model
@@ -62,6 +62,7 @@ Numbered, testable statements. Each one names the user type, the action and the 
 2. Every agent write appears in Log with before, after and a working Undo.
 3. A gated agent action waits for a human yes and shows exactly what will happen.
 4. Every submit button shows a spinner and disables while it runs.
+5. Every tab, filter, sort, search and open record is in the URL: refresh, or paste the link in another browser, and the same view comes back.
 
 ## Open questions
 

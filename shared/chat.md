@@ -2,6 +2,8 @@
 
 The chat lives on the right side of every signed-in screen, admin and portal. It is not a page and has no nav item. It can see what is on the screen, the user can hand it anything on the page, and it can point back at the page and change what is there.
 
+It does two jobs: **answer questions about the app's data** ("which orders shipped late last week?") and **take action on it** ("move these three to Waiting and tell the customers"). When someone asks for something the app cannot do yet, that is a feature request, and it goes on the Board (section 6).
+
 One rule over everything: **the left is the data, the right is the agent, and the anchor is the contract between them.** If a thing on the page has an anchor, the user can hand it to the agent, and the agent can point back at it.
 
 This pattern runs in production in two separate apps today. Everything below marked **new** is an addition for YEA that neither had.
@@ -20,16 +22,17 @@ This pattern runs in production in two separate apps today. Everything below mar
 
 ## 2. Open and close
 
-- A chat button in the top bar, always in the same spot. **Cmd/Ctrl+J** toggles. Ctrl+/ is the fallback where the browser keeps Ctrl+J.
+- A round **FAB bottom right** summons it, on every signed-in page, desktop and mobile, always in the same spot. **Cmd/Ctrl+J** toggles. Ctrl+/ is the fallback where the browser keeps Ctrl+J.
 - **Esc closes.** Respect `defaultPrevented`, so Esc inside a modal closes the modal first and a second Esc closes the chat. When chips exist and the composer is focused, the first Esc blurs the composer and the second closes. Chips are kept on close.
 - Opening focuses the composer.
 - **Desktop (1024px and up):** docked right, pushes the page (no overlay). Default 420px, drag-resizable from 340px to half the viewport, arrow keys on the edge step 24px, double-click the edge resets. Open state and width live in a cookie the server reads, so a reload lands already sized with no layout jump.
 - Drawer state is also in the URL (`agent_panel`, `agent_thread`), so a pasted link opens the same view.
-- When closed, nothing floats over the page on desktop. The top bar button is the way in.
+- When closed, the FAB is the only thing that floats over the page. It hides while the chat is open and sits above the bulk action bar and toasts, never on top of them.
 
 ## 3. Select mode
 
-- **Select mode is on whenever the chat is open.** No separate toggle. The empty chat shows one tip line: "Click any row or card to bring it in. Select text to quote it."
+- **Select mode is on by default whenever the chat is open:** everything anchored on the page becomes clickable into the chat. The empty chat shows one tip line: "Click any row or card to bring it in. Select text to quote it."
+- **A Select toggle** in the chat header (pointer icon, `aria-pressed`) turns select mode off, so the page works exactly as it does with the chat closed: links follow, cards open, drag works, no hover rings. Use it when picking gets in the way of the UI. The choice sticks for the session (cookie) and shows in the tip line ("Select is off. Turn it on to pick from the page."). Turning it off keeps the chips already picked.
 - **Hover:** a soft ring on the innermost anchored element only (`[data-anchor]:hover:not(:has([data-anchor]:hover))`), `cursor: copy`.
 - **Click:** toggles the element into the composer as a chip. Links, buttons and fields inside a card keep working. A card that is itself one big link gets selected instead of followed while the chat is open.
 - **Shift+click** on a table row selects the range from the last picked row. **New.**
@@ -75,6 +78,7 @@ The agent also gets an `<access>` note when the user is read-only, so it does no
    - `changed { change_ids, items: [{ anchor, op }] }`: removed rows collapse out, the page re-renders with fresh data, changed rows flash.
 4. **Cite** with chips back to anchors. In the reply text: `[[order:1042|Order 1042]]`. Clicking one navigates and pulses.
 5. **Draw a chart** inline in the reply. Any chart can be pinned to Views as a tile (the tile stores its read-only query).
+6. **File a feature request.** When the user asks for something the app cannot do (a page, a field, a report, an integration), the agent says so plainly and files a Board card with `kind = feature`, the user's words, the page they were on and their chips as `linked`. It replies with the card chip (`[[card:214|#214]]`). The Owner and Admin see these on Board > Requests. Never pretend a missing feature exists.
 
 **Identity.** The agent always acts as the signed-in user, never as a superuser. Two checks: role permissions in the tool layer, and row rules in the database, so `own` scope holds even if a tool is wrong.
 
@@ -119,7 +123,7 @@ Voice is a mode of the chat panel, not a separate page: a Talk button in the pan
 ## 11. Mobile (under 1024px)
 
 - The chat is a full-screen sheet that slides in from the right. The page underneath stops scrolling. It is a dialog with focus trapped.
-- Closed: a round icon-only chat button bottom right, above the safe area.
+- Closed: the same round FAB bottom right, above the safe area.
 - **Pick from page** (**new**): a button in the composer. Tapping it slides the sheet down to a 64px bar showing the chip count and Done. Tapping anchored elements toggles them (ring on, light haptic where supported). Done slides the sheet back up.
 - Long-press on any anchored element (chat closed) shows "Ask about this", which opens the sheet with that chip.
 - Text select: use the native selection menu where possible. Fallback is the same "Ask" float, placed below the selection.
@@ -135,6 +139,7 @@ Voice is a mode of the chat panel, not a separate page: a Talk button in the pan
 | Cmd/Ctrl+Shift+K | Clear chips |
 | Arrow keys on the resize edge | Resize 24px |
 | Space on a focused anchored element, chat open | Toggle it into the chat (**new**) |
+| Cmd/Ctrl+Shift+S, chat open | Turn select mode on or off |
 
 - On desktop the drawer is `<aside aria-label="Chat">`, not a modal.
 - Chips are buttons. The remove action is labeled "Remove <label>".
@@ -150,7 +155,7 @@ Keep the pieces separate. One file per job:
 
 | Piece | Job |
 |---|---|
-| `chat-shell` | open state, width, keyboard, mobile sheet |
+| `chat-shell` | open state, width, keyboard, the FAB, the select toggle, mobile sheet |
 | `drawer` | chrome: thread tabs, Changes tab, close |
 | `chat-store` | threads, chips, sending, the SSE reader, UI events, click-to-attach |
 | `page-context` | builds `page_context` from the URL, the page marker, visible anchors and chips |
