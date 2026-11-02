@@ -7,6 +7,8 @@
 
 > **Partly proven.** Voice interviews run in production: briefs with topics, share links, calls that pick up where the last one stopped, notes per topic and a written handoff, used for discovery interviews with real clients. Running them inside the admin (the call in the record modal, the topic lighting up as the agent moves) went live on postscarcity.ai on 2026-11-02. The **review** pattern (section "Reviews"), where the agent reads the owner what the business already says and asks for reactions, shipped the same day and has not run end to end yet. Build that part from this spec and test harder.
 
+The call itself (engine, screen, brief format, tools, links, data) is the shared interview tool: `shared/interview-tool.md`. This page is the admin module that lists and runs interviews for the business's own people.
+
 ## Job
 
 "Have my agent interview me. It walks me through something one topic at a time, I answer out loud while I'm walking or driving, and it writes up what I said so the work gets done without a meeting."

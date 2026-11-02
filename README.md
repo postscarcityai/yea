@@ -44,6 +44,7 @@ shared/
   modules.md               the module map: nav tree, tiers, routes, config knobs
   roles.md                 six user types, eight verbs, the permission matrix, agent rules
   chat.md                  the right-hand chat panel and how it selects things on the page
+  interview-tool.md        one realtime voice interview anyone can take, signed in or by link, used by Interviews and Testimonials
   feedback-mode.md         staff tap parts of the live site and leave a comment that lands on the Board
   data-model.md            database conventions and the tables every module shares
   design-system.md         shell, left nav, lists, record views, chips, buttons
