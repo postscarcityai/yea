@@ -8,7 +8,7 @@ This README is the instructions. If you are an agent and someone pointed you her
 
 ## What it looks like
 
-Same shell, same components, a different first screen for every business. Nobody runs a company from a list. The owner says what they want to see, and the agent builds it: a shop floor, a dock, a map, a room grid, a day book. These are the homes of eight companies in the live demo. The companies, people and numbers are made up. Almost every module behind them already runs in a real business.
+Same shell, same components, a different first screen for every business. Nobody runs a company from a list. The owner says what they want to see, and the agent builds it: a shop floor, a dock, a map, a room grid, a day book. These are the homes of eight companies in the live demo, the first four in light mode and the last four in dark. The companies, people and numbers are made up. Almost every module behind them already runs in a real business.
 
 | | |
 |---|---|
@@ -16,9 +16,9 @@ Same shell, same components, a different first screen for every business. Nobody
 | **Machine shop: Shop floor.** Every spindle live, the job on it, the POs behind them. | **Property management: Portfolio.** Every property on a map, open work orders pinned to it. |
 | ![Boutique hotel home: every room on three floors by status, arrivals and events](docs/screenshots/03-wexmoor-home.png) | ![Montessori school home: the week's tours and conferences, families on their way in](docs/screenshots/04-larkhaven-home.png) |
 | **Boutique hotel: Tonight.** Every room on three floors: who is in, who is arriving, what housekeeping turns next. | **Private school: This week.** Tours, classroom visits and conferences, and every family on its way in. |
-| ![Freight brokerage home: live loads on a lane map out of Des Moines, then by delivery date](docs/screenshots/05-fenwright-home.png) | ![Marine supply home: the service dock slip by slip, and the parts counter](docs/screenshots/06-quillback-home.png) |
+| ![Freight brokerage home: live loads on a lane map out of Des Moines, then by delivery date](docs/screenshots/05-fenwright-home-dark.png) | ![Marine supply home: the service dock slip by slip, and the parts counter](docs/screenshots/06-quillback-home-dark.png) |
 | **Freight brokerage: Lanes this week.** Every live load on a map, then on a timeline by delivery date. | **Marine supply: The dock.** Every slip with its boat and repair, and the parts counter, lowest stock first. |
-| ![Climbing gym home: every wall's classes today and the social feed waiting for a yes](docs/screenshots/07-talus-home.png) | ![Vet practice home: the day book across three clinics, one column per vet](docs/screenshots/08-kettle-home.png) |
+| ![Climbing gym home: every wall's classes today and the social feed waiting for a yes](docs/screenshots/07-talus-home-dark.png) | ![Vet practice home: the day book across three clinics, one column per vet](docs/screenshots/08-kettle-home-dark.png) |
 | **Climbing gym: Monday on the walls.** Every wall and class, and the posts waiting for a yes. | **Vet practice: Monday.** The day book across three clinics, one column per vet. |
 
 ---
