@@ -56,7 +56,7 @@ playbooks/
 admin/
   home/
   inbox/
-  grow/    leads/  pipeline/  people/  prospects/  outreach/  campaigns/  reviews/  programs/  reps/
+  grow/    leads/  pipeline/  people/  prospects/  outreach/  campaigns/  reviews/  testimonials/  programs/  reps/
   sell/    orders/  catalog/  bookings/  jobs/  marketplace/  documents/  money/
   make/    content/  social/  library/  studio/
   know/    insights/  search/  views/  goals/  costs/  playbook/  calls/  interviews/

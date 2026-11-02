@@ -58,6 +58,7 @@ Grow
   Outreach       (badge) /admin/outreach           admin/grow/outreach/
   Campaigns      (badge) /admin/campaigns          admin/grow/campaigns/
   Reviews        (badge) /admin/reviews            admin/grow/reviews/
+  Testimonials   (badge) /admin/testimonials      admin/grow/testimonials/
   Programs               /admin/programs           admin/grow/programs/
   Reps                   /admin/reps               admin/grow/reps/
 Sell
@@ -137,7 +138,7 @@ README.md
 shared/      roles.md  chat.md  data-model.md  design-system.md  saas.md  modules.md (this map, stripped)
 admin/
   home/  inbox/
-  grow/  leads/ pipeline/ people/ prospects/ outreach/ campaigns/ reviews/ programs/ reps/
+  grow/  leads/ pipeline/ people/ prospects/ outreach/ campaigns/ reviews/ testimonials/ programs/ reps/
   sell/  orders/ catalog/ bookings/ jobs/ marketplace/ documents/ money/
   make/  content/ social/ library/ studio/
   know/  insights/ search/ views/ goals/ costs/ playbook/ calls/ interviews/
@@ -318,6 +319,19 @@ Format per module: key and tier, job, admin tabs in nav order, record route, cus
 - **Rails:** email delivery, SMS. Platform API for public review sites.
 - **Replaces:** not priced. Inventories saw Judge.me, Yotpo, Birdeye, Podium.
 - **Knobs:** `fields.request_delay_days`, `fields.sources` (own, public listing). Sample: `reviews`.
+
+### Testimonials `testimonials` · common · not yet proven end to end
+- **Job:** named proof from clients and partners: a person can give many testimonials, quotes or video. Send a link; the guest talks to an AI interviewer for five to seven minutes on what looks like a video call, their own camera bottom right; the video lands in the admin ready to publish.
+- **Admin tabs:** Testimonials, Links.
+- **Record route:** URL modal `?p=<person_id>`.
+- **Customer:** the guest's recording page `/t/[token]`.
+- **Sees:** O A S Cu(own link) Ag.
+- **Data:** `testimonials`, `testimonial_requests`, `files`, on the shared `people` table.
+- **Anchors:** `testimonial:<id>`.
+- **Agent:** drafts quotes from emails and calls, suggests clips and a pull quote from each recording, drafts the post. Sending links and publishing are always gated.
+- **Rails:** realtime voice (OpenAI Realtime or ElevenLabs), file storage, email delivery.
+- **Replaces:** VideoAsk, Vocal Video, Testimonial.to, Boast, Trustmary.
+- **Knobs:** `fields.testimonials.subject`, `fields.testimonials.minutes`, `fields.testimonials.topics`. Sample: `testimonials`.
 
 ### Programs `programs` · industry (consumer brands)
 - **Job:** the programs that make customers come back and bring friends.
