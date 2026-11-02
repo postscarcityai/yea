@@ -6,6 +6,23 @@ This README is the instructions. If you are an agent and someone pointed you her
 
 ---
 
+## What it looks like
+
+Same shell, same components, configured for each business. These are eight of the companies in the live demo. The companies, people and numbers are made up. Almost every module behind them already runs in a real business.
+
+| | |
+|---|---|
+| ![Precision CNC shop: live spindles, POs by stage, the estimator's agent on the right](docs/screenshots/01-lindqvist-home.png) | ![Property management: work orders with photos, vendor stages, the maintenance line agent](docs/screenshots/02-mendell-work-orders.png) |
+| **Machine shop, owner.** Every spindle, the work order on it and the POs behind them. | **Property management, broker.** Work orders from photo to billed. |
+| ![Boutique hotel: rooms, dinners and events in one reservations list](docs/screenshots/03-wexmoor-reservations.png) | ![Montessori school: enrollment pipeline from applied to enrolled](docs/screenshots/04-larkhaven-enrollment.png) |
+| **Boutique hotel, owner.** Rooms, dinners and events in one list. | **Private school, head of school.** Enrollment from inquiry to signed. |
+| ![Freight brokerage, staff view: loads by stage](docs/screenshots/05-fenwright-loads-staff.png) | ![Marine supply, customer portal: orders, repair desk, invoices](docs/screenshots/06-quillback-customer.png) |
+| **Freight brokerage, staff.** Staff see what their role allows and nothing more. | **Marine supply, customer.** Customers get their own portal: orders, repairs, invoices. |
+| ![Climbing gym, signed in as the agent: class grid and the social feed waiting for a yes](docs/screenshots/07-talus-agent.png) | ![Veterinary practice: appointments across three locations](docs/screenshots/08-kettle-appointments.png) |
+| **Climbing gym, as the agent.** The agent is a user with a role, never a superuser. Every write is logged with Undo. | **Vet practice, owner.** Appointments across three locations. |
+
+---
+
 ## What YEA is
 
 - **Not a product you buy.** There is no license, no seat price, no vendor. The ™ is struck through on purpose. YEA is what you get when you let the models do what they were trained to do: write the code, from a clear spec, for one business at a time.
