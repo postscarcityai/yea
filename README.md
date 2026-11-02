@@ -10,9 +10,9 @@ This README is the instructions. If you are an agent and someone pointed you her
 
 Same shell, same components, a different first screen for every business. Nobody runs a company from a list. The owner says what they want to see, and the agent builds it: a dock, a shop floor, a map, a room grid. The chat on the right is wired to the page: click anything to hand it to the agent, and the agent points back at what it is talking about.
 
-![Marine supply: the owner asks which boats are ready and they light up on the dock, pins one boat, and the agent drafts the owner a pickup text that waits for a yes](docs/screenshots/00-quillback-chat.gif)
+![Marine supply: the owner types which boats are ready and they light up on the dock, pins Little Auk, has the agent draft the owner a pickup text, says yes, and the boat is marked owner notified](docs/screenshots/00-quillback-chat.webp)
 
-**Marine supply: The dock.** Ask which boats are ready and they light up on the dock. Click a boat to pin it, and the agent drafts the owner a pickup text that waits for your yes.
+**Marine supply: The dock.** Ask which boats are ready and they light up on the dock. Click a boat to pin it, have the agent draft the owner a pickup text, say yes, and the boat is marked owner notified.
 
 | | |
 |---|---|
