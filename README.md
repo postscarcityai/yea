@@ -8,18 +8,18 @@ This README is the instructions. If you are an agent and someone pointed you her
 
 ## What it looks like
 
-Same shell, same components, a different first screen for every business. Nobody runs a company from a list. The owner says what they want to see, and the agent builds it: a shop floor, a dock, a map, a room grid, a day book. These are the homes of eight companies in the live demo, the first four in light mode and the last four in dark. The companies, people and numbers are made up. Almost every module behind them already runs in a real business.
+Same shell, same components, a different first screen for every business. Nobody runs a company from a list. The owner says what they want to see, and the agent builds it: a shop floor, a dock, a map, a room grid, a day book. These are the homes of eight companies in the live demo, the first four in light mode and the last four in dark. Both themes take their color from the business's own brand. The companies, people and numbers are made up. Almost every module behind them already runs in a real business.
 
 | | |
 |---|---|
-| ![Machine shop home: every spindle live with its job, POs by stage](docs/screenshots/01-lindqvist-home.png) | ![Property management home: a map of Tucson with every property pinned, work orders by stage](docs/screenshots/02-mendell-home.png) |
-| **Machine shop: Shop floor.** Every spindle live, the job on it, the POs behind them. | **Property management: Portfolio.** Every property on a map, open work orders pinned to it. |
-| ![Boutique hotel home: every room on three floors by status, arrivals and events](docs/screenshots/03-wexmoor-home.png) | ![Montessori school home: the week's tours and conferences, families on their way in](docs/screenshots/04-larkhaven-home.png) |
-| **Boutique hotel: Tonight.** Every room on three floors: who is in, who is arriving, what housekeeping turns next. | **Private school: This week.** Tours, classroom visits and conferences, and every family on its way in. |
-| ![Freight brokerage home: live loads on a lane map out of Des Moines, then by delivery date](docs/screenshots/05-fenwright-home-dark.png) | ![Marine supply home: the service dock slip by slip, and the parts counter](docs/screenshots/06-quillback-home-dark.png) |
-| **Freight brokerage: Lanes this week.** Every live load on a map, then on a timeline by delivery date. | **Marine supply: The dock.** Every slip with its boat and repair, and the parts counter, lowest stock first. |
-| ![Climbing gym home: every wall's classes today and the social feed waiting for a yes](docs/screenshots/07-talus-home-dark.png) | ![Vet practice home: the day book across three clinics, one column per vet](docs/screenshots/08-kettle-home-dark.png) |
-| **Climbing gym: Monday on the walls.** Every wall and class, and the posts waiting for a yes. | **Vet practice: Monday.** The day book across three clinics, one column per vet. |
+| ![Property management home: a map of Tucson with every property pinned, work orders by stage](docs/screenshots/01-mendell-home.png) | ![Boutique hotel home: every room on three floors by status, arrivals and events](docs/screenshots/02-wexmoor-home.png) |
+| **Property management: Portfolio.** Every property on a map, open work orders pinned to it. | **Boutique hotel: Tonight.** Every room on three floors: who is in, who is arriving, what housekeeping turns next. |
+| ![Montessori school home: the week's tours and conferences, families on their way in](docs/screenshots/03-larkhaven-home.png) | ![Vet practice home: the day book across three clinics, one column per vet](docs/screenshots/04-kettle-home.png) |
+| **Private school: This week.** Tours, classroom visits and conferences, and every family on its way in. | **Vet practice: Monday.** The day book across three clinics, one column per vet. |
+| ![Machine shop home in dark mode: every spindle live with its job, POs by stage](docs/screenshots/05-lindqvist-home-dark.png) | ![Freight brokerage home in dark mode: live loads on a lane map out of Des Moines, then by delivery date](docs/screenshots/06-fenwright-home-dark.png) |
+| **Machine shop: Shop floor.** Every spindle live, the job on it, the POs behind them. | **Freight brokerage: Lanes this week.** Every live load on a map, then on a timeline by delivery date. |
+| ![Marine supply home in dark mode: the service dock slip by slip, and the parts counter](docs/screenshots/07-quillback-home-dark.png) | ![Climbing gym home in dark mode: every wall's classes today and the social feed waiting for a yes](docs/screenshots/08-talus-home-dark.png) |
+| **Marine supply: The dock.** Every slip with its boat and repair, and the parts counter, lowest stock first. | **Climbing gym: Monday on the walls.** Every wall and class, and the posts waiting for a yes. |
 
 ---
 
