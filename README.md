@@ -30,7 +30,7 @@ Both themes take their color from the business's own brand. The companies, peopl
 - **A theory, not a product.** There is no license, no seat price, no vendor, and no trademark. The TM is struck through on purpose: that is the joke. YEA is what you get when you let the models do what they were trained to do: write the code, from a clear spec, for one business at a time.
 - **Own your stack, soup to nuts.** The old fear of owning your software was technical debt and the cost of the engineers to carry it. That fear is going away. The systems are self-managed by AI, and consistent, high-quality software engineering keeps getting cheaper as the models improve, with the cost heading toward zero. In an ecosystem that changes this fast, owning your own stack is the only hedge. Rent it and you move when your vendor moves. Own it and you rewrite it the day something better exists.
 - **A spec, not a codebase.** This repo holds the PRDs. You build the app for the business from them, in the stack you choose. Every business gets its own copy and owns it outright.
-- **Proven, not invented.** Every core and common module is a pattern already running in production at real businesses. Three modules are "not yet proven": Bookings, Documents and Money. Their admin PRDs and the matching customer portal pages (Bookings, Documents, Invoices) say so at the top. Build those from the spec and test harder. Calls is "partly proven": joining, live checks and the report run in production; asking the back-office agent mid-meeting and speaking on the call do not yet.
+- **Proven, not invented.** Every core and common module is a pattern already running in production at real businesses. Three modules are "not yet proven": Bookings, Documents and Money. Their admin PRDs and the matching customer portal pages (Bookings, Documents, Invoices) say so at the top. Build those from the spec and test harder. Calls is "partly proven": joining, live checks and the report run in production; asking the back-office agent mid-meeting and speaking on the call do not yet. Interviews is "partly proven": voice interviews run in production; the review pattern (the agent reads back what the business says and asks for reactions) is new.
 - **Configured, not forked.** Every business gets the same shell and the same components. What changes is one config object: which modules are on, what they are called, the stages and fields inside them, the roles, the brand colors. See `shared/modules.md` section 5.
 
 ### How this repo is laid out
@@ -59,7 +59,7 @@ admin/
   grow/    leads/  pipeline/  people/  prospects/  outreach/  campaigns/  reviews/  programs/  reps/
   sell/    orders/  catalog/  bookings/  jobs/  marketplace/  documents/  money/
   make/    content/  social/  library/  studio/
-  know/    insights/  search/  views/  goals/  costs/  playbook/
+  know/    insights/  search/  views/  goals/  costs/  playbook/  calls/  interviews/
   run/     team/  agents/  board/  log/  settings/
 customer/
   site/
