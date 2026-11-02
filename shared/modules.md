@@ -81,6 +81,7 @@ Know
   Costs                  /admin/costs              admin/know/costs/
   Playbook               /admin/playbook           admin/know/playbook/
   Calls                  /admin/calls              admin/know/calls/
+  Interviews     (badge) /admin/interviews         admin/know/interviews/
 Run
   Team                   /admin/team               admin/run/team/
   Agents                 /admin/agents             admin/run/agents/
@@ -139,7 +140,7 @@ admin/
   grow/  leads/ pipeline/ people/ prospects/ outreach/ campaigns/ reviews/ programs/ reps/
   sell/  orders/ catalog/ bookings/ jobs/ marketplace/ documents/ money/
   make/  content/ social/ library/ studio/
-  know/  insights/ search/ views/ goals/ costs/ playbook/ calls/
+  know/  insights/ search/ views/ goals/ costs/ playbook/ calls/ interviews/
   run/   team/ agents/ board/ log/ settings/
 customer/
   site/  shop/  intake/
@@ -577,6 +578,19 @@ Format per module: key and tier, job, admin tabs in nav order, record route, cus
 - **Rails:** live worker (long-running, Fly.io), meeting bot vendor (Recall.ai), text to speech (voice only), calendar (read-only).
 - **Replaces:** Otter, Fireflies, Fathom (note takers); Gong, Chorus (call intelligence).
 - **Knobs:** `fields.calls.agent_name`, `fields.calls.lenses`, `fields.calls.default_lens_by_record`. Sample: `calls`.
+
+### Interviews `interviews` · common · partly proven
+- **Job:** the agent interviews the owner over voice, topic by topic, across as many calls as it takes, and writes up what was said. Discovery (open questions) and review (it reads back what the business says, section by section, and asks for reactions).
+- **Admin tabs:** Interviews.
+- **Record route:** URL modal `?i=<id>`; the call runs inside it.
+- **Customer:** none here; customer interviews run from Portal or a share link.
+- **Sees:** O A S(own) C(own) Ag.
+- **Data:** in the voice service (briefs, topics, links, calls, points, handoffs), read through its embed API.
+- **Anchors:** `interview:<id>`, `interview_topic:<id>.<topic>`.
+- **Agent:** drafts interviews, reads the notes, files review notes as Board cards and closes them with the live URL.
+- **Rails:** voice service, speech (ElevenLabs).
+- **Replaces:** Typeform and Google Forms feedback surveys; Loom review threads; Dovetail, Grain (research notes).
+- **Knobs:** `fields.interviews.agent_name`, `fields.interviews.default_minutes`. Sample: `interviews`.
 
 ### Team `team` · core
 - **Job:** who works here, what they can do, and how they sign in.
