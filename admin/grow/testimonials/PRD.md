@@ -45,6 +45,8 @@ Start from `shared/roles.md`.
 
 ## The video interview
 
+Built on the shared interview tool (`shared/interview-tool.md`) with `video` on: a guest link for people without an account, the signed-in link for anyone who has one.
+
 What the guest gets (Owner's brief, 2026-11-02): a link. They open it, and it looks like a video call. The interviewer is an AI voice. Their own camera sits in the bottom right so they can see what they look like. It takes five to seven minutes and asks them about the owner and the work. Recording starts when they press start, and when they hang up the video is already in the admin.
 
 - **The link:** `/t/[token]`, one per person, 30-day expiry, token stored hashed. Opening it shows the owner's name and photo, what this is in one line ("A five-minute video interview about working with Chris. You'll talk to an AI interviewer."), the consent checkbox ("You can use this video and my name to promote <business>"), a camera and mic check, and **Start**.
