@@ -1,4 +1,4 @@
-# Your Everything App<sup><s aria-label="no trademark">™</s></sup>
+# Your Everything App<sup><del>TM</del></sup>
 
 **YEA.** One app that runs a business: a customer side, an admin side, one left nav, six user types, and an agent in a chat panel on every screen that can see what you see and act on it.
 
@@ -25,7 +25,7 @@ Same shell, same components, configured for each business. These are eight of th
 
 ## What YEA is
 
-- **A theory, not a product.** There is no license, no seat price, no vendor, and no trademark. The ™ is struck through on purpose: that is the joke. YEA is what you get when you let the models do what they were trained to do: write the code, from a clear spec, for one business at a time.
+- **A theory, not a product.** There is no license, no seat price, no vendor, and no trademark. The TM is struck through on purpose: that is the joke. YEA is what you get when you let the models do what they were trained to do: write the code, from a clear spec, for one business at a time.
 - **Own your stack, soup to nuts.** The old fear of owning your software was technical debt and the cost of the engineers to carry it. That fear is going away. The systems are self-managed by AI, and consistent, high-quality software engineering keeps getting cheaper as the models improve, with the cost heading toward zero. In an ecosystem that changes this fast, owning your own stack is the only hedge. Rent it and you move when your vendor moves. Own it and you rewrite it the day something better exists.
 - **A spec, not a codebase.** This repo holds the PRDs. You build the app for the business from them, in the stack you choose. Every business gets its own copy and owns it outright.
 - **Proven, not invented.** Every core and common module is a pattern already running in production at real businesses. Three modules are "not yet proven": Bookings, Documents and Money. Their admin PRDs and the matching customer portal pages (Bookings, Documents, Invoices) say so at the top. Build those from the spec and test harder. Calls is "partly proven": joining, live checks and the report run in production; asking the back-office agent mid-meeting and speaking on the call do not yet.
