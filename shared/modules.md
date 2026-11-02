@@ -760,7 +760,7 @@ PSAI-30 should rewrite the `yea_module` field with these keys.
 
 - **PSAI-22 roles:** visibility codes above are the floor. Contractor always means "own records". Agent always runs as a named role and every write goes to Log.
 - **PSAI-23 repo:** create the tree in 3c exactly. `shared/modules.md` is this file without the appendix (yea-module-map.repo.md).
-- **PSAI-24 PRDs:** one PRD per folder. Each PRD lists its tabs in the order above, its anchor kinds, its agent actions, its knobs and its sample type. Start Leads from the existing reference module in the admin shell (postscarcityai/yea-admin, served at postscarcity.ai/admin).
+- **PSAI-24 PRDs:** one PRD per folder. Each PRD lists its tabs in the order above, its anchor kinds, its agent actions, its knobs and its sample type. Start Leads from the existing reference module in the admin shell (postscarcityai/psai-yea, served at postscarcity.ai/admin).
 - **PSAI-25 companies:** pick modules per company by tier: all core, the common ones that fit, at most two industry modules. Use the sample types in section 5.
 - **PSAI-28 and PSAI-31 screen and dashboard:** render the nav from AppConfig. The shell never changes; nav items, labels and data do.
 - **PSAI-33 finale:** the config object in section 5 is the whole output. Toggle `enabled`, set `label`, pick `fields.stages` and `fields.kinds`, set colors, pick `sample`.
