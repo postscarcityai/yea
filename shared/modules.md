@@ -80,6 +80,7 @@ Know
   Goals                  /admin/goals              admin/know/goals/
   Costs                  /admin/costs              admin/know/costs/
   Playbook               /admin/playbook           admin/know/playbook/
+  Calls                  /admin/calls              admin/know/calls/
 Run
   Team                   /admin/team               admin/run/team/
   Agents                 /admin/agents             admin/run/agents/
@@ -138,14 +139,14 @@ admin/
   grow/  leads/ pipeline/ people/ prospects/ outreach/ campaigns/ reviews/ programs/ reps/
   sell/  orders/ catalog/ bookings/ jobs/ marketplace/ documents/ money/
   make/  content/ social/ library/ studio/
-  know/  insights/ search/ views/ goals/ costs/ playbook/
+  know/  insights/ search/ views/ goals/ costs/ playbook/ calls/
   run/   team/ agents/ board/ log/ settings/
 customer/
   site/  shop/  intake/
   portal/  home/ orders/ reorder/ bookings/ documents/ invoices/ rewards/ leads/ listing/ posts/ kit/ account/
 ```
 
-37 module folders (33 admin, 4 customer) plus 12 portal page folders.
+38 module folders (34 admin, 4 customer) plus 12 portal page folders.
 
 ---
 
@@ -154,10 +155,10 @@ customer/
 | Tier | Meaning | Modules |
 |---|---|---|
 | core | Every business gets it, on by default, cannot be switched off (only relabeled) | Home, Inbox, Leads, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal (Home, Account) |
-| common | Most businesses want it; on or off by config | Pipeline, Outreach, Campaigns, Reviews, Orders, Catalog, Bookings, Documents, Money, Content, Social, Library, Studio, Insights, Search, Costs, Playbook, Shop |
+| common | Most businesses want it; on or off by config | Pipeline, Outreach, Campaigns, Reviews, Orders, Catalog, Bookings, Documents, Money, Content, Social, Library, Studio, Insights, Search, Costs, Playbook, Calls, Shop |
 | industry | Switched on for a business model; usually relabeled | Prospects (B2B selling at volume), Programs (consumer brands), Reps (field sales teams), Jobs (service, case and project work), Marketplace (businesses that route or resell leads, bookings or work) |
 
-Count: 14 core, 18 common, 5 industry.
+Count: 14 core, 19 common, 5 industry.
 
 ---
 
@@ -563,6 +564,19 @@ Format per module: key and tier, job, admin tabs in nav order, record route, cus
 - **Rails:** email delivery (test sends).
 - **Replaces:** Notion, Confluence, Coda (Docs and wiki); docs half of ClickUp.
 - **Knobs:** `fields.tabs`. Sample: `playbook`.
+
+### Calls `calls` · common
+- **Job:** send the agent into a Zoom, Meet or Teams call: it listens, checks what is said against the business's data, shows live cards and the next question, answers the host's questions through the back-office agent, and writes the report.
+- **Admin tabs:** Calls, Lenses, Settings.
+- **Record route:** `/admin/calls/[id]` (Live, Transcript, Cards, Report, Follow-ups).
+- **Customer:** none (a customer on a call sees the agent as a named participant).
+- **Sees:** O A S(own) C(own) Ag(own).
+- **Data:** `calls`, `call_participants`, `call_lines`, `call_cards`, `call_lenses`, `call_reports`.
+- **Anchors:** `call:<id>`, `call_line:<id>`, `call_card:<id>`.
+- **Agent:** joins on a person's say-so, triages every turn through the call's lens, checks claims against the linked record, suggests the next question, forwards questions to the back office, speaks only when voice is on and it is asked by our side.
+- **Rails:** live worker (long-running, Fly.io), meeting bot vendor (Recall.ai), text to speech (voice only), calendar (read-only).
+- **Replaces:** Otter, Fireflies, Fathom (note takers); Gong, Chorus (call intelligence).
+- **Knobs:** `fields.calls.agent_name`, `fields.calls.lenses`, `fields.calls.default_lens_by_record`. Sample: `calls`.
 
 ### Team `team` · core
 - **Job:** who works here, what they can do, and how they sign in.

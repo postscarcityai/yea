@@ -10,7 +10,7 @@ This README is the instructions. If you are an agent and someone pointed you her
 
 - **Not a product you buy.** There is no license, no seat price, no vendor. The ™ is struck through on purpose. YEA is what you get when you let the models do what they were trained to do: write the code, from a clear spec, for one business at a time.
 - **A spec, not a codebase.** This repo holds the PRDs. You build the app for the business from them, in the stack you choose. Every business gets its own copy and owns it outright.
-- **Proven, not invented.** Every core and common module is a pattern already running in production at real businesses. Three modules are "not yet proven": Bookings, Documents and Money. Their admin PRDs and the matching customer portal pages (Bookings, Documents, Invoices) say so at the top. Build those from the spec and test harder.
+- **Proven, not invented.** Every core and common module is a pattern already running in production at real businesses. Three modules are "not yet proven": Bookings, Documents and Money. Their admin PRDs and the matching customer portal pages (Bookings, Documents, Invoices) say so at the top. Build those from the spec and test harder. Calls is "partly proven": joining, live checks and the report run in production; asking the back-office agent mid-meeting and speaking on the call do not yet.
 - **Configured, not forked.** Every business gets the same shell and the same components. What changes is one config object: which modules are on, what they are called, the stages and fields inside them, the roles, the brand colors. See `shared/modules.md` section 5.
 
 ### How this repo is laid out
@@ -72,12 +72,12 @@ Write the result as the config object from `shared/modules.md` section 5 (`AppCo
 
 ## 2. Pick modules
 
-`shared/modules.md` has 37 modules in three tiers.
+`shared/modules.md` has 38 modules in three tiers.
 
 | Tier | Rule | Modules |
 |---|---|---|
 | **core** (14) | Always on. You may relabel, never remove. | Home, Inbox, Leads, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal (Home, Account) |
-| **common** (18) | On if the business does that work or pays for that SaaS today. | Pipeline, Outreach, Campaigns, Reviews, Orders, Catalog, Bookings, Documents, Money, Content, Social, Library, Studio, Insights, Search, Costs, Playbook, Shop |
+| **common** (19) | On if the business does that work or pays for that SaaS today. | Pipeline, Outreach, Campaigns, Reviews, Orders, Catalog, Bookings, Documents, Money, Content, Social, Library, Studio, Insights, Search, Costs, Playbook, Calls, Shop |
 | **industry** (5) | On for one business model. At most two per business. | Prospects, Programs, Reps, Jobs, Marketplace |
 
 How to choose:
