@@ -2,9 +2,7 @@
 
 You build an audience with content, then turn it into tickets, sponsors and members.
 
-Machine-readable copy: `lib/yea-finale/playbooks/archetypes.ts` in the postscarcity-ai repo, id `creator-membership`. Back to [all playbooks](README.md).
-
-Paths starting with `~/` are internal proof: they point into private repos, so you cannot open them from outside. Every play's recipe stands alone without them.
+Example: **Talus Yard Climbing**, a climbing gym with a community, events and footage. The companies, people and numbers in these pages are made up. The patterns come from real builds. Back to [all playbooks](README.md).
 
 ## Who pays and how
 
@@ -14,11 +12,11 @@ Paths starting with `~/` are internal proof: they point into private repos, so y
 
 ## The core loop
 
-1. **Capture.** Fans join the list, with a welcome and a founder alert. `~/dev/bootyverse/fn/waitlist.ts`
-2. **Footage in.** Phone footage uploads straight to the shared drive. `~/dev/bootyverse/fn/uploads.ts`
-3. **Make.** Clips are tagged and searchable; templates render posts and carousels. `~/dev/bootyverse/tools/engine/worker.mjs`
-4. **Send.** Campaigns to your own list, tracked, with suppression. `~/dev/bootyverse/fn/campaigns.ts`
-5. **Fund.** Sponsors researched, tracked by stage, goals read live. `~/dev/bootyverse/fn/sponsors.ts`
+1. **Capture.** Fans join the list, with a welcome and a founder alert.
+2. **Footage in.** Phone footage uploads straight to the shared drive.
+3. **Make.** Clips are tagged and searchable; templates render posts and carousels.
+4. **Send.** Campaigns to your own list, tracked, with suppression.
+5. **Fund.** Sponsors researched, tracked by stage, goals read live.
 
 ## Modules on
 
@@ -37,10 +35,10 @@ Core modules (Home, Inbox, People, Views, Goals, Team, Agents, Board, Log, Setti
 
 ## Stages we actually used
 
-- **sponsor** (`pipeline`): prospect, ready, approved, contacted, talking, committed, not_now, declined, past. `~/dev/bootyverse/fn/sponsors.ts`
-- **campaign** (`campaigns`): draft, queued, sending, sent. `~/dev/bootyverse/fn/campaigns.ts`
-- **upload session** (`library`): free, claimed, done, failed. `~/dev/bootyverse/migrations/0006_uploads.sql`
-- **render job** (`studio`): queued, running, done, error. `~/dev/bootyverse/fn/engine.ts`
+- **sponsor** (`pipeline`): prospect, ready, approved, contacted, talking, committed, not_now, declined, past.
+- **campaign** (`campaigns`): draft, queued, sending, sent.
+- **upload session** (`library`): free, claimed, done, failed.
+- **render job** (`studio`): queued, running, done, error.
 
 ## The agent's first three jobs
 
@@ -54,10 +52,10 @@ Signed in as the staff, approved by the owner. The agent is "Studio desk". Shows
 
 Steps on screen: Footage lands > Ask > Search by what is in it > Draft post > Owner approves > Logged with Undo.
 
-- **Pinned:** Folder "Rehearsal, Oct 28"
-- **Ask:** "Find the clip where the whole crew lands the jump, and make a post for Friday."
-- **Agent works:** Searched 1,240 clips for a group jump; Found 3 takes, stacked 2 duplicates; Framed the best take on the crew; Rendered the post from the Friday template.
-- **Reply:** "Take 2 from Oct 28 has all six landing together. The Friday post is drafted on the left with the clip framed on the crew."
+- **Pinned:** Folder "Comp night, Oct 28"
+- **Ask:** "Find the clip where the whole team tops the final wall, and make a post for Friday."
+- **Agent works:** Searched 1,240 clips for the final wall; Found 3 takes, stacked 2 duplicates; Framed the best take on the team; Rendered the post from the Friday template.
+- **Reply:** "Take 2 from Oct 28 has all six at the top together. The Friday post is drafted on the left with the clip framed on the team."
 - **Approval:** "Schedule it for Friday at 6 PM?" [Change] [Approve], then "Approved. Scheduled for Friday 6 PM."
 - **Log, with Undo:** Studio desk scheduled the Friday post from take 2. Approved by Juno Reyes.
 
@@ -108,11 +106,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `phone-upload-to-drive`
 - **Modules:** `library`, `studio`
 - **Fits when you see:** video, footage, shoot, filming, content, creator, events
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/bootyverse/fn/uploads.ts`
-  - `~/dev/bootyverse/admin/engine/uploads.js`: 16 MB chunks, resume
-  - `~/dev/bootyverse/tools/uploads/pool.mjs`: the Mac mints resumable sessions ahead
-  - `~/dev/bootyverse/migrations/0006_uploads.sql`
 
 ### Search footage by what is in it (innovation)
 
@@ -148,9 +141,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `library-search-by-picture`
 - **Modules:** `library`
 - **Fits when you see:** photos, videos, footage, library, content, media
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/bootyverse/tools/engine/tag.py`: local image model
-  - `~/dev/bootyverse/migrations/0002_media_clip_vector.sql`: vector search
 
 ### Call your back office (innovation)
 
@@ -187,9 +177,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `voice-persona`
 - **Modules:** `agents`, `board`
 - **Fits when you see:** voice, phone, podcast, talk, calls
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/bootyverse/admin/engine/voice.js`
-  - `~/dev/bootyverse/fn/admin.ts`: ask_back_office reaches the live agent
 
 ### Waitlist with a welcome
 
@@ -224,11 +211,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `waitlist-welcome`
 - **Modules:** `intake`, `people`, `campaigns`
 - **Fits when you see:** waitlist, join the list, coming soon, early access, sign up, launch
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/bootyverse/fn/waitlist.ts`
-  - `~/dev/bootyverse/fn/ratelimit.ts`
-  - `~/dev/bootyverse/fn/autoemails.ts`
-  - `~/dev/bootyverse/fn/alerts.ts`
 
 ### Your own email engine
 
@@ -265,11 +247,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `own-email-engine`
 - **Modules:** `campaigns`
 - **Fits when you see:** newsletter, email list, subscribers, mailing list, updates
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/bootyverse/fn/campaigns.ts`
-  - `~/dev/bootyverse/fn/sendgrid.ts`
-  - `~/dev/bootyverse/fn/audit.ts`
-  - `~/dev/amc/lib/email/campaign-sender.ts` (at `origin/main`)
 
 ### Brand templates the agent fills
 
@@ -305,10 +282,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `studio-templates`
 - **Modules:** `studio`, `social`
 - **Fits when you see:** instagram, carousel, brand, design, canva, graphics
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/bootyverse/admin/studio/runtime.js`: framing reads x, y, zoom
-  - `~/dev/bootyverse/tools/engine/studio.mjs`
-  - `~/dev/bootyverse/tools/engine/worker.mjs`
 
 ### Sponsors, researched and tracked
 
@@ -344,8 +317,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `sponsor-crm`
 - **Modules:** `pipeline`, `people`
 - **Fits when you see:** sponsors, sponsorship, partners, grant, underwriting, donors, funders
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/bootyverse/fn/sponsors.ts`: tiers headline to grant, stages prospect to committed, no send endpoint
 
 ### Goals tied to live numbers
 
@@ -380,9 +351,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `goals-live-numbers`
 - **Modules:** `goals`
 - **Fits when you see:** goal, target, raise, launch
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/bootyverse/fn/goals.ts`
-  - `~/dev/bootyverse/admin/engine/goals.js`
 
 ### Approve posts from your phone
 
@@ -420,10 +388,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `social-review-hub`
 - **Modules:** `social`
 - **Fits when you see:** instagram, social, facebook, linkedin, tiktok, posts
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/app/admin/social/[id]/page.tsx` (at `origin/main`)
-  - `~/dev/amc/lib/admin/social.ts` (at `origin/main`): statuses and channels
-  - `~/dev/amc/app/api/webhooks/zernio/route.ts` (at `origin/main`)
 
 ### Explainer videos from a script
 
@@ -460,9 +424,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `explainer-video-pipeline`
 - **Modules:** `studio`, `social`
 - **Fits when you see:** video, youtube, reels, explainer, tiktok
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/scripts/video/noir/build.mjs` (at `origin/main`)
-  - `~/dev/amc/docs/COMIC-NOIR-VIDEO-PLAYBOOK.md` (at `origin/main`)
 
 ### Which post sold
 
@@ -501,11 +462,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `post-to-order-attribution`
 - **Modules:** `social`, `insights`, `orders`
 - **Fits when you see:** instagram, tiktok, social, influencers, content, posts
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/peels/lib/what-worked-core.mjs`
-  - `~/dev/peels/db/055_order_attribution.sql`
-  - `~/dev/peels/lib/post-learning-core.mjs`
-  - `~/dev/peels/lib/auto-drafts-core.mjs`: weekly drafts from real assets only
 
 ## Not proven yet
 
@@ -513,12 +469,6 @@ The generator must not show these as done.
 
 - Paid memberships and member logins.
 - Ticket checkout inside the app: tickets used hosted card-rail links.
-
-## Built from
-
-- `~/dev/bootyverse`: waitlist, library, studio, uploads, emails, sponsors, voice
-- `~/dev/amc`: social review hub and explainer videos
-- `~/dev/peels`: post learning and attribution
 
 ## Signals that point here
 

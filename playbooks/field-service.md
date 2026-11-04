@@ -2,9 +2,7 @@
 
 You go to the customer's place, look at the problem, quote it and do the work.
 
-Machine-readable copy: `lib/yea-finale/playbooks/archetypes.ts` in the postscarcity-ai repo, id `field-service`. Back to [all playbooks](README.md).
-
-Paths starting with `~/` are internal proof: they point into private repos, so you cannot open them from outside. Every play's recipe stands alone without them.
+Example: **Mendell Property Group**, a property manager running repair estimates and jobs. The companies, people and numbers in these pages are made up. The patterns come from real builds. Back to [all playbooks](README.md).
 
 ## Who pays and how
 
@@ -14,11 +12,11 @@ Paths starting with `~/` are internal proof: they point into private repos, so y
 
 ## The core loop
 
-1. **Request.** The customer starts on your site and sends photos. `~/dev/waterdamageiq/app/e/[slug]/page.tsx`
-2. **Estimate.** The photos are read for scope and priced from your table. `~/dev/waterdamageiq/lib/ai/assess.ts`
-3. **Follow up.** Half-finished requests and quiet reports get one nudge each. `~/dev/waterdamageiq/app/api/cron/abandoned/route.ts`
-4. **Job file.** The won estimate becomes a job with stages, tasks and dates. `~/dev/amc/supabase/migrations/0100_docket_core.sql` (at `origin/main`)
-5. **Due today.** A daily digest says what is due and what is late. `~/dev/amc/app/api/cron/matter-reminders/route.ts` (at `origin/main`)
+1. **Request.** The customer starts on your site and sends photos.
+2. **Estimate.** The photos are read for scope and priced from your table.
+3. **Follow up.** Half-finished requests and quiet reports get one nudge each.
+4. **Job file.** The won estimate becomes a job with stages, tasks and dates.
+5. **Due today.** A daily digest says what is due and what is late.
 
 ## Modules on
 
@@ -36,9 +34,9 @@ Core modules (Home, Inbox, People, Views, Goals, Team, Agents, Board, Log, Setti
 
 ## Stages we actually used
 
-- **request** (`leads`): new, contacted, connected, closed. `~/dev/waterdamageiq/supabase/migrations/0001_init.sql`
-- **severity** (`leads`): minor, moderate, major, high_risk. `~/dev/waterdamageiq/supabase/migrations/0001_init.sql`
-- **job task** (`jobs`): open, in_progress, done, canceled. `~/dev/amc/supabase/migrations/0100_docket_core.sql` (at `origin/main`)
+- **request** (`leads`): new, contacted, connected, closed.
+- **severity** (`leads`): minor, moderate, major, high_risk.
+- **job task** (`jobs`): open, in_progress, done, canceled.
 
 ## The agent's first three jobs
 
@@ -108,11 +106,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `white-label-photo-estimator`
 - **Modules:** `intake`, `site`, `leads`
 - **Fits when you see:** estimate, free estimate, quote, inspection, service area, restoration, repair, install
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/waterdamageiq/app/e/[slug]/page.tsx`
-  - `~/dev/waterdamageiq/lib/white-label.ts`
-  - `~/dev/waterdamageiq/lib/white-label-offer.ts`
-  - `~/dev/waterdamageiq/lib/pricing/price.ts`
 
 ### Nobody falls out of the funnel (innovation)
 
@@ -149,10 +142,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `funnel-followups`
 - **Modules:** `intake`, `campaigns`, `leads`
 - **Fits when you see:** get started, free quote, request, book, schedule, estimate
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/waterdamageiq/app/api/cron/abandoned/route.ts`: stalled 2 to 48 hours ago
-  - `~/dev/waterdamageiq/app/api/cron/insurance-followup/route.ts`
-  - `~/dev/waterdamageiq/app/api/cron/lead-followup/route.ts`: 3 to 14 days after the report
 
 ### Cost per lead, every channel (innovation)
 
@@ -192,11 +181,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `cost-per-lead`
 - **Modules:** `costs`, `insights`
 - **Fits when you see:** google ads, advertising, ads, marketing spend, cost per, paid search, facebook ads
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/waterdamageiq/lib/costs.ts`
-  - `~/dev/waterdamageiq/app/admin/costs/page.tsx`: nav label: Cost per lead
-  - `~/dev/waterdamageiq/lib/api-spend.ts`: monthly caps on model and API spend
-  - `~/dev/waterdamageiq/scripts/ads/sync-spend.ts`
 
 ### Photos to a priced lead
 
@@ -233,12 +217,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `photo-to-priced-lead`
 - **Modules:** `intake`, `leads`, `site`
 - **Fits when you see:** photos, estimate, quote, free quote, damage, repair, inspection, assessment, how much
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/waterdamageiq/app/api/photos/route.ts`: private bucket, wide, closeup, floor, source shots
-  - `~/dev/waterdamageiq/lib/ai/interview.ts`: the adaptive interview
-  - `~/dev/waterdamageiq/lib/ai/assess.ts`: the model reads scope only, never dollars
-  - `~/dev/waterdamageiq/lib/pricing/price.ts`: dollars come from a deterministic price table
-  - `~/dev/waterdamageiq/app/r/[slug]/page.tsx`: the shareable report
 
 ### One file per job, with a reminder digest
 
@@ -276,10 +254,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `job-file-deadline-digest`
 - **Modules:** `jobs`, `board`
 - **Fits when you see:** cases, matters, projects, engagements, jobs, clients
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/supabase/migrations/0100_docket_core.sql` (at `origin/main`): matter stages, statuses, tasks
-  - `~/dev/amc/supabase/migrations/0102_convert_lead_to_matter.sql` (at `origin/main`)
-  - `~/dev/amc/app/api/cron/matter-reminders/route.ts` (at `origin/main`)
 
 ### A business profile post every day
 
@@ -316,10 +290,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `gbp-daily-post`
 - **Modules:** `social`, `reviews`
 - **Fits when you see:** google reviews, local, near me, service area, locations, office
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/scripts/post-gbp-update.mjs` (at `origin/main`)
-  - `~/dev/amc/scripts/gbp-pending.mjs` (at `origin/main`)
-  - `~/dev/amc/docs/google-business-profile-automation.md` (at `origin/main`)
 
 ### Every inbox in one place
 
@@ -355,10 +325,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `inbound-parse-inbox`
 - **Modules:** `inbox`
 - **Fits when you see:** email us, contact us, support, info@
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/waterdamageiq/app/api/inbound-email/route.ts`: inbound parse webhook
-  - `~/dev/waterdamageiq/lib/mail.ts`
-  - `~/dev/waterdamageiq/app/admin/inbox/page.tsx`
 
 ### Every agent edit, logged with Undo
 
@@ -393,10 +359,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `agent-change-log`
 - **Modules:** `agents`, `log`
 - **Fits when you see:** team, office, staff, admin
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/dili/apps/worker/src/chat/changes.ts`
-  - `~/dev/dili/apps/worker/src/chat/tools/edit.ts`
-  - `~/dev/peels/lib/agent/tools.ts`
 
 ## Not proven yet
 
@@ -405,11 +367,6 @@ The generator must not show these as done.
 - Dispatch and crew scheduling: Bookings is not yet proven in any build.
 - Taking payment on the job: Money is not yet proven end to end.
 - Texting customers: no build sends SMS yet.
-
-## Built from
-
-- `~/dev/waterdamageiq`: the photo estimator, price table, follow-up crons and white-label estimator
-- `~/dev/amc`: job files with stages and a daily reminder digest
 
 ## Signals that point here
 

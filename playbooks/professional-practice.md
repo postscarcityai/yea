@@ -2,9 +2,7 @@
 
 Clients come to you with a problem, you decide fast whether to take it, and the work runs on deadlines and documents.
 
-Machine-readable copy: `lib/yea-finale/playbooks/archetypes.ts` in the postscarcity-ai repo, id `professional-practice`. Back to [all playbooks](README.md).
-
-Paths starting with `~/` are internal proof: they point into private repos, so you cannot open them from outside. Every play's recipe stands alone without them.
+Example: **Kettle Creek Veterinary**, a three-location veterinary practice. The companies, people and numbers in these pages are made up. The patterns come from real builds. Back to [all playbooks](README.md).
 
 ## Who pays and how
 
@@ -13,12 +11,12 @@ Paths starting with `~/` are internal proof: they point into private repos, so y
 
 ## The core loop
 
-1. **Intake.** A spam-proof consult form that keeps the ad click. `~/dev/amc/app/api/consultation/create/route.ts` (at `origin/main`)
-2. **Alert.** The team gets the inquiry in seconds, deadline first. `~/dev/amc/lib/email.ts` (at `origin/main`)
-3. **Consult.** The inquiry moves through contacted and qualified to retained or closed. `~/dev/amc/app/admin/leads/actions.ts` (at `origin/main`)
-4. **Agreement.** The client asks for the agreement and it is tracked to signed. `~/dev/amc/app/api/agreement-request/route.ts` (at `origin/main`)
-5. **Job file.** The retained client becomes a file with stages, tasks and dates. `~/dev/amc/supabase/migrations/0102_convert_lead_to_matter.sql` (at `origin/main`)
-6. **Read back.** Every source read against who signed. `~/dev/amc/lib/leads/insights.ts` (at `origin/main`)
+1. **Intake.** A spam-proof consult form that keeps the ad click.
+2. **Alert.** The team gets the inquiry in seconds, deadline first.
+3. **Consult.** The inquiry moves through contacted and qualified to retained or closed.
+4. **Agreement.** The client asks for the agreement and it is tracked to signed.
+5. **Job file.** The retained client becomes a file with stages, tasks and dates.
+6. **Read back.** Every source read against who signed.
 
 ## Modules on
 
@@ -38,11 +36,11 @@ Core modules (Home, Inbox, People, Views, Goals, Team, Agents, Board, Log, Setti
 
 ## Stages we actually used
 
-- **lead** (`leads`): new, contacted, qualified, retained, closed. `~/dev/amc/lib/admin/types.ts` (at `origin/main`)
-- **agreement request** (`documents`): pending, contacted, agreement_sent, signed, declined. `~/dev/amc/lib/admin/types.ts` (at `origin/main`)
-- **matter status** (`jobs`): open, on_hold, closed, declined. `~/dev/amc/supabase/migrations/0100_docket_core.sql` (at `origin/main`)
-- **video** (`social`): draft, in_review, changes_requested, approved, posted. `~/dev/amc/supabase/migrations/0114_social.sql` (at `origin/main`)
-- **claim check** (`documents`): confirmed, contradicted, partial, unverifiable, ambiguous, pending. `~/dev/dili/supabase/migrations/0001_init.sql`
+- **lead** (`leads`): new, contacted, qualified, retained, closed.
+- **agreement request** (`documents`): pending, contacted, agreement_sent, signed, declined.
+- **matter status** (`jobs`): open, on_hold, closed, declined.
+- **video** (`social`): draft, in_review, changes_requested, approved, posted.
+- **claim check** (`documents`): confirmed, contradicted, partial, unverifiable, ambiguous, pending.
 
 ## The agent's first three jobs
 
@@ -59,9 +57,9 @@ Steps on screen: Pin the report > Ask > Source by outcome > Recommendation > Own
 - **Pinned:** View "Sources, last 90 days"
 - **Ask:** "Which campaign actually brings us clients who sign?"
 - **Agent works:** Read 212 inquiries from the last 90 days; Matched 141 ad clicks to their campaigns; Counted who signed, per campaign; Divided spend by signed clients.
-- **Reply:** "The estate planning campaign brought 18 inquiries and 7 signed, at $310 a client. The general campaign brought 64 inquiries and 3 signed, at $2,140 a client. Moving $1,500 a month from general to estate planning should add about 4 clients."
-- **Approval:** "Move $1,500 a month from General to Estate planning starting Monday?" [Not yet] [Approve], then "Approved. Budget change queued for Monday."
-- **Log, with Undo:** Front desk queued a $1,500 budget move to Estate planning. Approved by Helen Vance.
+- **Reply:** "The wellness plan campaign brought 18 inquiries and 7 signed, at $310 a client. The general campaign brought 64 inquiries and 3 signed, at $2,140 a client. Moving $1,500 a month from general to wellness plans should add about 4 clients."
+- **Approval:** "Move $1,500 a month from General to Wellness plans starting Monday?" [Not yet] [Approve], then "Approved. Budget change queued for Monday."
+- **Log, with Undo:** Front desk queued a $1,500 budget move to Wellness plans. Approved by Helen Vance.
 
 Names in the script are fictional.
 
@@ -114,10 +112,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `source-outcome-insights`
 - **Modules:** `insights`, `leads`, `costs`
 - **Fits when you see:** google ads, clients, consultation, retained, marketing
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/lib/leads/insights.ts` (at `origin/main`): sources by outcomes, computed at read time
-  - `~/dev/amc/lib/ads/click-lookup.ts` (at `origin/main`): click id to campaign
-  - `~/dev/amc/app/admin/insights/page.tsx` (at `origin/main`)
 
 ### Your agent on the call (innovation)
 
@@ -153,12 +147,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `live-claim-check`
 - **Modules:** `calls`, `documents`
 - **Fits when you see:** diligence, due diligence, investors, advisory, audit, review, meetings, consultation, consultations, discovery call, client calls, sales calls
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/dili/apps/worker/src/jobs/join-bot.ts`: joins the meeting as a named participant
-  - `~/dev/dili/apps/worker/src/live/pipeline.ts`: triage then verification against the brief
-  - `~/dev/dili/apps/worker/src/live/brief.ts`
-  - `~/dev/dili/apps/web/app/(app)/meetings/[id]/live/live-screen.tsx`: the live screen: transcript and cards
-  - `~/dev/dili/apps/worker/src/jobs/post-call.ts`: the post-call report
 
 ### Search ranks without the subscription (innovation)
 
@@ -194,10 +182,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `seo-in-house`
 - **Modules:** `insights`, `site`
 - **Fits when you see:** seo, rankings, google, search, blog
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/lib/seo/rank-tracker.ts` (at `origin/main`)
-  - `~/dev/amc/app/admin/seo/layout.tsx` (at `origin/main`): Overview, Rankings, Keywords, Competitors, Links, Site Audit, Pages, Indexing, AI Crawlers
-  - `~/dev/amc/app/api/cron/seo-ranks/route.ts` (at `origin/main`)
 
 ### Intake that remembers the click
 
@@ -234,11 +218,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `intake-with-click-ids`
 - **Modules:** `intake`, `leads`, `insights`
 - **Fits when you see:** free consultation, consultation, call now, schedule a call, case review, contact us
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/app/api/consultation/create/route.ts` (at `origin/main`): honeypot, Turnstile, click id fallback
-  - `~/dev/amc/middleware.ts` (at `origin/main`): 90-day click cookie
-  - `~/dev/amc/app/api/track-contact/route.ts` (at `origin/main`): phone and WhatsApp taps
-  - `~/dev/amc/lib/email.ts` (at `origin/main`): new lead and completed form alerts
 
 ### Deadlines decide the queue
 
@@ -273,8 +252,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `deadline-urgency`
 - **Modules:** `leads`
 - **Fits when you see:** deadline, court, urgent, arrested, filing, time sensitive
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/supabase/migrations/0101_leads_inbox.sql` (at `origin/main`): urgency_level, next_deadline
 
 ### One file per job, with a reminder digest
 
@@ -312,10 +289,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `job-file-deadline-digest`
 - **Modules:** `jobs`, `board`
 - **Fits when you see:** cases, matters, projects, engagements, jobs, clients
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/supabase/migrations/0100_docket_core.sql` (at `origin/main`): matter stages, statuses, tasks
-  - `~/dev/amc/supabase/migrations/0102_convert_lead_to_matter.sql` (at `origin/main`)
-  - `~/dev/amc/app/api/cron/matter-reminders/route.ts` (at `origin/main`)
 
 ### Agreement requests in the inbox
 
@@ -352,9 +325,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `agreement-request-inbox`
 - **Modules:** `documents`, `leads`
 - **Fits when you see:** retainer, engagement letter, agreement, contract, sign
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/app/api/agreement-request/route.ts` (at `origin/main`)
-  - `~/dev/amc/supabase/migrations/0106_agreement_requests_inbox.sql` (at `origin/main`)
 
 ### See which AI read your site
 
@@ -391,10 +361,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `ai-crawler-log`
 - **Modules:** `insights`
 - **Fits when you see:** seo, content, blog, articles, ai search
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/lib/crawlers/log.ts` (at `origin/main`)
-  - `~/dev/amc/lib/crawlers/registry.ts` (at `origin/main`)
-  - `~/dev/amc/supabase/migrations/0113_ai_crawler_hits.sql` (at `origin/main`)
 
 ### Earned media pipeline
 
@@ -429,10 +395,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `press-pipeline`
 - **Modules:** `pipeline`, `outreach`, `people`
 - **Fits when you see:** press, media, featured in, as seen on, expert, commentary
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/supabase/migrations/0110_press_outreach.sql` (at `origin/main`)
-  - `~/dev/amc/lib/email/plain-pitch.ts` (at `origin/main`)
-  - `~/dev/amc/app/press-strategy/targets.ts` (at `origin/main`)
 
 ### Publish without a CMS
 
@@ -468,8 +430,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `blog-without-cms`
 - **Modules:** `content`, `site`
 - **Fits when you see:** blog, articles, insights, news
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/lib/admin/github.ts` (at `origin/main`): GitHub Contents API commit
 
 ### Explainer videos from a script
 
@@ -506,9 +466,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `explainer-video-pipeline`
 - **Modules:** `studio`, `social`
 - **Fits when you see:** video, youtube, reels, explainer, tiktok
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/scripts/video/noir/build.mjs` (at `origin/main`)
-  - `~/dev/amc/docs/COMIC-NOIR-VIDEO-PLAYBOOK.md` (at `origin/main`)
 
 ### A business profile post every day
 
@@ -545,10 +502,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `gbp-daily-post`
 - **Modules:** `social`, `reviews`
 - **Fits when you see:** google reviews, local, near me, service area, locations, office
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/scripts/post-gbp-update.mjs` (at `origin/main`)
-  - `~/dev/amc/scripts/gbp-pending.mjs` (at `origin/main`)
-  - `~/dev/amc/docs/google-business-profile-automation.md` (at `origin/main`)
 
 ### Approve posts from your phone
 
@@ -586,10 +539,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `social-review-hub`
 - **Modules:** `social`
 - **Fits when you see:** instagram, social, facebook, linkedin, tiktok, posts
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/amc/app/admin/social/[id]/page.tsx` (at `origin/main`)
-  - `~/dev/amc/lib/admin/social.ts` (at `origin/main`): statuses and channels
-  - `~/dev/amc/app/api/webhooks/zernio/route.ts` (at `origin/main`)
 
 ### Documents read on arrival
 
@@ -625,9 +574,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `document-extraction`
 - **Modules:** `documents`, `library`
 - **Fits when you see:** documents, data room, files, contracts, records
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/dili/apps/worker/src/jobs/extract-document.ts`
-  - `~/dev/dili/apps/worker/src/jobs/research.ts`
 
 ### Every agent edit, logged with Undo
 
@@ -662,10 +608,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `agent-change-log`
 - **Modules:** `agents`, `log`
 - **Fits when you see:** team, office, staff, admin
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/dili/apps/worker/src/chat/changes.ts`
-  - `~/dev/dili/apps/worker/src/chat/tools/edit.ts`
-  - `~/dev/peels/lib/agent/tools.ts`
 
 ### Your own email engine
 
@@ -702,11 +644,6 @@ Innovation plays first: things we built that most businesses like this do not ha
 - **Id:** `own-email-engine`
 - **Modules:** `campaigns`
 - **Fits when you see:** newsletter, email list, subscribers, mailing list, updates
-- **Internal proof (private repos, not reachable from outside):**
-  - `~/dev/bootyverse/fn/campaigns.ts`
-  - `~/dev/bootyverse/fn/sendgrid.ts`
-  - `~/dev/bootyverse/fn/audit.ts`
-  - `~/dev/amc/lib/email/campaign-sender.ts` (at `origin/main`)
 
 ## Not proven yet
 
@@ -715,11 +652,6 @@ The generator must not show these as done.
 - E-signature inside the app: agreements are tracked, signing happens outside.
 - Taking payment: the practice lists its methods, there is no checkout.
 - A numeric lead score: urgency comes from the deadline.
-
-## Built from
-
-- `~/dev/amc`: intake, attribution, insights, matters, SEO, social review, press
-- `~/dev/dili`: documents read on arrival, claims checked live, change log with Undo
 
 ## Signals that point here
 
