@@ -21,6 +21,12 @@ Format: what changed, why it's better, where it's proven, and `must-review` if i
   - Each recipe was written from the files behind that play, read for this change. Some of those builds run in production, and some have parts switched off or not connected. The not-proven lists say which.
   - No recipe has been rebuilt from its words alone yet, so standing alone is not yet proven.
 
+## 2026-11-03: Vercel plus Beam, the back office first, MCP on trial
+
+- **What changed:** in `shared/agent-platform.md`, the back office is the main way in for Hermes, and MCP becomes a read-only test. Compute is Vercel plus Beam with a Mac mini on top, not a ladder. An agent instance is defined, starting on Beam. Hand-over is day 90. One-repo results added.
+- **Why it's better:** it's simpler, and nothing gets built on MCP until a test shows it helps.
+- **Where it's proven:** the back office runs in production. One repo with Vercel and Beam was tested from GitHub Actions. The MCP test is not done. An always-on Hermes instance has only been run as a short test.
+
 ## 2026-11-03: A reference, an agent platform, and practices
 
 **`must-review`**: subscription login is out of the spec, based on a reading of Anthropic's terms.

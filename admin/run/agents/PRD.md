@@ -110,7 +110,7 @@ Every module's own jobs (`home.morning_summary`, `inbox.draft`) run through this
 - **Hosting cron** (default Vercel Cron; any scheduler that can hit an authenticated URL every minute) calls `/api/agents/tick`.
 - **Voice:** when `fields.voice` is on, the chat panel's Talk button uses a speech-to-text and text-to-speech provider through the same cost logging. Requests from a call land on the Board.
 - **Webhooks in:** `/api/agents/tick` (scheduler), `/api/agents/trigger/<job_key>` (module events). Both verify a shared secret.
-- **MCP:** the app's own MCP server, using the same tool list as the chat panel, so outside agents connect as a signed-in user. Not yet proven. See `shared/agent-platform.md` section 4.
+- **MCP:** optional, being tested read-only. It would use the same tool list as the chat panel, so outside agents connect as a signed-in user. See `shared/agent-platform.md` section 4.
 - **Webhooks out:** none by default.
 - **Secrets:** `CRON_SECRET`, `MODEL_API_KEY`, `VOICE_API_KEY` (only when voice is on).
 
