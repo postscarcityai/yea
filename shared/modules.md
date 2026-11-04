@@ -256,17 +256,17 @@ Format per module: key and tier, job, admin tabs in nav order, record route, cus
 - **Knobs:** `label` (Pipeline, Accounts, Sponsors, Partners, Deals), `fields.stages`, `fields.kinds` (customer, partner, sponsor, vendor, press), `fields.stage_mode` (manual or from behaviour). Sample: `deals`.
 
 ### People `people` · core
-- **Job:** every human the business has touched, in one list, with one timeline each.
-- **Admin tabs:** Everyone, Customers, Subscribers, Press, Merge duplicates.
-- **Record route:** `/admin/people/[id]`: profile, companies, leads, orders, jobs, messages, consent, rewards.
+- **Job:** every human the business has touched, in one list, with one timeline each. A person stays forever; their relationships open and end around them (lead, client, vendor, partner, hire, gone, back again).
+- **Admin tabs:** Everyone, Clients (label per business: Customers, Members), Vendors, Partners, Subscribers, Press, Merge duplicates.
+- **Record route:** `/admin/people/[id]`: profile, relationships, companies, leads, orders, jobs, messages, consent, rewards.
 - **Customer:** Portal Account shows their own profile and email preferences.
 - **Sees:** O A S C(own) Ag.
-- **Data:** `people`, `company_people`, `subscribers`, `consents`, `email_prefs`, `profile_answers`, `do_not_contact`.
-- **Anchors:** `person:<id>`.
-- **Agent:** merges duplicates (asks first), fills blanks from public sources, tags people by kind, builds a list from a sentence ("everyone who bought twice and never reviewed"), exports.
+- **Data:** `people`, `relationships`, `company_people`, `subscribers`, `consents`, `email_prefs`, `profile_answers`, `do_not_contact`.
+- **Anchors:** `person:<id>`, `relationship:<id>`.
+- **Agent:** opens and moves relationships, ends them (asks first), merges duplicates (asks first), fills blanks from public sources, tags people by kind, builds a list from a sentence ("everyone who bought twice and never reviewed"), exports.
 - **Rails:** email delivery (preferences, unsubscribe).
 - **Replaces:** CRM contact lists (see Pipeline); signup forms and waitlist tools (Mailchimp forms) count under Campaigns.
-- **Knobs:** `label` (People, Contacts, Clients, Members, Waitlist), `fields.kinds`, `fields.custom`. Sample: `contacts`.
+- **Knobs:** `label` (People, Contacts, Clients, Members, Waitlist), `fields.kinds`, `fields.customer_label`, `fields.relationship_stages`, `fields.custom`. Sample: `contacts`.
 
 ### Prospects `prospects` · industry (B2B selling at volume)
 - **Job:** the whole market in one list, ranked by fit, ready for outreach.

@@ -69,13 +69,13 @@ Owned tables:
 
 | Table | Columns |
 |---|---|
-| `leads` | `id`, `org_id`, `person_id` (fk `people`), `company_id` (fk `companies`, null), `kind` text (from `fields.kinds`), `stage` text (from `fields.stages`), `score` int 0 to 100 null, `score_reasons` jsonb, `vetting` text (`legit`, `check`, `red_flags`, null), `vetting_reasons` jsonb, `source` text, `intake_run_id` (fk Intake, null), `routed_to` jsonb (people or buyer ids), `first_reply_at` timestamptz, `last_touch_at` timestamptz, `next_step` text, `follow_up_on` date, `lost_reason` text, `converted_to` jsonb (`{ kind: "deal"|"job"|"customer", id }`), `custom` jsonb, `owner_id`, `assignee_id`, `customer_id`, `created_at`, `updated_at`, `deleted_at` |
+| `leads` | `id`, `org_id`, `person_id` (fk `people`), `company_id` (fk `companies`, null), `kind` text (from `fields.kinds`), `stage` text (from `fields.stages`), `score` int 0 to 100 null, `score_reasons` jsonb, `vetting` text (`legit`, `check`, `red_flags`, null), `vetting_reasons` jsonb, `source` text, `intake_run_id` (fk Intake, null), `routed_to` jsonb (people or buyer ids), `first_reply_at` timestamptz, `last_touch_at` timestamptz, `next_step` text, `follow_up_on` date, `lost_reason` text, `converted_to` jsonb (`{ kind: "deal"|"job"|"customer"|"vendor"|"partner"|"team", id }`), `custom` jsonb, `owner_id`, `assignee_id`, `customer_id`, `created_at`, `updated_at`, `deleted_at` |
 | `lead_answers` | `id`, `lead_id`, `question_key`, `question_label`, `answer` jsonb, `sensitive` bool, `position` int |
 | `lead_files` | `id`, `lead_id`, `file_id` (fk `files`), `kind` (`photo`, `document`, `id_document`, `insurance`, `card_scan`) |
 | `consents` | `id`, `org_id`, `person_id`, `lead_id`, `channel` (`email`, `sms`, `call`), `text` (verbatim), `granted_at`, `ip`, `user_agent`, `revoked_at` |
 | `attribution` | `id`, `lead_id`, `source`, `medium`, `campaign`, `click_id`, `landing_page`, `referrer`, `first_touch_at`, `last_touch_at` |
 
-- **Shared:** `people` (every lead is a person; converting changes `people.kind`, never a new row), `companies`, `activities` (timeline, `subject_kind = 'lead'`), `files`, `threads` and `messages` (replies), `approvals`, `change_log`.
+- **Shared:** `people` (every lead is a person; converting closes their `lead` relationship and opens the next one, never a new person row), `companies`, `activities` (timeline, `subject_kind = 'lead'`), `files`, `threads` and `messages` (replies), `approvals`, `change_log`.
 - **Row rules for `own`:** a Contractor reads and writes a `leads` row only where `assignee_id` or `owner_id` = their user id. A Customer reads only where `customer_id` = their user id, and only the columns the portal renders (no score, vetting, notes).
 - **Anchor kinds:** `lead:<id>`, `field:lead:<id>.<field>` (for example `field:lead:12.email`, `field:lead:12.score`). Answer rows anchor as `field:lead:<id>.answer.<question_key>`.
 - **Config knobs:** `fields.stages` (default New, Contacted, Qualified, Won, Lost), `fields.kinds` (default inquiry, application, consult, waitlist), `fields.custom`, `fields.routing` (`owner`, `round_robin`, `marketplace`), `fields.first_reply_template`, `fields.stuck_hours` (default 48).
@@ -92,7 +92,7 @@ Owned tables:
 | Route to a person or a buyer | `route_lead` | E (P when it alerts an outside buyer) | Buyer alerts gated | `assignee_id` or `routed_to` | Unroutes and re-queues; buyer debits are reversed through Marketplace |
 | Create a lead from a business card or badge photo | `create_lead_from_image` | C | No | New `leads` and `people` rows, the photo in `lead_files` | Soft deletes both rows |
 | Move stage with a reason | `update_record` | E | No (bulk over 5 asks) | `stage`, reason in an activity | Restores stage |
-| Convert to a deal, job or customer | `convert_lead` | C + E | Asks first | New target row, `converted_to`, `people.kind` | Removes the new row and restores kind |
+| Convert to a deal, job, client, vendor or partner, or hand to Team as a hire | `convert_lead` | C + E | Asks first. A hire also needs the Owner | New target row, `converted_to`, `relationships` rows | Removes the new row and reopens the lead relationship |
 | Mark spam or merge a duplicate | `update_record` / `merge_people` | D | Yes | `deleted_at` or merge map | Restores from Trash or unmerges |
 | Log a call, visit or note | `log_activity` | C | No | Activity row | Removes the activity |
 
@@ -137,6 +137,7 @@ Leads is not priced as its own line in `shared/saas.md`. CRM intake is part of t
 10. An Admin clicks Convert to deal; a Pipeline record opens with the same person, and the lead shows Won with a link to the deal.
 11. A lead untouched for 48 hours appears in the Stuck quick view and on Home with a nudge draft.
 12. A Customer signed into the portal sees their own submission and report, and never sees score, vetting or notes.
+13. An Admin converts a lead to a client. The lead shows Won with a link, the person appears on the Clients tab in People, and no second person row exists. Converting to a vendor or partner behaves the same way.
 
 ## Open questions
 

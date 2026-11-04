@@ -4,6 +4,17 @@ Newest first. Every change to this reference gets an entry. See `shared/updating
 
 Format: what changed, why it's better, where it's proven, and `must-review` if it applies.
 
+## 2026-11-03: One person, many relationships, and a Clients tab
+
+- **What changed:**
+  - `admin/grow/people/PRD.md`: new `relationships` table. A person holds a stint per kind (lead, client, vendor, partner, team), each with a stage, dates and an end reason. New Clients, Vendors and Partners tabs, a Relationships tab on the record, and rules for ending and coming back.
+  - `shared/data-model.md`: `people.kind` is gone. Kind chips are the open relationship rows.
+  - `admin/grow/leads/PRD.md`: a lead converts to a client, vendor, partner or hire by closing one relationship and opening the next.
+  - `admin/run/team/PRD.md`: deactivating ends the `team` relationship. Rehiring reuses the same person, with a role chosen fresh.
+  - `shared/modules.md`: People entry updated to match.
+- **Why it's better:** one `kind` column can't say someone is both a vendor and a partner, or that they left and came back, so the history got overwritten. Clients had no named section, and partners had no home in People.
+- **Where it's proven:** partner and vendor stages run in one production back office. The full path, including ending and rehiring, is not yet proven. Migrating: write one open `relationships` row per person from their `kind`, with `started_at` set to `created_at`, then drop the column.
+
 ## 2026-11-03: Conformance kit, security across many apps, gating by video
 
 **`must-review`**: the app's database login must not be the owner. Check yours with `conformance/`.

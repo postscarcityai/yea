@@ -34,12 +34,13 @@ Every module owns its own tables (its PRD lists them). This file holds the table
 
 | Table | Holds | Key columns |
 |---|---|---|
-| `people` | Every human the business deals with: leads, customers, contacts, vendors | `id`, `org_id`, `name`, `email`, `phone`, `company_id`, `kind`, `owner_id`, `consent jsonb` |
+| `people` | Every human the business deals with: leads, clients, vendors, partners, hires, past and present | `id`, `org_id`, `name`, `email`, `phone`, `company_id`, `user_id`, `owner_id`, `consent jsonb` |
+| `relationships` | What a person is to the business, each stint its own row | `id`, `org_id`, `person_id`, `kind`, `stage`, `started_at`, `ended_at`, `end_reason`, `opened_from`, `owner_id` |
 | `companies` | Accounts, prospects, partners | `id`, `org_id`, `name`, `domain`, `kind`, `stage`, `owner_id` |
 | `activities` | The timeline on any record: notes, calls, emails, meetings | `id`, `subject_kind`, `subject_id`, `kind`, `body`, `actor_id`, `at` |
 | `tags`, `taggings` | Labels on any record | polymorphic `subject_kind` + `subject_id` |
 
-`people` is one table on purpose. A lead who becomes a customer is the same row with a new `kind` and a new `user_id` once they sign in. History never splits.
+`people` is one table on purpose. A lead who becomes a client, a vendor, a partner or a hire, leaves, and comes back is the same row the whole way. What changes is `relationships`: a row opens or ends, and `user_id` is set once they sign in. History never splits. See `admin/grow/people/PRD.md`.
 
 ### Work and messages
 
