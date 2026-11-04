@@ -78,7 +78,7 @@ Shared tables (`shared/data-model.md`): `users`, `roles`, `user_roles`, `role_gr
 
 - `team.expire_links` (hourly): marks expired invites and login links.
 - `team.stale_sessions` (daily): revokes sessions past `expires_at`; flags sessions idle over 30 days on the Sessions tab.
-- `team.deactivate` (triggered by Deactivate): revokes every session and login link for the user in the same transaction, reassigns open Inbox threads and Board cards to the Owner (listed in one Log request so Undo can reverse it).
+- `team.deactivate` (triggered by Deactivate): revokes every session and login link for the user in the same transaction, reassigns open Inbox threads and Board cards to the Owner (listed in one Log request so Undo can reverse it). It also ends the person's `team` relationship in People; the person record stays.
 
 ## Integrations
 
@@ -107,6 +107,7 @@ None priced in `shared/saas.md`. Seat management usually sits inside each tool a
 11. The Owner cannot deactivate or demote themselves while they are the only Owner; the action is not rendered and Transfer is offered instead.
 12. An Admin sees People, Roles, Invites and Sessions with no Invite, Edit or checkbox controls.
 13. Relabeling Staff to "Associates" in `fields.roles` changes every chip and the Roles tab, and no grant changes.
+14. Rehiring a former member uses their existing person and user rows: the Owner sends a new invite with a role chosen fresh, their old history stays attached, and the old role does not return by itself.
 
 ## Open questions
 
