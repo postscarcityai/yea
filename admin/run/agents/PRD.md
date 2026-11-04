@@ -32,7 +32,8 @@ Start from `shared/roles.md` section 4f.
 |---|---|---|
 | Agents | `/admin/agents` | One card per agent: name, avatar, role it runs as, status (running, idle, paused, at cap), runs today, changes today, waiting on a person, cost this month vs cap. Primary action per card: Open. |
 | Schedules | `/admin/agents?tab=schedules` | Every scheduled job across agents: name, plain-English schedule ("Weekdays 7:00"), next run, last run result, Pause/Resume. |
-| Permissions | `/admin/agents?tab=permissions` | One row per module that is on, listing its gated verbs with a switch each: "Ask me first" (default) or "Go ahead", plus the limit fields (daily cap, business hours only, dollar cap per action and per month, only after a person approved the draft). Never-relaxable verbs show as fixed text "Always asks", with no switch. |
+| Permissions | `/admin/agents?tab=permissions` | One row per module that is on, listing its gated verbs with a switch each: "Ask me first" (default) or "Go ahead", plus the limit fields (daily cap, business hours only, dollar cap per action and per month, only after a person approved the draft). Never-relaxable verbs show as fixed text "Always asks", with no switch. A YOLO switch at the top (Owner only) sets every relaxable verb to "Go ahead" for this agent; reaching outside the organization still asks (`shared/roles.md` section 5). |
+| Quiet | `/admin/agents?tab=quiet` | The staff-only home channel for agent notices, and the short urgent list that may interrupt a person (example: a critical payment failure). Everything else lands on the error backlog, which another agent reads on a schedule. Clients get no unsolicited agent messages. See `shared/agent-platform.md` section 7. |
 | Hand-offs | `/admin/agents?tab=handoffs` | Work an agent handed to a person: what, why, to whom, the Board card, status. |
 
 - **Record view:** full route `/admin/agents/[key]` with tabs Overview (role, schedules, cap, prompt source, voice on or off), Runs (list of `agent_runs`, each opening `?run=<id>` as a URL modal with its tool calls, changes and cost), Changes (this agent's `change_log` rows with Undo), Cost (model calls by day and by module).
@@ -109,6 +110,7 @@ Every module's own jobs (`home.morning_summary`, `inbox.draft`) run through this
 - **Hosting cron** (default Vercel Cron; any scheduler that can hit an authenticated URL every minute) calls `/api/agents/tick`.
 - **Voice:** when `fields.voice` is on, the chat panel's Talk button uses a speech-to-text and text-to-speech provider through the same cost logging. Requests from a call land on the Board.
 - **Webhooks in:** `/api/agents/tick` (scheduler), `/api/agents/trigger/<job_key>` (module events). Both verify a shared secret.
+- **MCP:** the app's own MCP server, using the same tool list as the chat panel, so outside agents connect as a signed-in user. Not yet proven. See `shared/agent-platform.md` section 4.
 - **Webhooks out:** none by default.
 - **Secrets:** `CRON_SECRET`, `MODEL_API_KEY`, `VOICE_API_KEY` (only when voice is on).
 

@@ -1,6 +1,8 @@
 # Your Everything App<sup><del>TM</del></sup>
 
-**YEA.** One app that runs a business: a customer side, an admin side, one left nav, six user types, and an agent in a chat panel on every screen that can see what you see and act on it.
+**This is the reference for building your own.** What to build, how to build it, and what we learned building it for real businesses.
+
+**YEA** is one app that runs a business: a customer side, an admin side, one left nav, six user types, and an agent in a chat panel on every screen that can see what you see and act on it. There is nothing to install and nothing to clone. Your agent reads this and builds your app, in your repo, and you own it.
 
 This README is the instructions. If you are an agent and someone pointed you here, follow it top to bottom. If you are a person, open `examples/yea.config.json` to see what one business's app looks like, then hand this to your agent: "Read this repo and follow the README to get my business on YEA."
 
@@ -29,9 +31,18 @@ Both themes take their color from the business's own brand. The companies, peopl
 
 - **A theory, not a product.** There is no license, no seat price, no vendor, and no trademark. The TM is struck through on purpose: that is the joke. YEA is what you get when you let the models do what they were trained to do: write the code, from a clear spec, for one business at a time.
 - **Own your stack, soup to nuts.** The old fear of owning your software was technical debt and the cost of the engineers to carry it. That fear is going away. The systems are self-managed by AI, and consistent, high-quality software engineering keeps getting cheaper as the models improve, with the cost heading toward zero. In an ecosystem that changes this fast, owning your own stack is the only hedge. Rent it and you move when your vendor moves. Own it and you rewrite it the day something better exists.
-- **A spec, not a codebase.** This repo holds the PRDs. You build the app for the business from them, in the stack you choose. Every business gets its own copy and owns it outright.
+- **A reference, not a codebase.** This repo holds the PRDs, the playbooks and the practices. You build the app for the business from them, in the stack you choose. Every business gets its own app and owns it outright.
 - **Proven, not invented.** Every core and common module is a pattern already running in production at real businesses. Three modules are "not yet proven": Bookings, Documents and Money. Their admin PRDs and the matching customer portal pages (Bookings, Documents, Invoices) say so at the top. Build those from the spec and test harder. Calls is "partly proven": joining, live checks and the report run in production; asking the back-office agent mid-meeting and speaking on the call do not yet. Interviews is "partly proven": voice interviews run in production; the review pattern (the agent reads back what the business says and asks for reactions) is new.
-- **Configured, not forked.** Every business gets the same shell and the same components. What changes is one config object: which modules are on, what they are called, the stages and fields inside them, the roles, the brand colors. See `shared/modules.md` section 5.
+- **One shape, many businesses.** Every app follows the same shell, nav, roles and chat from this reference. What changes is one config object: which modules are on, what they are called, the stages and fields inside them, the roles, the brand colors. See `shared/modules.md` section 5.
+- **It keeps learning.** This reference improves as we build. Your agent reads what changed, decides what is worth taking, and leaves the rest. See `shared/updating.md`.
+
+### How you get one
+
+1. **Start a new repo the business owns.** You don't fork this one. Your app has no upstream, so nothing here can ever overwrite it.
+2. **Build from the reference**, following the steps below: interview, modules, roles, stack, build order. Ship the smallest YEA first.
+3. **Write down what you built from.** Record this repo's commit in `yea.lock.json`.
+4. **Connect an agent.** The native agent in the chat panel is the default. Outside agents connect over MCP. See `shared/agent-platform.md`.
+5. **Keep up.** On a schedule, your agent reads the changes since that commit and decides adopt, adapt or skip. See `shared/updating.md`.
 
 ### How this repo is laid out
 
@@ -39,6 +50,7 @@ Folders mirror the left nav. If a page is in the nav, it has a folder with a `PR
 
 ```
 README.md                  you are here
+CHANGELOG.md               every change to this reference: what, why, where it's proven
 shared/
   PRD-TEMPLATE.md          the headings every PRD uses
   modules.md               the module map: nav tree, tiers, routes, config knobs
@@ -46,6 +58,8 @@ shared/
   chat.md                  the right-hand chat panel and how it selects things on the page
   interview-tool.md        one realtime voice interview anyone can take, signed in or by link, used by Interviews and Testimonials
   feedback-mode.md         staff tap parts of the live site and leave a comment that lands on the Board
+  agent-platform.md        how agents connect, where they run, what they may do alone, hand-off, one repo
+  updating.md              how a business's app stays current with this reference
   data-model.md            database conventions and the tables every module shares
   design-system.md         shell, left nav, lists, record views, chips, buttons
   saas.md                  what YEA replaces, what it keeps, by risk level
@@ -54,6 +68,9 @@ examples/
   yea.config.json          a filled-in config for a fictional business: start here
 playbooks/
   README.md                six business archetypes and every play we built, each citing the file that does it
+practices/
+  running-agents.md        how we run a company on agents: capture, owners, proof, gates, quiet, monitors
+  traps.md                 specific failures from real builds and the fix
 admin/
   home/
   inbox/
@@ -71,7 +88,7 @@ customer/
 
 **Playbooks.** Before you pick modules, read [`playbooks/README.md`](playbooks/README.md). It maps six business archetypes (lead marketplace, product brand, field service, professional practice, creator, nonprofit) to the modules, stages, agent jobs and plays we have already built for real businesses like them. Start from the closest archetype, then adjust.
 
-Read `shared/` before any module PRD. The module PRDs assume you know the shell, the roles and the chat.
+Read `shared/` before any module PRD. The module PRDs assume you know the shell, the roles and the chat. Read `practices/` before you put an agent to work.
 
 ---
 
@@ -94,12 +111,12 @@ Write the result as the config object from `shared/modules.md` section 5 (`AppCo
 
 ## 2. Pick modules
 
-`shared/modules.md` has 38 modules in three tiers.
+`shared/modules.md` has 40 modules in three tiers.
 
 | Tier | Rule | Modules |
 |---|---|---|
 | **core** (14) | Always on. You may relabel, never remove. | Home, Inbox, Leads, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal (Home, Account) |
-| **common** (19) | On if the business does that work or pays for that SaaS today. | Pipeline, Outreach, Campaigns, Reviews, Orders, Catalog, Bookings, Documents, Money, Content, Social, Library, Studio, Insights, Search, Costs, Playbook, Calls, Shop |
+| **common** (21) | On if the business does that work or pays for that SaaS today. | Pipeline, Outreach, Campaigns, Reviews, Testimonials, Interviews, Orders, Catalog, Bookings, Documents, Money, Content, Social, Library, Studio, Insights, Search, Costs, Playbook, Calls, Shop |
 | **industry** (5) | On for one business model. At most two per business. | Prospects, Programs, Reps, Jobs, Marketplace |
 
 How to choose:
@@ -123,7 +140,7 @@ Show the owner the left nav that results, top to bottom, before you write any co
 - **Named roles sit on top** and only trim. Ship the four presets (Viewer, Bookkeeper, Reviewer, Sales without personal data) and let the owner add more.
 - **Eight verbs on every module:** View, Create, Edit, Approve, Send/Publish, Delete, Export, Configure. Spend is a flag on any action that moves money.
 - **Scope is `all` or `own`.** Contractors and Customers are always `own`.
-- **The agent is a user, never a superuser.** In chat it acts as the person who opened the chat. In the background it acts as the role the owner picks. It never approves and never configures. Every write it makes is logged with Undo. Every send, publish, spend and delete waits for a human yes until the owner relaxes that module.
+- **The agent is a user, never a superuser.** In chat it acts as the person who opened the chat. In the background it acts as the role the owner picks. It never approves and never configures. Every write it makes is logged with Undo. Every send, publish, spend and delete waits for a human yes until the owner relaxes that module. Even then, nothing reaches outside the organization without a person's yes.
 - **One function, `can(user, module, verb, record?)`,** checked in four places: the nav, the route guard, every server action, every agent tool. Row rules in the database back it up.
 
 Map each person from interview question 5 to a type, then to a preset or a named role. Seed `role_grants` from the matrix in `shared/roles.md` section 4.
@@ -144,7 +161,8 @@ Map each person from interview question 5 to a type, then to a preset or a named
 | SMS and voice | Twilio, only if a module needs it |
 | Auth | Magic links, no passwords. Sessions in the database. Same-browser check skips the second click (`admin/run/team/` Sign-in) |
 | Analytics | First party only: own cookie, own middleware, own tables. No Google Analytics |
-| Model | Any capable model with tool use and streaming. Open-weight models work. Pick per task and log the cost of every call (Costs module) |
+| Model | Any capable model with tool use and streaming, on API keys. Open-weight models work. Pick per task and log the cost of every call (Costs module) |
+| Agent | The native agent in the chat panel. Heavier work moves up the compute ladder: Vercel, then Beam, then a Mac mini. `shared/agent-platform.md` |
 
 **Any stack works.** The PRDs describe jobs, pages, data, permissions and acceptance criteria, not frameworks. Rails, Django, Laravel, Phoenix, Go: build it in what the business or its team already runs. Three things are not optional in any stack:
 
@@ -152,7 +170,7 @@ Map each person from interview question 5 to a type, then to a preset or a named
 2. Server-side permission checks on every write.
 3. Streaming from the agent to the chat panel, with tool calls the page can react to (see `shared/chat.md`).
 
-Keep the app in **one repo** the business owns, with its own hosting account and its own database. The public marketing site and the admin back office live in that same repo and ship together. If you are a vendor building it for them, put everything in their name from day one.
+Keep the app in **one repo** the business owns, with its own hosting account and its own database. The public marketing site, the admin back office and the agent live in that same repo and ship together, each deploying from its own folder (`shared/agent-platform.md` section 8). If you are a vendor building it for them, put everything in their name from day one.
 
 **No Google Analytics.** Tracking is first party: a cookie set by the business's own domain, page views written by the app's own middleware into its own database (`admin/know/insights/`). No third-party tag by default.
 

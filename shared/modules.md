@@ -157,10 +157,10 @@ customer/
 | Tier | Meaning | Modules |
 |---|---|---|
 | core | Every business gets it, on by default, cannot be switched off (only relabeled) | Home, Inbox, Leads, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal (Home, Account) |
-| common | Most businesses want it; on or off by config | Pipeline, Outreach, Campaigns, Reviews, Orders, Catalog, Bookings, Documents, Money, Content, Social, Library, Studio, Insights, Search, Costs, Playbook, Calls, Shop |
+| common | Most businesses want it; on or off by config | Pipeline, Outreach, Campaigns, Reviews, Testimonials, Interviews, Orders, Catalog, Bookings, Documents, Money, Content, Social, Library, Studio, Insights, Search, Costs, Playbook, Calls, Shop |
 | industry | Switched on for a business model; usually relabeled | Prospects (B2B selling at volume), Programs (consumer brands), Reps (field sales teams), Jobs (service, case and project work), Marketplace (businesses that route or resell leads, bookings or work) |
 
-Count: 14 core, 19 common, 5 industry.
+Count: 14 core, 21 common, 5 industry.
 
 ---
 
