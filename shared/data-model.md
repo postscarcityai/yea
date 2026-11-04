@@ -10,7 +10,7 @@ Every module owns its own tables (its PRD lists them). This file holds the table
 2. **Tenant.** Every row carries `org_id`. One database can hold one business or many. Row rules filter on it first.
 3. **Ownership.** Every record table has `owner_id` (the user who owns it) and, where work is assigned, `assignee_id`. Customer-visible tables add `customer_id`. These three columns are what `own` scope in `shared/roles.md` checks.
 4. **Timestamps.** `created_at`, `updated_at`, and `deleted_at` (soft delete). Hard delete is a never-relaxable verb and runs as a separate job.
-5. **No silent writes.** Every insert, update and delete made through the app writes a `change_log` row in the same transaction. That includes the agent and background jobs.
+5. **No silent writes.** Every insert, update and delete writes a `change_log` row in the same transaction. That includes the agent and background jobs. Use a database trigger so no code path can skip it, and have the app send a hash of its session or token so the trigger can name who did it.
 6. **Money** is stored in integer cents with a `currency` column. Never floats.
 7. **Status fields** hold a key from the module's `fields.stages`, not free text, so a relabel never breaks a query.
 8. **Custom fields** from config live in a `custom jsonb` column on the record, validated against the module's `fields.custom` list.

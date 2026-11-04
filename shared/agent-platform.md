@@ -89,9 +89,11 @@ Cloudflare's agent tools suit an agent in the app: each agent gets its own small
 
 Read each vendor's current terms before relying on any of this. This is a reading of them, not legal advice.
 
-### Open: how a fresh agent learns
+### How a fresh agent learns
 
-Not decided. A preloaded agent starts with months of context, and a new YEA agent starts with `docs/interview.md`, the config and whatever is in the app. How it accrues context and gets better is the biggest open question on this page.
+What we learn goes into this reference. A fresh agent starts where the last build ended, because every lesson from a real build lands in a PRD, a playbook, `practices/` or the changelog. It keeps up through `shared/updating.md`. What it learns about one business stays in that business's repo: `docs/interview.md`, the config and `docs/yea-decisions.md`.
+
+Not yet proven: no outside agent has built an app from this reference alone.
 
 ---
 
@@ -188,5 +190,4 @@ The first connection to prove in ninety days is the marketing content workflow, 
 
 1. Does MCP earn its place? The test in section 4 decides.
 2. Who pays compute during the ninety days?
-3. How does a fresh agent learn?
-4. Does the agent in the app stay on Vercel, or move somewhere like Cloudflare?
+3. Does the agent in the app stay on Vercel, or move somewhere like Cloudflare?
