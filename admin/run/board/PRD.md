@@ -37,6 +37,7 @@ Start from `shared/roles.md` section 4f.
 | Mine | `/admin/board?tab=mine` | Cards assigned to the viewer, any stage but Done. Default for Staff and Contractor. |
 
 - **Record view:** URL modal `?card=<id>` over the current tab. Opens read-only: title, body, kind, stage, urgency, assignee, due date, source (with a link back to the chat message, thread, call or record that started it), linked records as chips, comments (internal and public), activity with agent bylines and Undo, proof (links, files, change ids). Edit button for users with E. Esc closes.
+- **Look at (work waiting on a reviewer):** when an agent or person hands finished work to a reviewer, the card opens with a **Look at** block above everything else: one or more options, each one tap. A video plays right in the card. A before and after shows both, one tap apart. A page gets its exact live URL, a feature gets its exact screen, each with what to try in a few words. A pull request can be listed, last and small, and never counts on its own: the reviewer is judging the work, not the code. A note naming a whole tab is not an option. No new tabs, Esc closes, every tap shows feedback, and it works at phone width.
 - **Customer view:** Portal shows "My requests" with stage, public comments and a comment box. Specified on the Portal pages; the data lives here.
 - **Empty states:** Board: "No cards yet. Ask the chat to track something, or add a card." Requests: "No new requests." Mine: "Nothing assigned to you."
 - **Loading:** column skeletons with 3 cards each. A dragged card shows a pending state until the move saves; it snaps back with a toast if the save fails.
@@ -69,6 +70,7 @@ Shared table `cards` is defined in `shared/data-model.md`; Board owns it and add
 | `linked` | jsonb | Anchors of related records |
 | `due_at` | timestamptz null | |
 | `proof` | jsonb | `[{ kind: "link" | "file" | "change", ref, note }]`, content-hash keys |
+| `look_at` | jsonb | `[{ kind: "video" | "page" | "screen" | "pr", label, url, hint }]`, what the reviewer can open. Structured, never parsed out of prose. |
 | `closed_at` | timestamptz null | |
 | `custom` | jsonb | `fields.custom` |
 | `created_at`, `updated_at`, `deleted_at` | | |
@@ -91,6 +93,7 @@ Shared table `cards` is defined in `shared/data-model.md`; Board owns it and add
 | Set urgency, assignee, due date | `update_record` | E | No | before, after | Restores |
 | Move a card | `move_card` | E | No | `status` before, after | Moves it back |
 | Post what it did | `comment_card` | C | No | `card_comments` insert, internal | Deletes the comment |
+| Hand finished work to a reviewer | `move_card` | E | No | `status` and `look_at` before, after. Refused without at least one option that isn't a `pr`, on every write path, enforced in the database. | Moves it back |
 | Close with proof | `close_card` | E | No | `status` to done, `proof` before, after | Reopens to the prior stage |
 | Hand outside work to a person | `hand_off` (Agents) | C | No | `cards` insert plus `handoffs` row | Soft-deletes both |
 | Merge duplicate requests | `merge_cards` | E | Bulk rule: states the merge and waits for a yes when more than 5 cards | Kept card after, merged cards `deleted_at`, votes moved | Restores the merged cards and their votes |
@@ -130,6 +133,7 @@ Shared table `cards` is defined in `shared/data-model.md`; Board owns it and add
 8. A Contractor sees only cards they filed or are assigned, and the badge counts only those.
 9. Dragging a card to a new stage saves; if the save fails, the card snaps back and a toast says so.
 10. The agent closes a card only with at least one proof item (a link, a file or a change id), and the card shows that proof.
+10a. No card can reach a review stage without something to open, from the UI, an agent tool or direct SQL. A pull request alone is refused. A video option plays inside the card at desktop and phone width, and a before and after swaps on one tap.
 11. A card with no movement for 7 days appears in the Stuck view and gets one internal comment tagging its assignee.
 12. Relabeling `label` to "Tasks" changes the nav item and page title without changing any route.
 
