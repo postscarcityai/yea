@@ -4,6 +4,14 @@ Newest first. Every change to this reference gets an entry. See `shared/updating
 
 Format: what changed, why it's better, where it's proven, and `must-review` if it applies.
 
+## 2026-11-04: A card in review carries what to look at
+
+- **What changed:**
+  - `admin/run/board/PRD.md`: new Look at block, `look_at` field, and acceptance check. No card reaches a review stage without something to open, and a pull request alone doesn't count.
+  - `shared/modules.md`: Board entry updated to match.
+- **Why it's better:** a note pointing at a whole tab leaves the reviewer hunting. Options are one tap, so reviewing takes the time it should.
+- **Where it's proven:** live in one production back office, covering video in the card, before and after, pages and screens, at desktop and phone width.
+
 ## 2026-11-03: One person, many relationships, and a Clients tab
 
 - **What changed:**

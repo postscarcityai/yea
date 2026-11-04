@@ -640,7 +640,7 @@ Format per module: key and tier, job, admin tabs in nav order, record route, cus
 - **Sees:** O A S C(own) Ag.
 - **Data:** `cards`, `card_comments`, `card_votes`, `feedback`.
 - **Anchors:** `card:<id>`, `feedback:<id>`.
-- **Agent:** files a card from any request in chat or on a voice call with urgency, moves cards, posts what it did, closes with proof.
+- **Agent:** files a card from any request in chat or on a voice call with urgency, moves cards, posts what it did, hands finished work to a reviewer with direct options to look at (`look_at`), closes with proof.
 - **Rails:** none.
 - **Replaces:** Asana, monday.com, Trello, Basecamp (Project management); ClickUp.
 - **Knobs:** `label` (Board, Requests, Tasks), `fields.stages`. Sample: `cards`.
