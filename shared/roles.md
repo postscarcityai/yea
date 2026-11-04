@@ -174,8 +174,9 @@ Portal pages by customer kind. A page also needs its feeding module on (see the 
 5. **Bulk and ambiguous.** Edits to more than 5 records at once, any money field, and any request the agent is not sure it read right: it states the change and waits for a yes, even where the module is relaxed.
 6. **The Owner relaxes per module, per verb.** On Agents > Permissions, each module shows the gated verbs with a switch: "Ask me first" (default) or "Go ahead". Relaxing can carry a limit: a daily cap (Outreach, 50 sends a day), business hours only, a dollar cap per action and per month ($ actions), or "only after a person approved the draft" (Social posts at the planned slot). Every relaxed action is still logged with Undo where Undo is possible.
 7. **Never relaxable (`!`).** Approve anything. Configure anything. Change Team or Agent permissions. Send a Campaign. Move money out (payouts, refunds over the cap, transfers). Settings changes. Hard delete. These need a person every time.
-8. **Spend cap.** Every model call the agent makes is logged with its real cost on Costs. At the monthly cap set by the Owner, the agent stops and files a Board card asking for more.
-9. **Customer-facing agent.** The chat in the portal runs as the customer: their records, their verbs. It can answer, reorder, reschedule and file requests to the Board. It never sees another customer's data, staff notes, cost or margin.
+8. **YOLO.** One switch for one agent, Owner only, that sets every relaxable verb to "Go ahead." It does not touch rule 7, and nothing reaches outside the organization without a person's yes: no text, email, post or call to anyone outside the business. Everything is still logged. There is no stronger mode. See `shared/agent-platform.md` section 7.
+9. **Spend cap.** Every model call the agent makes is logged with its real cost on Costs. At the monthly cap set by the Owner, the agent stops and files a Board card asking for more.
+10. **Customer-facing agent.** The chat in the portal runs as the customer: their records, their verbs. It can answer, reorder, reschedule and file requests to the Board. It never sees another customer's data, staff notes, cost or margin.
 
 ---
 
