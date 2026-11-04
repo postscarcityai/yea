@@ -54,7 +54,8 @@ CHANGELOG.md               every change to this reference: what, why, where it's
 shared/
   PRD-TEMPLATE.md          the headings every PRD uses
   modules.md               the module map: nav tree, tiers, routes, config knobs
-  security.md              how security holds across many apps that have no upstream
+  security.md              the security basics
+  change-video.md          how a change gets approved: a short video and a yes
   roles.md                 six user types, eight verbs, the permission matrix, agent rules
   chat.md                  the right-hand chat panel and how it selects things on the page
   interview-tool.md        one realtime voice interview anyone can take, signed in or by link, used by Interviews and Testimonials
@@ -71,6 +72,8 @@ playbooks/
   README.md                six business archetypes and every play we built, each citing the file that does it
 conformance/
   check.mjs                runnable checks for the rules every app must keep. Put it in CI
+change-video/
+  make.py                  script to finished video, for the change-video step
 practices/
   running-agents.md        how we run a company on agents: capture, owners, proof, gates, quiet, monitors
   traps.md                 specific failures from real builds and the fix
@@ -209,7 +212,7 @@ For every module:
 4. Add the anchors and agent tools the PRD lists. Wire each tool through `can()` and `change_log`.
 5. Seed it with the sample generator the PRD names, using fictional data only.
 6. Check every acceptance criterion as each user type, using the profile switcher.
-7. Show the owner on their phone and their laptop. Ship. Then the next module.
+7. Make the change video (`shared/change-video.md`). The owner watches it, says yes, and it ships. Then the next module.
 
 Ship each module to production when it passes. Do not hold the whole app for a big launch.
 

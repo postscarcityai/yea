@@ -116,7 +116,7 @@ Other hosts are options for later, and untested by us: a plain Linux VM such as 
 Never put a database login on the machine.
 
 **Beam jobs worth building:**
-- A pull-request worker that wakes, works the Board's requests, tests, opens a PR and shuts down.
+- A worker that wakes, works the Board's requests, tests, makes the change video (`shared/change-video.md`) and shuts down.
 - A browser desktop for testing.
 - Model endpoints.
 
