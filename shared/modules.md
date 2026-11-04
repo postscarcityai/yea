@@ -148,7 +148,7 @@ customer/
   portal/  home/ orders/ reorder/ bookings/ documents/ invoices/ rewards/ leads/ listing/ posts/ kit/ account/
 ```
 
-38 module folders (34 admin, 4 customer) plus 12 portal page folders.
+40 module folders (36 admin, 4 customer) plus 12 portal page folders.
 
 ---
 
