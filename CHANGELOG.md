@@ -4,6 +4,19 @@ Newest first. Every change to this reference gets an entry. See `shared/updating
 
 Format: what changed, why it's better, where it's proven, and `must-review` if it applies.
 
+## 2026-11-03: Conformance kit, security across many apps, gating by video
+
+**`must-review`**: the app's database login must not be the owner. Check yours with `conformance/`.
+
+- **What changed:**
+  - New `conformance/`: runnable checks for the database login, row rules, audit coverage, log integrity, grants, guards on actions and routes, and dependencies.
+  - New `shared/security.md`: advisories, blast radius and a register of every app.
+  - `shared/updating.md`: nobody reads pull requests. The owner gates on a video of the change, after conformance passes.
+  - `shared/agent-platform.md`: a fresh agent learns from this reference. No longer an open question.
+  - `README.md`: the app's database login is a requirement, and the smallest YEA now fits the build order. `shared/data-model.md`: write the log with a trigger. `practices/traps.md`: new Safety section.
+- **Why it's better:** apps drift and nobody reads their code, so behavior has to be testable. The reference also said "core is always on" and "ship three modules first" at once.
+- **Where it's proven:** the kit passes against one production back office on a clean database and on a copy of live data, and it caught a real half-applied migration while being built. The video gate, advisories and register are not yet proven. No app has been built from this reference alone.
+
 ## 2026-11-03: Playbooks speak in generalities
 
 - **What changed:** Playbooks describe patterns only. Each archetype names one of the fictional example companies, and every company, person and number in them is made up.

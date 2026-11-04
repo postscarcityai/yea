@@ -73,3 +73,12 @@ Specific failures from real builds. What it looked like, why, and the fix. Versi
 - **Don't invent numbers.** Every claim needs a source you can show. We checked our own "two orders of magnitude" line and it didn't hold.
 - **Never publish a home unit number,** even when it's the legal mailing address.
 - **Redirect old URLs** when a page moves, or lose its rank.
+
+---
+
+## Safety
+
+- **`can()` means little if the app logs in as the database owner.** Our own back office checked permissions in code while connecting as the owner, who bypasses row rules and can rewrite the log. Give the app its own login. Keep the owner for migrations.
+- **A half-applied migration can leave you open.** One stopped at its first revoke and left the log writable. Run each migration as one transaction, and run the conformance kit on a clean database in CI.
+- **Log writes in the database, not in each action.** A trigger can't be forgotten. Ours also records scripts and direct fixes that a helper function would never see.
+- **Test routes can have real side effects.** A scheduled digest route ignored the email sandbox, so a test sent a real email. Check what a route sends before you call it.

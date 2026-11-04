@@ -1,0 +1,21 @@
+{
+  "tenantSetting": "app.tenant_slug",
+  "tenantSlug": "quillback",
+  "appDirs": ["app", "lib"],
+  "actionGuards": ["requireCan"],
+  "routeAuthMarkers": ["can(", "agentCan(", "authenticate("],
+  "publicRoutes": { "app/auth/request/route.ts": "Sign-in form: anyone can ask for a link" },
+  "noRouteImports": ["send-gate"],
+  "auditExempt": { "schema_migrations": "Written only by the migration runner" },
+  "rowRuleExempt": { "tenants": "Lists tenants, and the row rules depend on it" },
+  "logTable": "change_log",
+  "modules": ["today", "leads", "settings"],
+  "agentRole": "agent",
+  "gatedVerbs": ["send"],
+  "probe": {
+    "table": "reminders",
+    "insert": "insert into reminders (tenant_id, title) values ((select id from tenants where slug = $1), 'conformance probe') returning id",
+    "tenantColumn": "tenant_id"
+  },
+  "dependencyAudit": "pnpm audit --prod --audit-level high --json"
+}

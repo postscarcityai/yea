@@ -54,6 +54,7 @@ CHANGELOG.md               every change to this reference: what, why, where it's
 shared/
   PRD-TEMPLATE.md          the headings every PRD uses
   modules.md               the module map: nav tree, tiers, routes, config knobs
+  security.md              how security holds across many apps that have no upstream
   roles.md                 six user types, eight verbs, the permission matrix, agent rules
   chat.md                  the right-hand chat panel and how it selects things on the page
   interview-tool.md        one realtime voice interview anyone can take, signed in or by link, used by Interviews and Testimonials
@@ -68,6 +69,8 @@ examples/
   yea.config.json          a filled-in config for a fictional business: start here
 playbooks/
   README.md                six business archetypes and every play we built, each citing the file that does it
+conformance/
+  check.mjs                runnable checks for the rules every app must keep. Put it in CI
 practices/
   running-agents.md        how we run a company on agents: capture, owners, proof, gates, quiet, monitors
   traps.md                 specific failures from real builds and the fix
@@ -168,7 +171,10 @@ Map each person from interview question 5 to a type, then to a preset or a named
 
 1. A relational database with row-level rules, so `own` scope holds even when application code is wrong.
 2. Server-side permission checks on every write.
-3. Streaming from the agent to the chat panel, with tool calls the page can react to (see `shared/chat.md`).
+3. A database login for the app that is not the owner, cannot bypass row rules and cannot rewrite the log. The owner login is for migrations.
+4. Streaming from the agent to the chat panel, with tool calls the page can react to (see `shared/chat.md`).
+
+Prove the first three with `conformance/`.
 
 Keep the app in **one repo** the business owns, with its own hosting account and its own database. The public marketing site, the admin back office and the agent live in that same repo and ship together, each deploying from its own folder (`shared/agent-platform.md` section 8). If you are a vendor building it for them, put everything in their name from day one.
 
@@ -177,6 +183,8 @@ Keep the app in **one repo** the business owns, with its own hosting account and
 ### The smallest YEA
 
 The most basic deployment is a **marketing site plus a back office where you manage the leads it captures**: Site, Intake, Leads, with the shell, Log, Team (sign-in) and the chat underneath. Everything else is a module you turn on later. Ship this first for any new business, then grow it.
+
+This is the first release of the steps below, not an exception to them. Build steps 1 to 3, then Team, Leads, Site and Intake, and ship. "Core, always on" describes where the app ends up. The rest of core follows in order.
 
 ---
 

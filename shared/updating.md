@@ -35,7 +35,7 @@ On a schedule the owner picks (monthly is a good start), the agent does this:
    - **Adapt:** the idea is right, but your business needs a different shape. Build your version.
    - **Skip:** it doesn't fit, or what you have is better. Say why, so it never comes up again.
 5. Write every decision to `docs/yea-decisions.md`.
-6. Put each adopted change in its own pull request. Check the affected PRD's acceptance criteria.
+6. Build each adopted change on its own branch. Check the affected PRD's acceptance criteria and run `conformance/`.
 7. Move `yea.lock.json` to the commit you reviewed.
 8. Tell the owner in one short message what was adopted, what was skipped, and what's waiting on them.
 
@@ -43,8 +43,10 @@ On a schedule the owner picks (monthly is a good start), the agent does this:
 
 ## 4. The rules
 
-- **Never auto-merge.** A person approves every pull request. Changing Team or Agent permissions always asks (`shared/roles.md` section 5).
-- **Must-review changes go first.** Anything marked `must-review` in the changelog (security, data loss, a legal or vendor rule) gets read before anything else and can't be skipped without the owner's yes.
+- **Gate on what changed, not on the code.** Nobody reads pull requests. The agent records a short video of the change working, and the owner watches it and says yes or no. A yes ships it. Not yet proven: this is the direction, and we have not run it on a real app. Changing Team or Agent permissions always asks (`shared/roles.md` section 5).
+- **Conformance has to pass first.** A video shows what the owner can see. `conformance/` covers what they can't: permissions, row rules, the log.
+- **Must-review changes go first.** Anything marked `must-review` in the changelog (data loss, a legal or vendor rule) gets read before anything else and can't be skipped without the owner's yes.
+- **Security doesn't wait for the check-in.** See `shared/security.md`.
 - **Migrations move carefully.** Back up first, and write down how to reverse it.
 - **Disagreeing is fine.** If you built something better, keep it. If it would help others, tell PostScarcity.
 
@@ -58,3 +60,4 @@ A diff alone doesn't tell an agent why something is better. So every change to t
 - **Why it's better.**
 - **Where it's proven:** running in production, partly proven, or not yet proven.
 - **`must-review`**, if it applies.
+- **An advisory**, if it's a security fix (`shared/security.md`).
