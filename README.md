@@ -41,7 +41,7 @@ Both themes take their color from the business's own brand. The companies, peopl
 1. **Start a new repo the business owns.** You don't fork this one. Your app has no upstream, so nothing here can ever overwrite it.
 2. **Build from the reference**, following the steps below: interview, modules, roles, stack, build order. Ship the smallest YEA first.
 3. **Write down what you built from.** Record this repo's commit in `yea.lock.json`.
-4. **Connect an agent.** The native agent in the chat panel is the default. Outside agents connect over MCP. See `shared/agent-platform.md`.
+4. **Connect an agent.** The agent in the chat panel is the default. A business's own Hermes connects through the back office. See `shared/agent-platform.md`.
 5. **Keep up.** On a schedule, your agent reads the changes since that commit and decides adopt, adapt or skip. See `shared/updating.md`.
 
 ### How this repo is laid out
@@ -162,7 +162,7 @@ Map each person from interview question 5 to a type, then to a preset or a named
 | Auth | Magic links, no passwords. Sessions in the database. Same-browser check skips the second click (`admin/run/team/` Sign-in) |
 | Analytics | First party only: own cookie, own middleware, own tables. No Google Analytics |
 | Model | Any capable model with tool use and streaming, on API keys. Open-weight models work. Pick per task and log the cost of every call (Costs module) |
-| Agent | The native agent in the chat panel. Heavier work moves up the compute ladder: Vercel, then Beam, then a Mac mini. `shared/agent-platform.md` |
+| Agent | The agent in the chat panel, on Vercel. Beam for heavier work or an always-on Hermes. A Mac mini on top if the business wants one. `shared/agent-platform.md` |
 
 **Any stack works.** The PRDs describe jobs, pages, data, permissions and acceptance criteria, not frameworks. Rails, Django, Laravel, Phoenix, Go: build it in what the business or its team already runs. Three things are not optional in any stack:
 
