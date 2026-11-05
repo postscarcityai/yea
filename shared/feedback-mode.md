@@ -124,3 +124,63 @@ Anchor kind for the chat: `feedback:<id>`.
 - **Admin:** the `feedback` table, the two routes, the hint cookie in middleware and sign-out, the Board's Feedback tab and record modal, and the activity entries.
 - **Site:** a gate component in the root layout (hint cookie, `me`, lazy load, server-passed build SHA) and the feedback component itself (portal into `body`, inline styles so the site's CSS can't touch it, highest z-index on the page).
 - Local dev: the site's `/admin` rewrite takes its target from an env var (`ADMIN_ORIGIN`), so both apps run side by side.
+
+## 11. One record, many comments
+
+One text box per record fails in two ways. A new thought overwrites the last one, and nobody can tell what landed. So every record the owner reviews (a video, a graphic, a site comment) takes many items, and each file version stays playable.
+
+```sql
+create table feedback_items (
+  id serial primary key, tenant_id int not null,
+  subject_kind text not null,  -- what kinds of record you review
+  subject_id text not null,
+  version_n int not null default 1,  -- the version it was raised on
+  body text not null,
+  status text not null default 'open',  -- open, shipped, fixed, not_quite, superseded
+  follows_id int references feedback_items(id),  -- the item this one retries
+  created_by int, resolution text, shipped_version_n int, shipped_at timestamptz,
+  decided_by int, decided_at timestamptz, created_at timestamptz not null default now()
+);
+create table content_versions (
+  id serial primary key, tenant_id int not null,
+  subject_kind text not null, subject_id text not null, n int not null,
+  video_url text, tg_url text, poster_url text, what_changed text not null default '',
+  created_by text not null, created_at timestamptz not null default now(),
+  unique (tenant_id, subject_kind, subject_id, n)
+);
+```
+
+Both carry the row rule and the audit trigger. Check constraints hold the two rules below in the database: shipped needs a resolution and a version, fixed and not quite need a person.
+
+**Who moves what.**
+
+| Move | Who |
+|---|---|
+| Add an item | A person |
+| Open to shipped, with what changed and the version | An agent |
+| Shipped to fixed | A person |
+| Shipped to not quite, with a note | A person |
+| Open or shipped to superseded, by closing the record anyway | A person |
+
+An agent can never set fixed. Not quite creates a new open item with `follows_id` set, so the chain reads as the story of that one ask.
+
+**The record.** Top to bottom: **Did this land?** beside the player, with Fixed and Not quite on each shipped item. Open items and an add box, one thought each, saved without touching the verdict. **History**: versions newest first, each with its player, what changed, and the items raised on it with their outcome. Asking for changes needs at least one item. Closing the record with items waiting is allowed, with one line naming the count, and those items become superseded.
+
+**The list.** One list across every kind, oldest first, filtered by **Needs you** (shipped), **Open** and **Done**. Each row opens its record in a modal. Older links land on the nearest filter.
+
+**Files.** A new cut never overwrites an old one. Each file gets its own path, named by a hash of its content, and an upload that changes something makes a new version. A swap that shouldn't reopen a verdict still makes a version. One upload tool owns this, so no one-off script can lose a cut.
+
+**Agent tools.** List what's open, ship one item with a version and a note, and name the items an upload answers. A read-only MCP tool lists items with counts by status.
+
+**Moving from one box.** Import last, once the backlog is audited. Keep the old columns and their text for rollback, and stop writing to them. A "fixed" an agent wrote imports as shipped, so a person still checks it. Only a person's own imports as fixed. Today's file becomes version 1. Run it on a throwaway database branch first and match the counts.
+
+**Acceptance.**
+
+1. Three comments on one record save as three open items, and the verdict doesn't change.
+2. An upload naming two of them makes version 2. Those two read shipped, and the third stays open.
+3. Fixed on one and Not quite on the other: the second has a new open item following it.
+4. Version 1 still plays in History after version 2 ships.
+5. Running the same upload again makes no new version.
+6. An agent tool can't move a fixed item, ship with no note, or ship into a version that doesn't exist. A direct write of fixed with no person named is refused by the database.
+7. Closing a record with two items waiting shows "2", and both read superseded after.
+8. The list's three filters hold the right rows, on desktop and at phone width.
