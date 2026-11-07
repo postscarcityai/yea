@@ -32,7 +32,7 @@ One shell for every signed-in user. Owner, Admin, Staff, Contractor and Customer
 ```
 
 - **Left nav:** 240px, collapsible to a 64px icon rail. Collapse state in a cookie so the server renders it right on first paint.
-- **Top bar:** page title (the module label), global search. No sign-out, no profile, no theme switch up here (those live in the profile menu).
+- **Top bar:** page title (the module label), global search. No sign-out, no profile, no theme switch up here (sign out lives in the profile menu, the theme on My account).
 - **Work area:** fluid. Content max width 1280px for lists, full width for boards and maps.
 - **Chat:** docked right, pushes the page, 420px default, 340px to 50vw. Summoned by the round **FAB bottom right** or **Cmd/Ctrl+J**. Spec in `shared/chat.md`.
 - **Mobile (under 1024px):** nav becomes a drawer from the left behind a menu button; chat becomes a full-screen sheet from the right.
@@ -53,8 +53,8 @@ One shell for every signed-in user. Owner, Admin, Staff, Contractor and Customer
 - Always at the bottom of the left nav, on every signed-in page, admin and portal.
 - One row: avatar (photo if set, **initials by default** on a brand-tint circle), then name on top and role underneath in muted text, then a **caret on the right**.
 - Clicking anywhere on the row opens a popup menu above it. Esc or a click outside closes it. Arrow keys move through it.
-- Menu items, in order: **My account**, **Dark mode** (one row with an on/off switch, never a multi-option selector; it shows what is on screen, and using it turns off Match my device), **Terms**, **View site** (admin) or **Back to the site** (portal), **Switch view** (demo only), divider, **Sign out**.
-- **My account** holds a **Match my device** switch, which follows the device's light or dark setting. Turning it off keeps whatever is on screen.
+- Menu items, in order: **My account**, **Terms**, **View site** (admin) or **Back to the site** (portal), **Switch view** (demo only), divider, **Sign out**.
+- **No theme in the menu.** The theme is set on **My account**: one **Theme** row with three options, **Light**, **Dark**, **System**. System follows the device's light or dark setting.
 - **Sign out lives here and nowhere else.** Never a loose button or icon in the left nav, on the dashboard, in the top bar or in a page header. A build with sign out in the open is not done.
 - On the 64px icon rail the block shrinks to the avatar; the menu opens the same way.
 
@@ -101,7 +101,7 @@ Status color map (each module maps its stages onto these): neutral (new, draft),
 - Type: one sans family. 14px body in the app, 13px in dense tables, tabular numbers in every number column.
 - Spacing on a 4px grid.
 - Color comes from config: `company.colors.brand` and `company.colors.accent`. Everything else is neutrals plus the five status colors. Check contrast at AA for every text and chip pairing, in both themes.
-- **Themes.** Light and dark on both sides. Defaults: **light on the public marketing site, dark in the back office** (admin and portal). The user's pick (light, dark, or Match my device) is saved in a cookie per side, so the server renders the right theme on first paint with no flash. The public site has a small switch in the footer; the back office has it in the profile menu. Brand colors get a dark-theme variant checked at AA, not just the light one reused.
+- **Themes.** Light and dark on both sides. Defaults: **light on the public marketing site, dark in the back office** (admin and portal). The user's pick (light, dark, or system) is saved in a cookie per side, so the server renders the right theme on first paint with no flash. The public site has a small switch in the footer; the back office has it on My account (Light, Dark, System), never in the profile menu. Brand colors get a dark-theme variant checked at AA, not just the light one reused.
 - Motion: short and functional (150 to 200ms). No text animating in. Respect `prefers-reduced-motion`.
 - Visuals over text: a chart, a thumbnail or a status chip beats a sentence.
 

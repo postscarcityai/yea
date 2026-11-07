@@ -4,6 +4,13 @@ Newest first. Every change to this reference gets an entry. See `shared/updating
 
 Format: what changed, why it's better, where it's proven, and `must-review` if it applies.
 
+## 2026-11-07: Theme lives on My account, three options
+
+- **What changed:** `shared/design-system.md`, `shared/modules.md`, `customer/portal/PRD.md`: the theme comes out of the profile menu. My account has one **Theme** row with **Light**, **Dark** and **System**. The menu is My account, Terms, View site or Back to the site, Switch view (demo only), Sign out. This replaces the two 2026-11-06 entries below.
+- **Why it's better:** the theme is set once, so it belongs with account settings, not in a menu opened every day. One clear choice of three beats a switch plus a second setting that turns each other off.
+- **Where it's proven:** live in one production back office.
+- **must-review:** if you added a Dark mode switch or Match my device, remove both and put the three-option Theme on My account.
+
 ## 2026-11-06: Match my device lives in My account
 
 - **What changed:** `shared/design-system.md`: following the device's theme comes back as a **Match my device** switch in My account. The Dark mode switch in the profile menu shows what is on screen, and using it turns matching off.

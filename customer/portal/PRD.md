@@ -29,7 +29,7 @@ Give every signed-in customer their own app: the same shell and chat the team us
 - **Store switcher:** a select in the top bar. The chosen company is in the URL (`?store=<id>`) so every view is a link. Lists show the chosen store; Home can show "All stores".
 - **States:** loading uses skeleton rows; error shows one sentence and Retry; empty states say what goes there and offer one next step. A deep link to a page the customer cannot see returns the normal not-found page; nothing about the record leaks.
 - **Mobile:** nav is a drawer, chat is a full-screen sheet, same as admin.
-- **Profile block:** bottom of the left nav, initials avatar, name, kinds held as the role line, caret. Menu: My account (Account), Dark mode switch, Terms, Back to the site, Sign out. Sign out lives nowhere else. See `shared/design-system.md` section 2a.
+- **Profile block:** bottom of the left nav, initials avatar, name, kinds held as the role line, caret. Menu: My account (Account, which also holds the Light, Dark, System theme choice), Terms, Back to the site, Sign out. Sign out lives nowhere else. See `shared/design-system.md` section 2a.
 
 ## Data model
 
