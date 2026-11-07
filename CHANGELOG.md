@@ -4,6 +4,15 @@ Newest first. Every change to this reference gets an entry. See `shared/updating
 
 Format: what changed, why it's better, where it's proven, and `must-review` if it applies.
 
+## 2026-11-06: The profile menu holds account, terms, theme and sign out
+
+- **What changed:**
+  - `shared/design-system.md` section 2a: **My profile** becomes **My account**, **Terms** joins the menu, and a build with sign out in the open is not done.
+  - `shared/modules.md`: profile entry updated to match.
+- **Why it's better:** sign out kept getting built as a loose button or icon in the nav even though the rule was written down. Stating the failure plainly makes it a check, and terms now have a home every signed-in person can reach.
+- **Where it's proven:** live in one back office, at desktop and phone width.
+- **must-review:** check your shell against section 2a.
+
 ## 2026-11-04: A card in review carries what to look at
 
 - **What changed:**

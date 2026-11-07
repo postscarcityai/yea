@@ -53,8 +53,8 @@ One shell for every signed-in user. Owner, Admin, Staff, Contractor and Customer
 - Always at the bottom of the left nav, on every signed-in page, admin and portal.
 - One row: avatar (photo if set, **initials by default** on a brand-tint circle), then name on top and role underneath in muted text, then a **caret on the right**.
 - Clicking anywhere on the row opens a popup menu above it. Esc or a click outside closes it. Arrow keys move through it.
-- Menu items, in order: **My profile**, **Theme** (Light, Dark, System), **View site** (admin) or **Back to the site** (portal), **Switch view** (demo only), divider, **Sign out**.
-- **Sign out lives here and nowhere else.** Never a loose button on the dashboard, the top bar or a page header.
+- Menu items, in order: **My account**, **Theme** (Light, Dark, System), **Terms**, **View site** (admin) or **Back to the site** (portal), **Switch view** (demo only), divider, **Sign out**.
+- **Sign out lives here and nowhere else.** Never a loose button or icon in the left nav, on the dashboard, in the top bar or in a page header. A build with sign out in the open is not done.
 - On the 64px icon rail the block shrinks to the avatar; the menu opens the same way.
 
 ## 3. Lists
