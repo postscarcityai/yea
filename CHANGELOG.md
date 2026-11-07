@@ -4,6 +4,13 @@ Newest first. Every change to this reference gets an entry. See `shared/updating
 
 Format: what changed, why it's better, where it's proven, and `must-review` if it applies.
 
+## 2026-11-06: Match my device lives in My account
+
+- **What changed:** `shared/design-system.md`: following the device's theme comes back as a **Match my device** switch in My account. The Dark mode switch in the profile menu shows what is on screen, and using it turns matching off.
+- **Why it's better:** people still need the theme to follow their device. The setting you pick once sits in account, and the switch you use often stays one tap away.
+- **Where it's proven:** live in one production back office.
+- **must-review:** if you dropped the system theme, add this back.
+
 ## 2026-11-06: Dark mode is one switch
 
 - **What changed:**
