@@ -8,7 +8,7 @@ Format: what changed, why it's better, where it's proven, and `must-review` if i
 
 - **What changed:**
   - `shared/design-system.md` section 2a: **My profile** becomes **My account**, **Terms** joins the menu, and a build with sign out in the open is not done.
-  - `shared/modules.md`: profile entry updated to match.
+  - `shared/modules.md` and `customer/portal/PRD.md`: profile entries updated to match.
 - **Why it's better:** sign out kept getting built as a loose button or icon in the nav even though the rule was written down. Stating the failure plainly makes it a check, and terms now have a home every signed-in person can reach.
 - **Where it's proven:** live in one back office, at desktop and phone width.
 - **must-review:** check your shell against section 2a.
