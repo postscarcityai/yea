@@ -25,7 +25,7 @@ Starts from `shared/roles.md` section 4g. What differs or needs saying:
 
 ## Pages and states
 
-Public pages live in the **same repo** as the back office and deploy with it. They default to the **light theme**, with a Light, Dark, System switch in the footer saved in a cookie (`shared/design-system.md` section 7). Every page is tracked first party only: no Google Analytics.
+Public pages live in the **same repo** as the back office and deploy with it. They default to the **light theme**, with a dark mode switch in the footer saved in a cookie (`shared/design-system.md` section 7). Every page is tracked first party only: no Google Analytics.
 
 Public pages use a **top nav** (`fields.nav`), not the left-nav shell. Default order: Home, the industry pages the business picked, Blog, Shop (if Shop is on), one CTA button (Get started, Book or Call, from `fields.cta`), Sign in, Cart (if Shop is on).
 

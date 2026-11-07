@@ -90,7 +90,7 @@ Run
   Log                    /admin/log                admin/run/log/
   Settings               /admin/settings           admin/run/settings/
 ---
-[Profile] pinned bottom: initials avatar, name, role, caret. Menu: My account /admin/me, Theme, Terms /terms, View site /, Switch view (demo only), Sign out. Sign out lives nowhere else
+[Profile] pinned bottom: initials avatar, name, role, caret. Menu: My account /admin/me, Dark mode switch, Terms /terms, View site /, Switch view (demo only), Sign out. Sign out lives nowhere else
 [Chat] right panel on every page, FAB bottom right or Cmd/Ctrl+J, not a nav item       shared/chat.md
 ```
 
