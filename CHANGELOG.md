@@ -4,6 +4,15 @@ Newest first. Every change to this reference gets an entry. See `shared/updating
 
 Format: what changed, why it's better, where it's proven, and `must-review` if it applies.
 
+## 2026-11-06: Dark mode is one switch
+
+- **What changed:**
+  - `shared/design-system.md`: the Light, Dark, System selector becomes one Dark mode row with an on/off switch. The saved choice is light or dark.
+  - `shared/modules.md`, `customer/portal/PRD.md` and `customer/site/PRD.md` updated to match.
+- **Why it's better:** a three-way selector in a small menu is more control than the choice deserves. One row with one switch reads at a glance and is easy to hit.
+- **Where it's proven:** live in one production back office.
+- **must-review:** replace any multi-option theme selector.
+
 ## 2026-11-06: The profile menu holds account, terms, theme and sign out
 
 - **What changed:**
