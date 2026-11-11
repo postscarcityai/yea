@@ -11,6 +11,17 @@
 
 The number that tells you it is working: **share of agent runs that finish without a human fixing the result** (target over 90 percent), shown next to **agent cost this month vs the cap**.
 
+### Directives, instructions, tools and call rules
+
+An agent is a **directive** plus the tools it may use. A business can run several, each for a different job (diligence on calls, vendor shopping, booking a table), and the app's first agent usually shares the app's name.
+
+- **Directive:** one plain-language text the Owner writes: what this agent is for and how it should behave. It is added to the front of every step the agent runs.
+- **Instructions:** the built-in prompt for each step the agent runs (research, extraction, the live call steps, the report, chat). Every one is editable, shows the built-in text until changed, stores only the change, and has **Reset to built-in**. Editing steps can break a working agent, so each edit is in the Log with Undo.
+- **Tools:** on/off switches per capability. Turning one off skips that step. Tools that are not built yet show with a Preview chip and no switch. Anything that spends money or reaches outside the business still waits for a person's yes.
+- **Call rules** (when `calls` is on): default **join every meeting**. The Owner can narrow it: business hours only, and an on/off per record (deal, client, job). A meeting the agent will skip says so and why. The bot joins under the agent's name.
+- **One default agent** per business. A record or meeting can pick another when more than one exists; the picker hides when there is one.
+- Managing agents is Owner only by default, as a permission the Owner can grant to other roles.
+
 ## Users and permissions
 
 Start from `shared/roles.md` section 4f.

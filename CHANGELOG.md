@@ -4,6 +4,13 @@ Newest first. Every change to this reference gets an entry. See `shared/updating
 
 Format: what changed, why it's better, where it's proven, and `must-review` if it applies.
 
+## 2026-11-11: Agents are directives with editable instructions, tools and call rules
+
+- **What changed:** `admin/run/agents/PRD.md`: new section. An agent is a directive plus tools; every step's built-in instructions are editable with Reset to built-in; tools switch steps off; call rules default to join every meeting, narrowed by business hours and per record; one default agent, Owner manages by default.
+- **Module keys:** `agents`, `calls`.
+- **Why it's better:** businesses want more than one agent, each for a different job, without losing the one that already works. Locked prompts made tuning a code change.
+- **Where it's proven:** not yet proven; being built in one production app.
+
 ## 2026-11-11: Themes out of the box, full screen mode, live dot, worker hosts
 
 - **What changed:**
