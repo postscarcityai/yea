@@ -11,6 +11,8 @@
 
 The number that tells you it is working: **median age of items in the Now bucket at the end of each day** (target under 4 hours). A second check: share of agent approvals decided from Home within 24 hours.
 
+**Start dead simple.** A new app has a few weeks of data at most. Its first Home is a few plain counts (what's open, what's next, what just finished) and the next thing on the calendar, each a link to its list. No trends, projections or charts until there are months of data to draw them from. Add tiles as the data earns them.
+
 ## Users and permissions
 
 Start from `shared/roles.md` section 4a. What differs or needs spelling out:

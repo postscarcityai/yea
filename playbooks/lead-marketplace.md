@@ -35,7 +35,7 @@ Example: **Fenwright Logistics**, a freight brokerage routing loads to carriers.
 | `intake` | Start | the photo funnel |
 | `portal` | Pro portal | claimed firms see their listing, leads and balance |
 
-Core modules (Home, Inbox, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal) are always on as well. See `shared/modules.md`.
+Core modules (Home, Inbox, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal) are on by default as well. Nothing is required: switch off any the business will not use. See `shared/modules.md`.
 
 ## Stages we actually used
 

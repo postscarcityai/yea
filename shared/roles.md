@@ -188,7 +188,7 @@ The admin look: records open read-only with an Edit button, one primary action p
 
 | State | Used when | What the user sees |
 |---|---|---|
-| **Hidden** | The user does not have the verb, or the module is off | The nav item, tab, button, column or menu item is not rendered. No lock icons, no greyed-out placeholders |
+| **Hidden** | The user does not have the verb, or the module is off | The nav item, tab, button, column or menu item is not rendered. No lock icons, no greyed-out placeholders. A growth-mode preview is not a permission state and follows its own rule (`shared/design-system.md` section 2b) |
 | **Read-only** | The user has V but not E on a record | The record opens the way every record opens (read view). The Edit button is not there. Quick actions they do have (log activity, copy, reply) still show |
 | **Disabled** | The user has the verb but it cannot run right now | The button shows with a one-line reason under it ("Add a mailing address to send", "Waiting on Owner approval", "Sending…" with a spinner) |
 
@@ -206,7 +206,7 @@ Disabled is never used for "you are not allowed". It is only for a temporary or 
 8. **Sensitive fields.** Cost, margin, payouts, and fields the Owner marks sensitive (licence numbers, insurance documents, health or case details) are column-level grants. Without the grant the column is not rendered in lists or records, and it is stripped from the agent's query results for that user.
 9. **Contractor and Customer scope.** There is no "All / Mine" switch for them: everything is already theirs. Empty states say so ("No open leads in your book").
 10. **The agent's work.** Every agent write shows a small "Agent" byline in the Feed and on the record's timeline, with Undo next to it for users who have E on that record. Gated agent actions appear in chat as a card with one button, Approve, plus the same row on Home > Today.
-11. **Demo switcher.** On the page and in demos, the profile picker (company and user type) re-renders the same shell through this exact map. Nothing is faked per type: if a type cannot see it, it is not there.
+11. **Role modes and the demo switcher.** A role mode (`shared/design-system.md` section 2b) and the demo profile picker (company and user type) re-render the same shell through this exact map. Nothing is faked per type: if a type cannot see it, it is not there. Role modes are for Owner and Admin only, and they are read-only: an owner looking through an assistant's eyes cannot act as the assistant.
 
 ---
 
@@ -243,3 +243,19 @@ type Grant = {
   - **Bookkeeper** (Admin type, trimmed to Money V E X and Costs V): reads the money, exports to the books, no sends.
   - **Reviewer** (Admin type, trimmed to V and A on Social, Content and Campaigns): approves drafts from a phone, nothing else.
   - **Sales, no personal data** (Staff type): Leads, Pipeline, Outreach, with sensitive fields off.
+
+---
+
+## 8. Optional: many businesses on one app, and the platform superuser
+
+The YEA default is one app per business, owned by that business. Nothing here changes that.
+
+Some builders sell the same app to many businesses: a software vendor, an agency, a studio like ours running one kind of tool for several clients. For them, an app can be **multi-tenant**. It is optional. An app rebasing onto YEA does not need it. If you are starting a new app and there is any chance it serves more than one business, build it in from day one; adding tenants to a finished app touches every table.
+
+- **Tenants.** One `orgs` table. Every record table carries `org_id`, and row rules scope every query to the signed-in user's org. A user can belong to more than one org and switches between them in the profile menu (**Switch workspace**).
+- **Platform superuser.** A flag on the user, above Owner, held by the builder, not by any business. It is not one of the six types and never appears in an org's Team. It can create an org, invite its first Owner, and open any org.
+- **Opening an org is read-only by default.** A banner across the top names the org ("Exploring Northwind as superuser, read-only") with one button back to the platform admin. Writing inside a client's org needs that org's Owner to grant it, and every superuser action lands in that org's Log with a "Platform" byline.
+- **Platform admin.** A separate area (`/platform`) listing orgs, their usage and costs, and feature requests across them. Reached from the profile menu, superuser only.
+- **The agent never runs as the superuser.** In an org it runs as that org's roles, like any other app.
+- **Leaving is easy.** Any org can be exported to its own app and database. The business still owns its data.
+

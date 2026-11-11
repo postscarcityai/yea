@@ -32,7 +32,7 @@ Start from `shared/roles.md` section 4f.
 |---|---|---|
 | Business | `/admin/settings` | Name, legal name, industry, address, time zone, hours, phone, response target, logo, the public URL. |
 | Brand | `/admin/settings?tab=brand` | Colors (brand, accent), fonts, logo variants, voice notes (how the business writes: words to use, words to avoid, sign-off), sample paragraphs. The agent's system prompt reads this tab. |
-| Modules | `/admin/settings?tab=modules` | Every module with on or off (core shows "Always on"), label, group, nav order, tier chip. Group order and labels. Owner only to change. |
+| Modules | `/admin/settings?tab=modules` | Every module with on or off (core shows "On by default"), label, group, nav order, tier chip. Group order and labels. Owner only to change. |
 | Channels | `/admin/settings?tab=channels` | Connected channels: email domain, SMS numbers and their registration status, web chat on the Site, social accounts for DMs and posts. Connect and disconnect. |
 | Email | `/admin/settings?tab=email` | Senders and aliases, domain authentication records (SPF, DKIM, DMARC) with live check, mailing address for bulk mail, default signature, unsubscribe footer. |
 | Checkout | `/admin/settings?tab=checkout` | Payment connection, currency, tax rates, shipping rules, order email templates. Shown when Shop, Orders or Money is on. |

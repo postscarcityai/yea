@@ -31,7 +31,7 @@ One shell for every signed-in user. Owner, Admin, Staff, Contractor and Customer
 +-----------+-------------------------------------------+--------------+
 ```
 
-- **Left nav:** 240px, collapsible to a 64px icon rail. Collapse state in a cookie so the server renders it right on first paint.
+- **Left nav:** 240px, collapsible to a 64px icon rail. Every app ships the collapse; it is not optional. Collapse state in a cookie so the server renders it right on first paint.
 - **Top bar:** page title (the module label), global search. No sign-out, no profile, no theme switch up here (sign out lives in the profile menu, the theme on My account).
 - **Work area:** fluid. Content max width 1280px for lists, full width for boards and maps.
 - **Chat:** docked right, pushes the page, 420px default, 340px to 50vw. Summoned by the round **FAB bottom right** or **Cmd/Ctrl+J**. Spec in `shared/chat.md`.
@@ -41,7 +41,9 @@ One shell for every signed-in user. Owner, Admin, Staff, Contractor and Customer
 
 - Order: **Home**, **Inbox**, then the groups **Grow, Sell, Make, Know, Run** (order is a config knob). Then a divider, then the **profile** block pinned to the bottom (section 2a).
 - One level of nesting: group, then item. Never two. Pages inside a module are tabs, not nav items.
-- Render the nav from config plus permissions: a module shows only if it is enabled and the user has view. A group with no visible items disappears. No lock icons, no greyed-out items.
+- Render the nav from config plus permissions: a module shows only if it is enabled and the user has view. A group with no visible items disappears. No lock icons, no greyed-out items. The one exception is a **preview** in a growth mode (section 2b).
+- **Every item has an icon.** On the 64px rail only the icons show, and hovering or focusing one shows its label in a tooltip to the right, with its badge count. Groups on the rail show their items' icons with a hairline between groups.
+- **Groups are optional.** An app with a handful of items shows them flat, with no group labels. Groups appear once there are enough items to need them.
 - **Badges** show live counts of the queue that needs a person. Same scope as the list (a Contractor's badge counts only their records). A collapsed group shows the sum of its badges.
 - Active item: filled background in the brand tint plus a 2px brand bar on the left edge.
 - **Only one top-level group is open at a time.** Opening a group closes the one that was open (an accordion). On load, the group holding the current page is the open one. Clicking the open group's label closes it.
@@ -53,10 +55,29 @@ One shell for every signed-in user. Owner, Admin, Staff, Contractor and Customer
 - Always at the bottom of the left nav, on every signed-in page, admin and portal.
 - One row: avatar (photo if set, **initials by default** on a brand-tint circle), then name on top and role underneath in muted text, then a **caret on the right**.
 - Clicking anywhere on the row opens a popup menu above it. Esc or a click outside closes it. Arrow keys move through it.
-- Menu items, in order: **My account**, **Terms**, **View site** (admin) or **Back to the site** (portal), **Switch view** (demo only), divider, **Sign out**.
+- Menu items, in order: **My account**, **Terms**, **View site** (admin) or **Back to the site** (portal), **Modes** (only when more than one exists, section 2b), divider, **Sign out**.
 - **No theme in the menu.** The theme is set on **My account**: one **Theme** row with three options, **Light**, **Dark**, **System**. System follows the device's light or dark setting.
 - **Sign out lives here and nowhere else.** Never a loose button or icon in the left nav, on the dashboard, in the top bar or in a page header. A build with sign out in the open is not done.
 - On the 64px icon rail the block shrinks to the avatar; the menu opens the same way.
+
+### 2b. Modes
+
+A **mode** is a saved shape of the shell: which nav items show, how they are grouped, and optionally whose eyes you see it through. The profile menu lists the modes when there is more than one; picking one re-renders the same shell. The mode is in the URL (`?mode=`) and remembered in a cookie.
+
+(Not to be confused with **views**, the saved filters on a list, or the Know > Views module.)
+
+Three kinds:
+
+- **Growth modes** show where the app can go. Mode 1 is the simple app the business runs today; later modes add modules as **previews**. Use them when starting a project, so the owner sees the path from a small tool to a full operating system, and you both see what to build next.
+- **Role modes** show the app as another user type sees it: the owner checks what an assistant or a contractor sees. These run through the same `can()` map (`shared/roles.md` section 6b, item 11), so nothing is faked. Only Owner and Admin get them.
+- **Work modes** narrow a big app to one job: Marketing, Accounting, Ops. An owner-operator who has grown into many modules picks Accounting and sees only Money, Documents, Costs and the reports that go with them.
+
+Rules:
+
+- **A preview** is a module the business does not have yet. In a growth mode it shows in the nav with a small "Preview" chip. Opening it shows one sentence on what the module would do and an empty sample of its main list, never real data and never a fake number. It is the only nav item allowed to exist without being on.
+- **Modes are config, not code.** All of them live in one place (`yea.config.json` under `modes`, or a single file), each as a list of module keys plus an optional group layout and run-as type. Deleting a mode is deleting its entry. Nothing else in the app depends on one.
+- **Clean up.** Growth modes are for exploring. When the business picks its path, delete the ones it does not need; keep a work mode only if someone uses it.
+- With one mode the menu item does not show.
 
 ## 3. Lists
 

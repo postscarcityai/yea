@@ -90,7 +90,7 @@ Run
   Log                    /admin/log                admin/run/log/
   Settings               /admin/settings           admin/run/settings/
 ---
-[Profile] pinned bottom: initials avatar, name, role, caret. Menu: My account /admin/me (holds the Light, Dark, System theme choice), Terms /terms, View site /, Switch view (demo only), Sign out. Sign out lives nowhere else
+[Profile] pinned bottom: initials avatar, name, role, caret. Menu: My account /admin/me (holds the Light, Dark, System theme choice), Terms /terms, View site /, Modes (when more than one exists), Sign out. Sign out lives nowhere else
 [Chat] right panel on every page, FAB bottom right or Cmd/Ctrl+J, not a nav item       shared/chat.md
 ```
 
@@ -156,7 +156,7 @@ customer/
 
 | Tier | Meaning | Modules |
 |---|---|---|
-| core | Every business gets it, on by default, cannot be switched off (only relabeled) | Home, Inbox, Leads, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal (Home, Account) |
+| core | On by default for most businesses. Nothing is required: any module can be switched off | Home, Inbox, Leads, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal (Home, Account) |
 | common | Most businesses want it; on or off by config | Pipeline, Outreach, Campaigns, Reviews, Testimonials, Interviews, Orders, Catalog, Bookings, Documents, Money, Content, Social, Library, Studio, Insights, Search, Costs, Playbook, Calls, Shop |
 | industry | Switched on for a business model; usually relabeled | Prospects (B2B selling at volume), Programs (consumer brands), Reps (field sales teams), Jobs (service, case and project work), Marketplace (businesses that route or resell leads, bookings or work) |
 
@@ -171,7 +171,7 @@ The finale (PSAI-33) and the fictional companies (PSAI-25) configure an app by w
 ```ts
 type ModuleConfig = {
   key: string;            // stable, never changes: "leads"
-  enabled: boolean;       // core modules ignore false
+  enabled: boolean;       // any module can be off, core included
   label: string;          // nav label: "Leads" -> "Inquiries"
   group?: GroupKey;       // move to another group (rare)
   fields: {               // module-specific shape
@@ -190,6 +190,7 @@ type AppConfig = {
   modules: ModuleConfig[];
   customer: { kinds: ("shopper"|"buyer"|"member"|"partner"|"client")[]; intake: IntakeKind[]; shop: boolean };
   roles: { key: string; label: string }[];  // the six types, relabelable ("Staff" -> "Associates")
+  modes?: { key: string; label: string; kind: "growth"|"role"|"work"; modules: string[]; previews?: string[]; groups?: { label: string; modules: string[] }[]; runAs?: string }[]; // design-system 2b; delete freely
 };
 ```
 

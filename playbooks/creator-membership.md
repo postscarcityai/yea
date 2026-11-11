@@ -31,7 +31,7 @@ Example: **Talus Yard Climbing**, a climbing gym with a community, events and fo
 | `goals` | Goals | goals tied to live numbers |
 | `social` | Social | posts for review and approval |
 
-Core modules (Home, Inbox, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal) are always on as well. See `shared/modules.md`.
+Core modules (Home, Inbox, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal) are on by default as well. Nothing is required: switch off any the business will not use. See `shared/modules.md`.
 
 ## Stages we actually used
 

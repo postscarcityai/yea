@@ -121,13 +121,13 @@ Write the result as the config object from `shared/modules.md` section 5 (`AppCo
 
 | Tier | Rule | Modules |
 |---|---|---|
-| **core** (14) | Always on. You may relabel, never remove. | Home, Inbox, Leads, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal (Home, Account) |
+| **core** (14) | On by default. Relabel freely. Nothing is required: switch off what the business will not use. | Home, Inbox, Leads, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal (Home, Account) |
 | **common** (21) | On if the business does that work or pays for that SaaS today. | Pipeline, Outreach, Campaigns, Reviews, Testimonials, Interviews, Orders, Catalog, Bookings, Documents, Money, Content, Social, Library, Studio, Insights, Search, Costs, Playbook, Calls, Shop |
 | **industry** (5) | On for one business model. At most two per business. | Prospects, Programs, Reps, Jobs, Marketplace |
 
 How to choose:
 
-1. Turn on every core module.
+1. Start from the core modules, and switch off any the business will not use. An app can start as one or two modules.
 2. For each SaaS product in the interview answer to question 6, find its module in `shared/saas.md` and turn that module on.
 3. Turn on any common module the interview describes even if no SaaS covers it today (a business that sends quotes on paper still needs Documents).
 4. Pick industry modules only from the business model: B2B selling at volume (Prospects), consumer brand with loyalty (Programs), field sales team (Reps), service or project work delivered after the sale (Jobs), routing or reselling leads or work (Marketplace).
@@ -135,6 +135,8 @@ How to choose:
 6. Set group order to how their day runs. The default is Grow, Sell, Make, Know, Run. A shop that lives on orders puts Sell first.
 
 Show the owner the left nav that results, top to bottom, before you write any code. Cut anything they do not recognize.
+
+Then show where it can grow. Build two or three **growth modes** (`shared/design-system.md` section 2b): the simple app they start with, then one or two that add the modules they may want later, shown as previews. The owner sees the path from a small tool to a full operating system for their business, and you both see what to build next. Delete the modes nobody needs once the exploring is done.
 
 ---
 
@@ -187,7 +189,7 @@ Keep the app in **one repo** the business owns, with its own hosting account and
 
 The most basic deployment is a **marketing site plus a back office where you manage the leads it captures**: Site, Intake, Leads, with the shell, Log, Team (sign-in) and the chat underneath. Everything else is a module you turn on later. Ship this first for any new business, then grow it.
 
-This is the first release of the steps below, not an exception to them. Build steps 1 to 3, then Team, Leads, Site and Intake, and ship. "Core, always on" describes where the app ends up. The rest of core follows in order.
+This is the first release of the steps below, not an exception to them. Build steps 1 to 3, then Team, Leads, Site and Intake, and ship. "Core" describes where most apps end up, not a requirement. The rest of core follows in order.
 
 ---
 
