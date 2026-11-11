@@ -4,6 +4,20 @@ Newest first. Every change to this reference gets an entry. See `shared/updating
 
 Format: what changed, why it's better, where it's proven, and `must-review` if it applies.
 
+## 2026-11-11: Spec rebase, nothing required, modes, optional multi-tenant
+
+- **What changed:**
+  - `shared/updating.md`: keeping up is now named the **spec rebase**. New `docs/yea-own.md` lists what the business built on purpose; a change touching it can only be Adapt or Skip. New section on the first rebase of an app that came before YEA (inventory, common factors, deltas, cherries). New rules for apps that have forked for years: talk in module keys and intent, never file paths.
+  - `README.md`, `shared/modules.md`, `admin/run/settings/PRD.md`, the playbooks: **nothing is required.** Core means on by default; any module can be switched off, and an app can start as one or two modules.
+  - `shared/design-system.md` section 2: the collapsible rail is required on every app, every nav item has an icon, the rail shows labels in a tooltip on hover, and groups are optional for small apps.
+  - `shared/design-system.md` new section 2b, `shared/roles.md`, `shared/modules.md`: **modes.** Growth modes (the simple app, then larger ones with previews of modules to come), role modes (see the app as an assistant sees it, read-only), work modes (Marketing, Accounting). Modes are config and easy to delete. "Switch view" in the profile menu becomes "Modes". `README.md` step 2 shows the owner two or three growth modes when starting a project.
+  - `shared/roles.md` new section 8: **optional multi-tenant** apps with a platform superuser above Owner, read-only when it opens an org, every action in that org's Log. Recommended when a new app may serve more than one business; not needed on a rebase.
+  - `admin/home/PRD.md`: the first Home is plain counts and the next thing due, no trends until the data earns them.
+- **Module keys:** `home`, `settings`, all modules (tiers), shell.
+- **Why it's better:** a strict core list pushed small apps to build modules nobody used. A protected list keeps the spec's average from flattening the thing a business pays for. Modes let an owner see the path to a full operating system without building it, and the same mechanism narrows a big app back down later. Builders who serve many businesses were rebuilding tenancy by hand.
+- **Where it's proven:** the multi-tenant shape (orgs, switch workspace, read-only superuser banner) runs in one production app. Spec rebase, modes and previews are not yet proven.
+- **must-review:** if your app forces any module on, let the owner switch it off. Add `docs/yea-own.md` on your next check-in.
+
 ## 2026-11-07: Theme lives on My account, three options
 
 - **What changed:** `shared/design-system.md`, `shared/modules.md`, `customer/portal/PRD.md`: the theme comes out of the profile menu. My account has one **Theme** row with **Light**, **Dark** and **System**. The menu is My account, Terms, View site or Back to the site, Switch view (demo only), Sign out. This replaces the two 2026-11-06 entries below.

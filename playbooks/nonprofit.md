@@ -31,7 +31,7 @@ Example: **Larkhaven Montessori**, a private school raising money for its progra
 | `programs` | Raffles | raffles with rules and a draw |
 | `playbook` | Approved copy | the words the board signed off |
 
-Core modules (Home, Inbox, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal) are always on as well. See `shared/modules.md`.
+Core modules (Home, Inbox, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal) are on by default as well. Nothing is required: switch off any the business will not use. See `shared/modules.md`.
 
 ## Stages we actually used
 

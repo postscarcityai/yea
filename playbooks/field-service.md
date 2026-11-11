@@ -30,7 +30,7 @@ Example: **Mendell Property Group**, a property manager running repair estimates
 | `social` | Posts | a business profile post a day |
 | `catalog` | Price table | the prices the estimate uses |
 
-Core modules (Home, Inbox, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal) are always on as well. See `shared/modules.md`.
+Core modules (Home, Inbox, People, Views, Goals, Team, Agents, Board, Log, Settings, Site, Intake, Portal) are on by default as well. Nothing is required: switch off any the business will not use. See `shared/modules.md`.
 
 ## Stages we actually used
 
