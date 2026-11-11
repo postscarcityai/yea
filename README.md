@@ -162,7 +162,7 @@ Map each person from interview question 5 to a type, then to a preset or a named
 | Layer | Default |
 |---|---|
 | App | Next.js (App Router), TypeScript, server components and server actions |
-| Database | Postgres on Neon |
+| Database | Postgres on Neon, or Supabase (Postgres with row-level security and auth built in) |
 | Hosting | Vercel |
 | Email delivery | SendGrid (send and inbound parse) |
 | Payments | Stripe |
@@ -171,6 +171,7 @@ Map each person from interview question 5 to a type, then to a preset or a named
 | Analytics | First party only: own cookie, own middleware, own tables. No Google Analytics |
 | Model | Any capable model with tool use and streaming, on API keys. Open-weight models work. Pick per task and log the cost of every call (Costs module) |
 | Agent | The agent in the chat panel, on Vercel. Beam for heavier work or an always-on Hermes. A Mac mini on top if the business wants one. `shared/agent-platform.md` |
+| Workers | Long-running processes the web host cannot hold (websockets, job queues, a call bot). **Fly** for a small always-on worker; **Beam** when the work is bursty, scales to zero, or needs a GPU. See below |
 
 **Any stack works.** The PRDs describe jobs, pages, data, permissions and acceptance criteria, not frameworks. Rails, Django, Laravel, Phoenix, Go: build it in what the business or its team already runs. Three things are not optional in any stack:
 
@@ -184,6 +185,15 @@ Prove the first three with `conformance/`.
 Keep the app in **one repo** the business owns, with its own hosting account and its own database. The public marketing site, the admin back office and the agent live in that same repo and ship together, each deploying from its own folder (`shared/agent-platform.md` section 8). If you are a vendor building it for them, put everything in their name from day one.
 
 **No Google Analytics.** Tracking is first party: a cookie set by the business's own domain, page views written by the app's own middleware into its own database (`admin/know/insights/`). No third-party tag by default.
+
+### Where workers run
+
+Pick by the shape of the work, not by vendor:
+
+- **Always on, small** (a job queue, a reconciler polling every minute, a websocket that must answer any time): a Fly machine. A shared CPU with 1 GB runs all day for a few dollars a month.
+- **Bursty or idle most of the day** (a bot that joins a call, a batch job, an agent woken by an event): Beam, scaled to zero, paying only while it runs. Keep warm for a few minutes, never forever: an always-warm Beam container costs far more than a small Fly machine.
+- **GPU or model inference:** Beam.
+- **Everything on Beam is possible** once the always-on parts become events: jobs on a task queue, polling on a schedule. Do that when the worker is being rewritten anyway, not as a migration for its own sake.
 
 ### The smallest YEA
 
@@ -227,7 +237,7 @@ YEA replaces the apps. It does not replace the rails. A rail is infrastructure, 
 | Rail | Why it stays | Examples |
 |---|---|---|
 | Hosting | Global edge, deploys and scaling are a vendor job | Vercel, Netlify |
-| Database | The data you cannot lose. Backups and point-in-time restore | Neon |
+| Database | The data you cannot lose. Backups and point-in-time restore | Neon, Supabase |
 | DNS and security | One bad record takes the site and the email down together | Cloudflare |
 | Email delivery | Inbox placement is reputation built over years | SendGrid, Postmark, Resend |
 | SMS and voice | Carrier access and registration are regulated | Twilio |
