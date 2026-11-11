@@ -9,7 +9,7 @@ One shell for every signed-in user. Owner, Admin, Staff, Contractor and Customer
 1. **The URL is the state.** A user can refresh or paste the link at every key point and land on exactly the same view: the tab, the open record, the filters, the sort, the search, the page of results, the quick view, the chat panel and its thread. If a person can change it and would want to share it, it goes in the query string. Filter and sort in the URL are required on every list, no exceptions. Use `replace` for keystroke-level changes (typing in search) and `push` for deliberate ones (opening a record, switching a tab), so Back does what people expect.
 2. **Layout state the server must know goes in a cookie,** not local storage: nav collapsed or not, chat open and its width, the theme. The server reads it and renders the first paint right, with no flash and no jump.
 3. **First-party tracking only.** No Google Analytics, no third-party tags by default. The app sets its own first-party cookie and writes its own page views. See `admin/know/insights/PRD.md`.
-4. **Light and dark on both sides.** The public site and the back office each have a theme switch. Defaults differ: **light for the marketing site, dark for the back office.** See section 7.
+4. **Light and dark on both sides, out of the box.** Every app ships Light, Dark and System from its first release; a build with one theme is not done. The public site and the back office each have a theme switch. Defaults differ: **light for the marketing site, dark for the back office.** See section 7.
 5. **Sign out is never loose on the page.** It lives in the profile menu only (section 2a).
 
 ## 1. The shell
@@ -34,6 +34,7 @@ One shell for every signed-in user. Owner, Admin, Staff, Contractor and Customer
 - **Left nav:** 240px, collapsible to a 64px icon rail. Every app ships the collapse; it is not optional. Collapse state in a cookie so the server renders it right on first paint.
 - **Top bar:** page title (the module label), global search. No sign-out, no profile, no theme switch up here (sign out lives in the profile menu, the theme on My account).
 - **Work area:** fluid. Content max width 1280px for lists, full width for boards and maps.
+- **Full screen mode.** A page that needs the whole screen (a live call, a board, a map) gets a full screen button in its header. It hides the nav and top bar but stays on the same route with `?full=1`, so a refresh keeps it and Esc or the button brings the shell back. Never a separate page or a new tab.
 - **Chat:** docked right, pushes the page, 420px default, 340px to 50vw. Summoned by the round **FAB bottom right** or **Cmd/Ctrl+J**. Spec in `shared/chat.md`.
 - **Mobile (under 1024px):** nav becomes a drawer from the left behind a menu button; chat becomes a full-screen sheet from the right.
 
@@ -45,6 +46,7 @@ One shell for every signed-in user. Owner, Admin, Staff, Contractor and Customer
 - **Every item has an icon.** On the 64px rail only the icons show, and hovering or focusing one shows its label in a tooltip to the right, with its badge count. Groups on the rail show their items' icons with a hairline between groups.
 - **Groups are optional.** An app with a handful of items shows them flat, with no group labels. Groups appear once there are enough items to need them.
 - **Badges** show live counts of the queue that needs a person. Same scope as the list (a Contractor's badge counts only their records). A collapsed group shows the sum of its badges.
+- **Live dot.** When something is happening right now (a call in progress, a broadcast going out), its nav item shows a pulsing red dot instead of a count, on the full nav and the icon rail. The item can hide when nothing is live, or stay with no dot. Respect `prefers-reduced-motion`: the dot stays, the pulse stops.
 - Active item: filled background in the brand tint plus a 2px brand bar on the left edge.
 - **Only one top-level group is open at a time.** Opening a group closes the one that was open (an accordion). On load, the group holding the current page is the open one. Clicking the open group's label closes it.
 - Group labels are the same size and case as the items under them, **one weight step bolder** (for example 600 over 500). Very slightly bolder, not a heading. They are toggles, not links.

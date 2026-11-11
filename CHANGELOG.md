@@ -4,6 +4,15 @@ Newest first. Every change to this reference gets an entry. See `shared/updating
 
 Format: what changed, why it's better, where it's proven, and `must-review` if it applies.
 
+## 2026-11-11: Themes out of the box, full screen mode, live dot, worker hosts
+
+- **What changed:**
+  - `shared/design-system.md`: Light, Dark and System ship with every app's first release. New **full screen mode** (same route, `?full=1`, Esc returns). New **live dot** on a nav item while something is happening now.
+  - `README.md` stack: Supabase is a database option alongside Neon. New **Workers** row and a "Where workers run" note: Fly for small always-on workers, Beam for bursty, scale-to-zero or GPU work.
+- **Module keys:** shell, `calls`.
+- **Why it's better:** a single theme kept getting shipped and patched later. Full screen as its own page lost the nav, the chat and the URL. Live work (a call in progress) needs to be findable from anywhere. Worker hosting was unspecified, and the cheap answer depends on whether the worker idles.
+- **Where it's proven:** Supabase, Fly and Beam each run in one production app. Full screen mode and the live dot are not yet proven.
+
 ## 2026-11-11: Spec rebase, nothing required, modes, optional multi-tenant
 
 - **What changed:**
