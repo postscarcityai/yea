@@ -29,6 +29,14 @@ Specific failures from real builds. What it looked like, why, and the fix. Versi
 
 ---
 
+## Setup and accounts
+
+- **Keys added mid-build don't reach `.env.example` by themselves.** A scheduled job's secret was set on the host but missing from the example file, so a fresh setup had no way to know it existed. Add the name the moment you add the key.
+- **Pin the package manager version in CI.** Our checks needed the `pnpm` version pinned before installs ran the same as on the laptop. Pin it in `package.json` and in the workflow.
+- **Pin the framework preset in the host's config file.** Don't rely on the host detecting it. Ours needed it set explicitly.
+
+---
+
 ## Next.js and Vercel
 
 - **Tracked media is your build time.** Our app built in 32 seconds and deployed in many minutes, because the clone was 787 MB. Move media to blob storage.
@@ -37,6 +45,10 @@ Specific failures from real builds. What it looked like, why, and the fix. Versi
 - **A strict CSP can stop dev pages hydrating,** so nothing is clickable and it looks like your bug. Test against a production build.
 - **Fonts from a remote service can crash a build.** Self-host them.
 - **Previews often lack production env.** Admin allowlists and API keys may be production only, so prove it locally and test after merge.
+- **A relative redirect in middleware can crash behind a proxy.** Sign-out broke on the live domain and worked locally. Build the redirect from the forwarded host as an absolute URL.
+- **Dates rendered on the server and in the browser must use one timezone.** A date shown in the server's zone and re-rendered in the visitor's threw a hydration error. Format in one fixed zone on both sides.
+- **A nav item with no page is a 404 in production.** A module was in the nav, its data was in the database, and nobody had built the screen. Every nav entry ships with a page, even an empty state.
+- **A monorepo can build everything on every push.** A host's "affected projects" setting still rebuilt the web app for a README change. Check what each push actually builds.
 - **Lazy plus `display:none` means nothing loads until it's shown.** That's a flash on swap. Stack the layers and load the hidden one at low priority.
 
 ---
@@ -47,6 +59,8 @@ Specific failures from real builds. What it looked like, why, and the fix. Versi
 - **Sandboxed iframes without `allow-forms` drop submits silently.** Use keydown and click handlers.
 - **Free database plans have transfer caps.** Streaming video from a bucket through your app ate most of one in a month. Check the number, and don't test video against production.
 - **Dates stored in UTC render on the wrong day** for anyone west of Greenwich. Convert on display, and test near midnight.
+- **Production starts empty.** Fake data shipped to a live back office and had to be wiped by hand. Keep demo data in seeds that use fictional companies, can be rerun, and send nothing. Build real empty states for the first day.
+- **Record every migration you apply.** Without a table of applied files, nobody could tell which changes had run on which database. Build the runner on day one.
 - **Capturing a client's live funnel needs zero writes.** Allow-list the read routes and fake every write.
 
 ---
@@ -59,12 +73,38 @@ Specific failures from real builds. What it looked like, why, and the fix. Versi
 
 ---
 
+## Sign-in and email
+
+- **The magic link has to carry where the person was going.** Without it, a link to a record lands on the home page after sign-in. Pass `?next=` through the email link and check it is a path on your own site.
+- **Send sign-in links as plain transactional mail.** Our first sign-in email was a heavy branded layout with open and subscription tracking on. Send one line, one button and a link to paste, with tracking off for that message.
+- **Plain-text email needs real links.** A sign-in email with a bare token was unusable on a phone. Send a button and a full, tappable URL.
+
+---
+
+## Agents and tools
+
+- **A tool that lists things must return the total.** A partial list gave the agent a confident wrong count. Every list tool returns the total and the counts, not just the first page.
+- **Adding a tool can break an old answer.** A new tool with a broad description started catching questions another tool used to answer. Write each description to say what it is not for, and rerun the full question set after any tool change.
+- **Strip figures and contact details from what tools return.** A free-text field leaked a private fee to the model. Filter tool output, not only tool input.
+- **The agent drafts, a person sends.** One path out of the app, and it needs a signed-in person. An agent route that can send will one day send the wrong thing.
+
+---
+
 ## Shell and scheduling
 
 - **A pipeline can fake a pass.** Exit codes get swallowed by pipes and command substitution. Gate on the artifact: does the file exist and is it right?
 - **Resuming a paused schedule can fire the missed run late.** For a one-day hold, put a date guard in the script.
 - **Never name a shell variable `HOME`.** Tools then read a stray empty database and report that your data is missing.
 - **Tools' success messages can lie.** Confirm in the database when it matters.
+
+---
+
+## Workers and hosting
+
+- **New worker apps can be public by default.** A deployed endpoint answered anyone with the URL. Turn on auth for every endpoint before it holds anything real.
+- **Old versions keep serving.** A redeploy left the previous version live at its own URL. Delete old versions, or make sure they hold no secrets.
+- **Deleting a disk may not delete its data.** Snapshots stayed after the disk was gone. Wipe real data before you delete a volume, or don't attach one for tests.
+- **An agent with a terminal reads your setup.** A test meant to run with no access found the setup scripts on the machine. Keep configs off the box for control runs.
 
 ---
 

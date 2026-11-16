@@ -38,11 +38,13 @@ Both themes take their color from the business's own brand. The companies, peopl
 
 ### How you get one
 
-1. **Start a new repo the business owns.** You don't fork this one. Your app has no upstream, so nothing here can ever overwrite it.
-2. **Build from the reference**, following the steps below: interview, modules, roles, stack, build order. Ship the smallest YEA first.
-3. **Write down what you built from.** Record this repo's commit in `yea.lock.json`.
-4. **Connect an agent.** The agent in the chat panel is the default. A business's own Hermes connects through the back office. See `shared/agent-platform.md`.
-5. **Keep up.** On a schedule, your agent reads the changes since that commit and decides adopt, adapt or skip. See `shared/updating.md`.
+1. **Set up the accounts and tools** in the business's name: GitHub, hosting, database, model and media keys, and their CLIs (section 0).
+2. **Start a new repo the business owns.** You don't fork this one. Your app has no upstream, so nothing here can ever overwrite it.
+3. **Build from the reference**, following the steps below: interview, modules, roles, stack, build order. Ship the smallest YEA first: a site and a CRM.
+4. **Write down what you built from.** Record this repo's commit in `yea.lock.json`.
+5. **Connect an agent.** The agent in the chat panel is the default. A business's own Hermes connects through the back office. See `shared/agent-platform.md`.
+6. **Keep up.** On a schedule, your agent reads the changes since that commit and decides adopt, adapt or skip. See `shared/updating.md`.
+7. **Give back.** With the owner's yes, your agent sends what went wrong as a pull request, with nothing personal in it. Every build makes the next one easier. See section 8 and `CONTRIBUTING.md`.
 
 ### How this repo is laid out
 
@@ -51,6 +53,7 @@ Folders mirror the left nav. If a page is in the nav, it has a folder with a `PR
 ```
 README.md                  you are here
 CHANGELOG.md               every change to this reference: what, why, where it's proven
+CONTRIBUTING.md            how an agent sends learnings back, and what must never be in them
 shared/
   PRD-TEMPLATE.md          the headings every PRD uses
   modules.md               the module map: nav tree, tiers, routes, config knobs
@@ -77,6 +80,7 @@ change-video/
 practices/
   running-agents.md        how we run a company on agents: capture, owners, proof, gates, quiet, monitors
   traps.md                 specific failures from real builds and the fix
+  learnings/               lessons sent back by builds, waiting to be folded into traps.md
 admin/
   home/
   inbox/
@@ -95,6 +99,35 @@ customer/
 **Playbooks.** Before you pick modules, read [`playbooks/README.md`](playbooks/README.md). It maps six business archetypes (lead marketplace, product brand, field service, professional practice, creator, nonprofit) to the modules, stages, agent jobs and plays we have already built for real businesses like them. Start from the closest archetype, then adjust.
 
 Read `shared/` before any module PRD. The module PRDs assume you know the shell, the roles and the chat. Read `practices/` before you put an agent to work.
+
+---
+
+## 0. Set up the accounts and tools
+
+Do this first, with the owner, before the interview. Every account is in the business's name, never yours. Most of the build stalls later are a missing login, a missing key or a missing CLI, so finish this list before you write any code.
+
+**Tools on the machine.** Check each one runs and print its version: `git`, Node (LTS) with `pnpm`, and the CLI for each service below. Install what is missing.
+
+| Service | What it is for | CLI | Check it works |
+|---|---|---|---|
+| **GitHub** | The business's repo, and the way you send learnings back (section 8) | `gh` | `gh auth status` |
+| **Vercel** | Hosting for the site, the back office and the chat agent | `vercel` | `vercel whoami` |
+| **Neon** (or Supabase) | The Postgres database | `neonctl` (or `supabase`) | `neonctl me` |
+| **OpenRouter** | One key for the models the agent uses | none, API key | a one-line test call that returns text |
+| **fal** | Image and video generation for content modules | none, API key | a one-line test call that returns a job |
+| **SendGrid** | Sign-in links and outbound email | none, API key | send a test email to the owner |
+| **Stripe** | Payments, only when a payment module is on | `stripe` | `stripe whoami` or a test-mode call |
+| **Beam or Fly** | Workers, only when a module needs one (section 4) | `beam` or `fly` | `beam whoami`, `fly auth whoami` |
+
+Rules:
+
+1. **Turn on two-factor sign-in** for every account. The owner holds the recovery codes.
+2. **Keys go in the host and in `.env.local`, never in chat, a commit or a screenshot.** List every key's name, with no value, in `.env.example` the moment you add it.
+3. **One key per service per app.** Name it after the app, so it can be revoked without breaking anything else.
+4. **Set a spend limit** on every metered service (models, image generation, workers) before the first call.
+5. **Prove each one with a real call**, not a success message. A CLI can say "logged in" against the wrong account or team.
+
+Write what you set up, with no values, to `docs/setup.md`: each service, which account, which CLI version, and what was checked.
 
 ---
 
@@ -197,9 +230,16 @@ Pick by the shape of the work, not by vendor:
 
 ### The smallest YEA
 
-The most basic deployment is a **marketing site plus a back office where you manage the leads it captures**: Site, Intake, Leads, with the shell, Log, Team (sign-in) and the chat underneath. Everything else is a module you turn on later. Ship this first for any new business, then grow it.
+The first release is a **marketing site plus a CRM**, live in one sitting. A CRM comes out of the box, so every business starts with one:
 
-This is the first release of the steps below, not an exception to them. Build steps 1 to 3, then Team, Leads, Site and Intake, and ship. "Core" describes where most apps end up, not a requirement. The rest of core follows in order.
+- **Site and Intake:** the public site, and the form that lands in Leads.
+- **The CRM:** Leads, People and Pipeline, relabeled in the business's words.
+- **Underneath:** the shell, sign-in (Team), the Log with Undo, and the chat panel.
+- **One job for the agent:** the answer to "What is the job nobody has time for?", working end to end on real data. If that job needs another module, build only the part the job uses.
+
+It is done when the owner signs in on their phone at the real URL, sees a lead from the live form in the CRM, moves it a stage, undoes it, and watches the agent do its one job and wait for their yes. Stop there and ship. Everything else is a module you turn on later.
+
+This is the first release of the build order below, not an exception to it: steps 1 to 3, then Team, Leads, People, Pipeline, Site and Intake.
 
 ---
 
@@ -273,6 +313,20 @@ Rules that apply at every level:
 5. **Redirect old URLs** when a site or store moves, or the business loses its search rank.
 6. **Count, then cut.** Before cancelling, compare record counts and totals between the old tool and YEA and show the owner the numbers.
 7. **Show the savings.** Keep a running list of what was cancelled and its monthly price. That number is the owner's proof.
+
+---
+
+## 8. Give back what you learned
+
+This reference gets better because every build sends back what went wrong. It only works if every agent does it, and only with the owner's yes.
+
+**While you build,** keep `docs/learnings.md` in the business's repo. Every time something costs real time, add one entry: what happened, why, the fix, and what this reference should have told you. Do it when it happens, not from memory at the end.
+
+**When the first release ships,** read back through the repo's git log and your own chat history with the owner. Add anything you missed: reverted commits, fixes to fixes, steps you had to redo, questions the owner had to answer twice, setup that stalled.
+
+**Then ask the owner,** in plain words: "I wrote down what went wrong during your build. Can I share the lessons with the YEA community, so the next business doesn't hit them? Nothing about you or your business goes in: no names, no numbers, no links, no data. You can read it first. The pull request shows your GitHub username." Share nothing without a clear yes.
+
+**With a yes,** open a pull request to this repo following [`CONTRIBUTING.md`](CONTRIBUTING.md). Show the owner the exact text before you submit it.
 
 ---
 
