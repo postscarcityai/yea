@@ -118,6 +118,8 @@ Do this first, with the owner, before the interview. Every account is in the bus
 | **SendGrid** | Sign-in links and outbound email | none, API key | send a test email to the owner |
 | **Stripe** | Payments, only when a payment module is on | `stripe` | `stripe whoami` or a test-mode call |
 | **Beam or Fly** | Workers, only when a module needs one (section 4) | `beam` or `fly` | `beam whoami`, `fly auth whoami` |
+| **Domain registrar** (Namecheap or any other) | Owns the domain name. Nothing else lives here | none | the domain shows the Cloudflare nameservers |
+| **Cloudflare** | DNS for every domain, managed in one place | `wrangler` (optional) | `dig +short NS <domain>` returns Cloudflare |
 
 Rules:
 
@@ -128,6 +130,29 @@ Rules:
 5. **Prove each one with a real call**, not a success message. A CLI can say "logged in" against the wrong account or team.
 
 Write what you set up, with no values, to `docs/setup.md`: each service, which account, which CLI version, and what was checked.
+
+### First app? Open the pages for them
+
+Most owners have never set up their own app. The list above is a wall of sign-ups to them, and it is where a first build most often stops. So the agent does the legwork and the owner only does the parts that need a person. These should be the last platforms the business ever needs: everything later is a module on top of them.
+
+If you can drive a browser (Chrome use, a browser extension, or the desktop app), work like this:
+
+1. **Open one tab per service, in order, in the owner's own browser.** GitHub first, because Vercel and Neon can sign in with it. Then Vercel, Neon, the registrar and Cloudflare, SendGrid (its domain check needs the DNS from Cloudflare), OpenRouter, fal, and Stripe or Beam/Fly only when a module needs them.
+2. **Go to the exact page, not the home page.** The sign-up form, the API keys page, the billing limits page. Fill in what you can: the business name, the email, the project name, the settings from this spec.
+3. **Hand over only what needs a person,** one at a time, saying exactly which tab and which button: choosing a password, two-factor setup, a card number, ID checks, a CAPTCHA, accepting terms. Never type a password or a card number yourself, and never keep one.
+4. **Check each one before you open the next tab.** Run the CLI check from the table. If it fails, fix it now, not at deploy time.
+5. **Say what is done and what is left** after every tab, as a short checklist. The owner can stop and pick up later without losing the place.
+
+Without a browser, send the owner the same list as direct links, one per line, with the one thing to do on each page.
+
+**Domains.** Keep buying domains where the owner already does (Namecheap, for example). Then, at the registrar, set the domain's nameservers to the two Cloudflare gives you, and manage all DNS in Cloudflare from then on. One place for every record, every domain. For a site on Vercel, add these in Cloudflare:
+
+| Type | Name | Value | Proxy |
+|---|---|---|---|
+| `A` | `@` | `76.76.21.21` | DNS only (grey cloud) |
+| `CNAME` | `www` | `cname.vercel-dns.com` | DNS only (grey cloud) |
+
+Leave the proxy off for anything Vercel serves. Vercel issues the HTTPS certificate itself, and a proxied record can block that. Add the domain to the Vercel project too (`vercel domains add <domain>`), then prove it with a real `https://` request to both the bare domain and `www`.
 
 ---
 
