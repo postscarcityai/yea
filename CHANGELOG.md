@@ -4,6 +4,17 @@ Newest first. Every change to this reference gets an entry. See `shared/updating
 
 Format: what changed, why it's better, where it's proven, and `must-review` if it applies.
 
+## 2026-11-16: Setup first, a site and a CRM first, and learnings come back as pull requests
+
+- **What changed:**
+  - `README.md` new section 0: set up the accounts and tools before the interview, all in the business's name. GitHub, Vercel, Neon, OpenRouter, fal, SendGrid, and Stripe, Beam or Fly when a module needs them, with their CLIs, each proven by a real call. Two-factor, spend limits, keys never in chat or commits, `docs/setup.md`.
+  - `README.md` "The smallest YEA": the first release is a site plus a CRM (Leads, People, Pipeline), plus one agent job, live in one sitting, with a definition of done.
+  - `README.md` new section 8 and new `CONTRIBUTING.md`: every build keeps `docs/learnings.md`, reviews its git log and chat when the first release ships, asks the owner, strips everything personal, and opens a pull request adding one file to `practices/learnings/`. Maintainers fold learnings into traps, the README or PRDs.
+  - `practices/traps.md`: new sections for setup, sign-in and email, agents and tools, workers and hosting, and more entries from our own builds.
+- **Module keys:** shell, `leads`, `people`, `pipeline`, `site`, `intake`.
+- **Why it's better:** most build stalls were a missing login, key or CLI. Builds ran long with nothing live. And every business hit snags the last one already solved, because nothing came back.
+- **Where it's proven:** the setup list and the traps come from our own builds. The give-back loop is not yet proven.
+
 ## 2026-11-11: Agents are directives with editable instructions, tools and call rules
 
 - **What changed:** `admin/run/agents/PRD.md`: new section. An agent is a directive plus tools; every step's built-in instructions are editable with Reset to built-in; tools switch steps off; call rules default to join every meeting, narrowed by business hours and per record; one default agent, Owner manages by default.
