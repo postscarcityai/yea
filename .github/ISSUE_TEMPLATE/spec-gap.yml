@@ -1,0 +1,32 @@
+name: Spec gap or error
+description: A PRD or shared file is wrong, unclear, contradicts itself, or is missing something a build needed.
+title: "Spec: "
+labels: ["spec", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: This issue is public. Speak in generalities and module keys. No business details.
+  - type: input
+    id: where
+    attributes:
+      label: Where
+      description: File and section, for example admin/grow/leads/PRD.md, Acceptance criteria.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong or missing
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What it should say
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Before you send
+      options:
+        - label: Nothing in it names or identifies a business, its people or its data.
+          required: true

@@ -44,7 +44,7 @@ Both themes take their color from the business's own brand. The companies, peopl
 4. **Write down what you built from.** Record this repo's commit in `yea.lock.json`.
 5. **Connect an agent.** The agent in the chat panel is the default. A business's own Hermes connects through the back office. See `shared/agent-platform.md`.
 6. **Keep up.** On a schedule, your agent reads the changes since that commit and decides adopt, adapt or skip. See `shared/updating.md`.
-7. **Give back.** With the owner's yes, your agent sends what went wrong as a pull request, with nothing personal in it. Every build makes the next one easier. See section 8 and `CONTRIBUTING.md`.
+7. **Give back.** With the owner's yes, your agent files what went wrong as an issue, with nothing personal in it. Every build makes the next one easier. See section 8 and `CONTRIBUTING.md`.
 
 ### How this repo is laid out
 
@@ -53,7 +53,7 @@ Folders mirror the left nav. If a page is in the nav, it has a folder with a `PR
 ```
 README.md                  you are here
 CHANGELOG.md               every change to this reference: what, why, where it's proven
-CONTRIBUTING.md            how an agent sends learnings back, and what must never be in them
+CONTRIBUTING.md            how an agent files learnings as issues, and what must never be in them
 shared/
   PRD-TEMPLATE.md          the headings every PRD uses
   modules.md               the module map: nav tree, tiers, routes, config knobs
@@ -80,7 +80,6 @@ change-video/
 practices/
   running-agents.md        how we run a company on agents: capture, owners, proof, gates, quiet, monitors
   traps.md                 specific failures from real builds and the fix
-  learnings/               lessons sent back by builds, waiting to be folded into traps.md
 admin/
   home/
   inbox/
@@ -110,7 +109,7 @@ Do this first, with the owner, before the interview. Every account is in the bus
 
 | Service | What it is for | CLI | Check it works |
 |---|---|---|---|
-| **GitHub** | The business's repo, and the way you send learnings back (section 8) | `gh` | `gh auth status` |
+| **GitHub** | The business's repo, and how you send learnings back as issues (section 8) | `gh` | `gh auth status` |
 | **Vercel** | Hosting for the site, the back office and the chat agent | `vercel` | `vercel whoami` |
 | **Neon** (or Supabase) | The Postgres database | `neonctl` (or `supabase`) | `neonctl me` |
 | **OpenRouter** | One key for the models the agent uses | none, API key | a one-line test call that returns text |
@@ -349,9 +348,9 @@ This reference gets better because every build sends back what went wrong. It on
 
 **When the first release ships,** read back through the repo's git log and your own chat history with the owner. Add anything you missed: reverted commits, fixes to fixes, steps you had to redo, questions the owner had to answer twice, setup that stalled.
 
-**Then ask the owner,** in plain words: "I wrote down what went wrong during your build. Can I share the lessons with the YEA community, so the next business doesn't hit them? Nothing about you or your business goes in: no names, no numbers, no links, no data. You can read it first. The pull request shows your GitHub username." Share nothing without a clear yes.
+**Then ask the owner,** in plain words: "I wrote down what went wrong during your build. Can I share the lessons with the YEA community, so the next business doesn't hit them? Nothing about you or your business goes in: no names, no numbers, no links, no data. You can read it first. It will be posted from your GitHub account." Share nothing without a clear yes.
 
-**With a yes,** open a pull request to this repo following [`CONTRIBUTING.md`](CONTRIBUTING.md). Show the owner the exact text before you submit it.
+**With a yes,** file each learning as an issue on this repo with the **Learning** form, following [`CONTRIBUTING.md`](CONTRIBUTING.md). Show the owner the exact text before you submit it. We triage every issue, and the ones that hold up become changes to this reference, cited in `CHANGELOG.md`. Questions go to [Discussions](https://github.com/postscarcityai/yea/discussions).
 
 ---
 

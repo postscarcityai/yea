@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or help with a build
+    url: https://github.com/postscarcityai/yea/discussions
+    about: Ask in Discussions. Issues are for learnings and problems in the spec.

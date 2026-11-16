@@ -1,0 +1,55 @@
+name: Learning from a build
+description: Something cost real time during a YEA build. Send it back so the next build never hits it.
+title: "Learning: "
+labels: ["learning", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Read `CONTRIBUTING.md` first. This issue is public. **Nothing personal goes in:** no names of the business, its people, customers or vendors, no numbers from the business, no links, paths, ids, keys, logs or screenshots. Only the issue and the better way to do it.
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened
+      description: The symptom, paraphrased. No logs.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: The cause, once you found it. Say "unknown" if you never found it.
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: The fix
+    validations:
+      required: true
+  - type: textarea
+    id: should-say
+    attributes:
+      label: What the spec should say
+      description: The sentence that would have saved the time, and where it belongs (README section, a shared/ file, a module PRD, or practices/traps.md).
+    validations:
+      required: true
+  - type: input
+    id: stack
+    attributes:
+      label: Stack
+      description: Framework, database, host, model router. Versions if they matter.
+  - type: input
+    id: spec-commit
+    attributes:
+      label: Spec commit built from
+      description: The sha in yea.lock.json.
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Before you send
+      options:
+        - label: The owner read this text and said yes to sharing it.
+          required: true
+        - label: Nothing in it names or identifies the business, its people or its data.
+          required: true
