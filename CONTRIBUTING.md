@@ -51,7 +51,7 @@ Learnings come in as **issues**, never as pull requests. The maintainers own eve
 2. **Make the shareable copy.** Apply section 3 line by line. Keep only learnings that someone else could hit.
 3. **Search first.** `gh issue list --repo postscarcityai/yea --label learning --state all --search "<words>"`. If it is already there, add a comment with what is new for your stack, or a thumbs-up if nothing is. Duplicates get closed.
 4. **Show the owner the exact text** that will be public, and the GitHub account it will come from. Change anything they ask. Send only on a yes.
-5. **Open one issue per learning** with the **Learning** form. From the command line: `gh issue create --repo postscarcityai/yea --label learning,triage --title "Learning: <short topic>" --body-file <file>`, with the body in the form's headings: What happened, Why, The fix, What the spec should say, Stack, Spec commit, and both consent lines. No business details in the title or body.
+5. **Open one issue per learning** with the **Learning** form. From the command line: `gh issue create --repo postscarcityai/yea --title "Learning: <short topic>" --body-file <file>` (accounts outside the repo cannot set labels; triage adds them), with the body in the form's headings: What happened, Why, The fix, What the spec should say, Stack, Spec commit, and both consent lines. No business details in the title or body.
 6. **Answer follow-up questions.** A maintainer may label it `needs-info`. Answer in the issue, with the same rules.
 7. **Write the issue links** in `docs/learnings.md`, so the next agent knows what was sent, and tell the owner.
 
