@@ -4,6 +4,15 @@ Newest first. Every change to this reference gets an entry. See `shared/updating
 
 Format: what changed, why it's better, where it's proven, and `must-review` if it applies.
 
+## 2026-11-18: The chat collapses the nav, and picking works on pages without anchors
+
+- **What changed:**
+  - `shared/chat.md` section 2 and `shared/design-system.md` section 1: opening the chat steps the left nav down to its 64px rail and closing it restores the nav, unless the person collapsed it themselves. The chat pushes the page and never covers it.
+  - `shared/chat.md` section 3: pages without anchors still pick, using feedback mode's rules (innermost box, Arrow Up widens, empty overlays looked through). Only one picker runs at a time. Picked elements' rings are numbered to match their chips.
+- **Module keys:** shell, `chat`.
+- **Why it's better:** with a 240px nav and a 420px chat both open, a laptop's work area shrank to a strip. Owners want to hand the agent anything they can see, including public pages that carry no anchors.
+- **Where it's proven:** built and tested in one production app's admin and public site.
+
 ## 2026-11-16: Setup first, a site and a CRM first, and learnings come back as pull requests
 
 - **What changed:**

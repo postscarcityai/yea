@@ -26,6 +26,7 @@ This pattern runs in production in two separate apps today. Everything below mar
 - **Esc closes.** Respect `defaultPrevented`, so Esc inside a modal closes the modal first and a second Esc closes the chat. When chips exist and the composer is focused, the first Esc blurs the composer and the second closes. Chips are kept on close.
 - Opening focuses the composer.
 - **Desktop (1024px and up):** docked right, pushes the page (no overlay). Default 420px, drag-resizable from 340px to half the viewport, arrow keys on the edge step 24px, double-click the edge resets. Open state and width live in a cookie the server reads, so a reload lands already sized with no layout jump.
+- **The left nav steps down to its 64px rail when the chat opens** and steps back up when it closes, so the work area keeps its room. If the person had collapsed the nav themselves, it stays a rail. Either way the page is pushed, never covered.
 - Drawer state is also in the URL (`agent_panel`, `agent_thread`), so a pasted link opens the same view.
 - When closed, the FAB is the only thing that floats over the page. It hides while the chat is open and sits above the bulk action bar and toasts, never on top of them.
 
@@ -38,7 +39,9 @@ This pattern runs in production in two separate apps today. Everything below mar
 - **Shift+click** on a table row selects the range from the last picked row. **New.**
 - **Add all** in a table header (only while the chat is open) adds the visible rows up to the cap. If the table holds more than the cap, it adds one `query:` chip carrying the current filter instead ("Orders: paid, last 7 days, 214 rows"), and the agent reads the rows itself. **New.**
 - **Text:** select 3 or more characters anywhere on the page and an "Ask" button floats above the selection. Clicking it adds a quote chip and opens the chat if it is closed. The float hides on scroll and never appears in inputs or editors.
-- Selected elements keep a visible ring on the page while the chat is open.
+- **Pages without anchors** (the public site, a page not anchored yet) still pick, with feedback mode's rules (`shared/feedback-mode.md`): the innermost visible box under the pointer, **Arrow Up** widens to the box around it and **Arrow Down** walks back. Empty decorative overlays laid over a hero (no text, no media, or `aria-hidden`) are looked through. The chip stores a selector, a label ("Heading: Pricing", "Image", "Link: Book a call") and the text. **New.**
+- **One picker at a time.** While feedback mode is picking, select mode stands down, and the reverse. **New.**
+- Selected elements keep a visible ring on the page while the chat is open, numbered to match their chips.
 - **Cap:** 12 chips plus one `query:` chip. The oldest drops off with a short "Removed oldest" note.
 
 ## 4. Chips
