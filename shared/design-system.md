@@ -31,11 +31,11 @@ One shell for every signed-in user. Owner, Admin, Staff, Contractor and Customer
 +-----------+-------------------------------------------+--------------+
 ```
 
-- **Left nav:** 240px, collapsible to a 64px icon rail. Every app ships the collapse; it is not optional. Collapse state in a cookie so the server renders it right on first paint.
+- **Left nav:** 240px, collapsible to a 64px icon rail. Every app ships the collapse; it is not optional. Collapse state in a cookie so the server renders it right on first paint. Opening the chat collapses it to the rail and closing the chat restores it (`shared/chat.md` section 2).
 - **Top bar:** page title (the module label), global search. No sign-out, no profile, no theme switch up here (sign out lives in the profile menu, the theme on My account).
 - **Work area:** fluid. Content max width 1280px for lists, full width for boards and maps.
 - **Full screen mode.** A page that needs the whole screen (a live call, a board, a map) gets a full screen button in its header. It hides the nav and top bar but stays on the same route with `?full=1`, so a refresh keeps it and Esc or the button brings the shell back. Never a separate page or a new tab.
-- **Chat:** docked right, pushes the page, 420px default, 340px to 50vw. Summoned by the round **FAB bottom right** or **Cmd/Ctrl+J**. Spec in `shared/chat.md`.
+- **Chat:** docked right, pushes the page (never covers it), 420px default, 340px to 50vw. Opening it steps the nav down to the rail. Summoned by the round **FAB bottom right** or **Cmd/Ctrl+J**. Spec in `shared/chat.md`.
 - **Mobile (under 1024px):** nav becomes a drawer from the left behind a menu button; chat becomes a full-screen sheet from the right.
 
 ## 2. Left nav
